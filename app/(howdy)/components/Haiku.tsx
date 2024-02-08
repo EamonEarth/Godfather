@@ -45,7 +45,7 @@ const Haiku = () => {
       try {
         const response = await fetch(
           // ENCODE IPADDRESS INSTEAD OF HARDCODING !!!
-          `/api/get-location?ip=${encodeURIComponent(ipAddress)}`
+          `/api/get-location?ip=${encodeURIComponent("24.48.0.1")}`
         );
 
         if (!response.ok) {
