@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { cn, dayOfTheWeek } from "../../../lib/utils";
 
 const Haiku = () => {
-  const [haiku, setHaiku] = useState<String | null>("");
   const [trigger, setTrigger] = useState(0);
   const [ipAddress, setIpAddress] = useState("");
   const [city, setCity] = useState("");
@@ -31,21 +30,14 @@ const Haiku = () => {
     fetchIpAddress();
   }, []);
 
-  useEffect(() => console.log("UseEffect logging ip:", ipAddress), [ipAddress]);
-
   useEffect(() => {
     if (!ipAddress || ipAddress === "undefined") {
       return;
     }
     const fetchLocation = async () => {
-      console.log(
-        "Logging the api route in fetchLocation",
-        `/api/get-location?ip=${encodeURIComponent(ipAddress)}`
-      );
       try {
         const response = await fetch(
-          // ENCODE IPADDRESS INSTEAD OF HARDCODING !!!
-          `/api/get-location?ip=${encodeURIComponent("24.48.0.1")}`
+          `/api/get-location?ip=${encodeURIComponent(ipAddress)}`
         );
 
         if (!response.ok) {
@@ -56,13 +48,11 @@ const Haiku = () => {
         const city = data.data.city;
         setCity(city);
       } catch (error) {
-        console.error("fetch error in useEffect fetchLocay", error);
+        console.error("Poetry said no today :(");
       }
     };
     fetchLocation();
   }, [ipAddress]);
-
-  useEffect(() => console.log("logging City after it's set in fetchLoc", city));
 
   useEffect(() => {
     if (!city || city === "undefined") {

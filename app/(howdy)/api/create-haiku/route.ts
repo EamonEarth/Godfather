@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from 'next/server'
 
 
 const apiKey = process.env.OPENAI_API_KEY;
-console.log("route apiKey", apiKey)
 
 
 const openai = new OpenAI();
