@@ -6,7 +6,6 @@ import { ArrowRight, ChevronsLeftRight } from "lucide-react";
 import TrackerProvider from "./components/TrackerProvider";
 import MouseTracker from "./components/MouseTracker";
 import { Toaster } from "sonner";
-import Ubernav from "../_sharedComps/Ubernav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +22,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("bg-primary antialiased", inter.className)}>
-        <Ubernav />
         <Toaster />
         <TrackerProvider />
         {children}

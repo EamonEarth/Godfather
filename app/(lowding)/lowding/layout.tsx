@@ -11,7 +11,6 @@ import { cn } from "../../../lib/utils";
 import { Inconsolata } from "next/font/google";
 import { Inter } from "next/font/google";
 import MobileNavbar from "./_components/MobileNavbar";
-import Ubernav from "@/app/_sharedComps/Ubernav";
 
 const inter = Inter({ subsets: ["latin"] });
 const inconsolata = Inconsolata({ subsets: ["latin"] });
@@ -29,7 +28,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("tracking-wide", inconsolata.className)}>
-        <Ubernav />
         <Providers>
           <Navbar />
           {children}
