@@ -31,11 +31,17 @@ const Haiku = () => {
     fetchIpAddress();
   }, []);
 
+  useEffect(() => console.log("UseEffect logging ip:", ipAddress), [ipAddress]);
+
   useEffect(() => {
     if (!ipAddress || ipAddress === "undefined") {
       return;
     }
     const fetchLocation = async () => {
+      console.log(
+        "Logging the api route in fetchLocation",
+        `/api/get-location?ip=${encodeURIComponent(ipAddress)}`
+      );
       try {
         const response = await fetch(
           // ENCODE IPADDRESS INSTEAD OF HARDCODING !!!
@@ -55,6 +61,8 @@ const Haiku = () => {
     };
     fetchLocation();
   }, [ipAddress]);
+
+  useEffect(() => console.log("logging City after it's set in fetchLoc", city));
 
   useEffect(() => {
     if (!city || city === "undefined") {
@@ -84,7 +92,7 @@ const Haiku = () => {
         setLines(lines);
         setLoading(false);
       } catch (error) {
-        console.error("Haiku end error");
+        console.error("Haiku end error", error);
       }
     };
     newHaiku();

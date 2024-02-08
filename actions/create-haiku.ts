@@ -3,6 +3,7 @@
 import OpenAI from "openai";
 
 const apiKey = process.env.OPENAI_API_KEY;
+console.log("key from create-haiku.ts", apiKey)
 
 const openai = new OpenAI({ apiKey });
 
