@@ -16,7 +16,7 @@ export async function createHaiku(city : CreateHaikuProps) {
 
     const completion = await openai.chat.completions.create({
         messages: [{ role: "system", content: `Create an elegant funny haiku encouraging the reader to employ the maker of this website. Reference ${city} and tech.` }],
-        model: "gpt-3.5-turbo",
+        model: "gpt-4-0125-preview	",
       });
       console.log(completion.choices)
       console.log("completion", completion)
