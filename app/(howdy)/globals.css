@@ -1,0 +1,374 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* LICHESS */
+
+.lichess-invert {
+  filter: invert()
+}
+/* Haiku */
+
+
+.shake-animate:hover {
+  animation: tilt-shaking 0.25s infinite;
+}
+
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(8deg); }
+  50% { transform: rotate(0eg); }
+  75% { transform: rotate(-8deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.hourglass-rotate {
+  animation: hourglass-rotation 2s infinite;
+}
+
+@keyframes hourglass-rotation {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(0deg); }
+  0% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* GENERAL  */
+
+/* ABOUT */
+
+.spread-font-spacing {
+  letter-spacing: 12px;
+}
+
+.ireland-color-gradient {
+  background: -webkit-linear-gradient(0deg, #1be073,#ffffff, #f68120);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* Contact Form */
+.fly-right {
+  animation: 2s slide-right ease;
+}
+@keyframes slide-right {
+  from {
+    margin-left: -30%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+
+/* EXPERIENCE */
+
+.combined-animation {
+  animation: 
+    3s ience-tug ease 0s forwards,
+    2s ience-flash ease 4s forwards; /* 3s delay to start after the first animation ends */
+    animation-fill-mode: forwards;
+
+}
+
+.exper-animation {
+  animation: 3s exper-drop ease 700ms forwards;
+  animation-fill-mode: forwards;
+}
+
+
+.iii {
+  animation: 3s i-green ease-in-out 1500ms;
+}
+
+@keyframes i-green {
+  from {
+  } 
+  20% {
+    color: #1be073;
+    opacity: 100;
+  } 
+  90% {
+    color: #1be073;
+    opacity: 100;
+  } 
+  to {
+  }
+}
+
+.eee {
+  animation: 3s e-gold ease-in-out 1500ms;
+}
+
+@keyframes e-gold {
+  from {
+
+  } 
+  10% {
+    color: #f68120;
+    opacity: 100;
+  } 
+  90% {
+    color: #f68120;
+    opacity: 100;
+  } 
+  to {
+  }
+}
+
+.rrr {
+  animation: 3s r-white ease-in-out 1500ms;
+}
+
+@keyframes r-white {
+  from {
+    color: currentColor ;
+  } 
+  10% {
+    color: #ffffff;
+     } 
+  90% {
+    color: #ffffff;
+  } 
+  to {
+    color: currentColor;
+  }
+}
+
+@keyframes ience-tug {
+  from {
+    transform: translateX(0px);
+    opacity: 100%;
+  }
+  to {
+    transform: translateX(105px);
+    opacity: 80%;
+  }
+}
+
+@keyframes exper-drop {
+  from {
+    transform: translateY(0px);
+    opacity: 100%;
+  } to {
+    transform: translateY(31px);
+    opacity: 80%;
+  }
+}
+
+@keyframes ience-flash {
+  from {
+    transform: translateX(105px);
+  }
+  to {
+    transform: translateX(135px);
+    opacity: 80%
+  }
+}
+
+
+@keyframes slide-right {
+  from {
+    margin-left: -50%;
+    margin-bottom: -30%;
+  } 
+
+  to {
+    margin-left: 0%;
+    margin-bottom: 0%;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+
+.modal-3d{
+  position: relative;
+  /* bottom: 90%; */
+  /* left: 10%; */
+  background: #345309;
+  border-radius: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  transform: scale(0.95);
+  box-shadow: -5px 10px 2px 5px  rgba(111, 111, 143, .8);
+  /* box-shadow: -20px 10px 5px 10px rgba(111, 111, 143, .8); */
+  transform: scale(1) translateZ(0);
+  color: white;
+}
+
+
+
+.form3D {
+  
+  border-radius: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  transform: scale(0.95);
+  box-shadow: -3px 3px  rgba(209, 209, 239, 0.8);
+  transform: scale(1) translateZ(0);
+  color: white;
+  text-shadow: -0.5px 0.5px rgba(209, 209, 239, 0.8);
+}
+
+.email3D {
+  text-shadow: -1px 1px rgba(209, 209, 239, 0.5);
+}
+
+
+
+
+
+
+.modal-bg-blur {
+  filter: blur(1px);
+}
+
+.modal-bg-blur-exception {
+  filter: blur(0px);
+
+}
+
+.wide-outline {
+  outline: 0.1px solid rgba(122, 128, 140,) ;
+  outline-offset: 20px;
+  border-radius: 2rem;
+  transition: outline opacity 250ms ease-in-out;
+}
+
+.wide-outline:hover {
+  outline: 0.1px solid rgba(122, 128, 140, 1) ;
+  opacity: 1;
+}
+
+/* TRANSITIONS */
+
+.link-text {
+  transition: all 100ms ease-in-out; 
+  font-size:medium; 
+  opacity: 1 important!;
+}
+.link-text:hover {
+  color:rgb(141, 224, 18);
+  
+}
+
+.grow-head {
+  opacity: 1;
+  transition: font-size 300ms ease;
+}
+.grow-head:hover {
+  font-size: 23px;
+}
+
+.grow-name {
+  opacity: 1;
+  transition: font-size 300ms ease;
+}
+.grow-name:hover {
+  font-size: 47px;
+  color: rgb(141, 224, 18, 0.9);
+
+}
+
+.grow-employer {
+  font-size: 16px;
+  transition: font-size 300ms ease;
+}
+
+
+.wide-outline:hover .grow-head {
+  font-size: 18.5px;
+  color: rgb(141, 224, 18);
+}
+.wide-outline:hover .grow-employer {
+  font-size: 17px;
+  color: rgba(112, 181, 16, 1);
+}
+.wide-outline:hover .grow-tag-line {
+  font-size: 17px;
+  color: rgb(72, 117, 9);
+}
+
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

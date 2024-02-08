@@ -1,0 +1,27 @@
+.txt
+
+make a contact modal, doesn't have to be fancy because it's all one page. 
+triggered from icon in Header.
+
+should dim all outside
+add abillity to sense outside clicks to close the modal
+save any half written messages/notes to localStorage 
+
+upon blur of background on modalOpen, have another renny woman peering over the message form 
+
+get Header div elementById 
+
+ADD OUTSIDE CLICK
+
+Use the darker border at bottom of page. Add a silhouetted door sitting on the border. green light simmering through cracks.
+
+
+Add  an on-click to EXPERIENCE to run the animation in reverse. 
+
+
+Gather IP to get location, and Date(), and pass this data into generateHaiku()
+useEffect calls 'get-op
+
+
+
+Create carousel to let user swap through different haiku.
