@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "../../lib/utils";
-import { ArrowRight, ChevronsLeftRight } from "lucide-react";
 import TrackerProvider from "./components/TrackerProvider";
-import MouseTracker from "./components/MouseTracker";
 import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
