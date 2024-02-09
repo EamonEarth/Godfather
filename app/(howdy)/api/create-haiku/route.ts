@@ -3,10 +3,10 @@ import OpenAI from "openai";
 import { NextRequest, NextResponse } from 'next/server'
 
 
-// const apiKey = process.env.OPENAI_API_KEY;
+const apiKey = process.env.OPENAI_API_KEY;
 
 
-const openai = new OpenAI();
+const openai = new OpenAI({apiKey:apiKey});
 
 
 interface CreateHaikuProps {
