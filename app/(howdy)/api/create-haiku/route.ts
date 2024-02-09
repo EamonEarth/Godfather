@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from 'next/server'
 const apiKey = process.env.OPENAI_API_KEY;
 
 
-const openai = new OpenAI({apiKey});
+const openai = new OpenAI();
 
 
 interface CreateHaikuProps {
