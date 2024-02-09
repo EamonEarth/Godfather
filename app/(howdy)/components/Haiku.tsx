@@ -61,11 +61,6 @@ const Haiku = () => {
       setLoading(true);
       const date = new Date();
       const dayString = dayOfTheWeek(date);
-      console.log(
-        `/api/create-haiku?city=${encodeURIComponent(
-          city
-        )}?day=${encodeURIComponent(dayString)}`
-      );
 
       try {
         const response = await fetch(
