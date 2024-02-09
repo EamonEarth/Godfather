@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from 'next/server'
 const apiKey = process.env.OPENAI_API_KEY;
 
 
-const openai = new OpenAI();
+const openai = new OpenAI({apiKey});
 
 
 interface CreateHaikuProps {
@@ -26,8 +26,8 @@ export async function GET(req: NextRequest) {
         model: "gpt-4-0125-preview",
       });
       
-
       const final = completion.choices[0].message.content
+      console.log(final)
     
       return NextResponse.json({final})
     }
