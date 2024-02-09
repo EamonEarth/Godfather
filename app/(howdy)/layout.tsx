@@ -4,7 +4,6 @@ import "./globals.css";
 import { cn } from "../../lib/utils";
 import TrackerProvider from "./components/TrackerProvider";
 import { Toaster } from "sonner";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +23,6 @@ export default function RootLayout({
         <Toaster />
         <TrackerProvider />
         {children}
-        <SpeedInsights />
       </body>
     </html>
   );

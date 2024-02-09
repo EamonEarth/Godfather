@@ -20,7 +20,6 @@ const Haiku = () => {
 
         const data = await response.json();
         setIpAddress(data.ip);
-        console.log("just set");
       } catch (error) {
         console.error("ip fetch erroridoo - you live in Berlin now", error);
         setIpAddress("24.48.0.1");

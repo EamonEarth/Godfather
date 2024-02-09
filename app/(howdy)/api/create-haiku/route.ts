@@ -3,7 +3,7 @@ import OpenAI from "openai";
 import { NextRequest, NextResponse } from 'next/server'
 
 
-const apiKey = process.env.OPENAI_API_KEY;
+// const apiKey = process.env.OPENAI_API_KEY;
 
 
 const openai = new OpenAI();
@@ -14,6 +14,7 @@ interface CreateHaikuProps {
 }
 
 export async function GET(req: NextRequest) {
+
     const { searchParams } = new URL(req.url)
   
     const city = searchParams.get("city")
@@ -27,7 +28,6 @@ export async function GET(req: NextRequest) {
       });
       
       const final = completion.choices[0].message.content
-      console.log(final)
     
       return NextResponse.json({final})
     }
