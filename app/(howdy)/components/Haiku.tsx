@@ -37,7 +37,7 @@ const Haiku = () => {
     const fetchLocation = async () => {
       try {
         const response = await fetch(
-          `/api/get-location?ip=${encodeURIComponent("24.48.0.1")}`
+          `/api/get-location?ip=${encodeURIComponent(ipAddress)}`
         );
 
         if (!response.ok) {
