@@ -61,7 +61,12 @@ interface ExperienceProps {
 
 const Experience = ({ showModal }: ExperienceProps) => {
   return (
-    <div className={cn("lg:max-w-[450px] ", showModal && "modal-bg-blur")}>
+    <div
+      className={cn(
+        "lg:max-w-[450px] ",
+        showModal && "lg:modal-bg-blur hover:!blur-0"
+      )}
+    >
       <div id="ANIMATION-TITLE-DIV" onClick={() => {}} className="pb-5 ">
         <h1
           className={cn(
@@ -84,7 +89,8 @@ const Experience = ({ showModal }: ExperienceProps) => {
           <div
             key={job.title}
             // bg color : bg-[#111c2c]
-            className="rounded-xl   w-auto h-auto opacity-40 hover:!opacity-100  hover:bg-green-600/20 transition-all hover:outline outline-1 wide-outline py-2 px-[30px] relative md:right-[30px] md:hover:right-0 lg:hover:right-[150px] duration-1000 delay-50 hover:z-50"
+            // hover bg transparent:  hover:bg-green-600/20
+            className="hover-boundary rounded-xl   w-auto h-auto opacity-40 hover:!opacity-100 hover:bg-[#111c2c] transition-all hover:outline outline-1 wide-outline py-2 px-[30px] relative md:right-[30px] md:hover:right-0 lg:hover:right-[150px] duration-1000 delay-50 hover:z-50"
           >
             <li className=" py-2 gap-y-10 " key={job.title}>
               <div className="md:flex lg:flex-col gap-x-24">

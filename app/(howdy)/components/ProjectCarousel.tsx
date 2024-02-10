@@ -19,7 +19,7 @@ const PROJECTS = [
   {
     name: "Project Lowding",
     link: "https://github.com/EamonEarth/Lowding",
-    img: "/portfolio/portfolio-thumb.png",
+    img: "/portfolio/lowding-thumb.png",
     description:
       "Neat little design thesis project advocating for lower impact design choices. As well as building the site I refined the UX.",
   },
@@ -29,13 +29,6 @@ const PROJECTS = [
     img: "/portfolio/portfolio-thumb.png",
     description:
       "Built with NextJS, design inspired by Brittany Chiang's beautiful site, but any and all mistakes (and successes) are my own!",
-  },
-  {
-    name: "",
-    link: "https://github.com/EamonEarth/Lowding",
-    img: "/portfolio/portfolio-thumb.png",
-    description:
-      "I built and helped design this website advocating for low-impact design choices.",
   },
 ];
 
@@ -61,51 +54,54 @@ export function ProjectCarousel() {
   }
 
   return (
-    <div className="pt-12 flex flex-col md:w-full  max-w-[450px] snap-center  relative ">
+    <div className="pt-12 flex flex-col md:w-full  max-w-[450px] snap-center relative hover-boundary  ">
       <h1
         className={cn(
-          "text-primary-foreground font-sans text-left font-bold text-2xl md:relative uppercase spread-font-spacing"
+          "text-primary-foreground font-sans text-left font-bold text-2xl md:relative uppercase spread-font-spacing "
         )}
       >
         Past Work
       </h1>
       <span className="w-full h-[1px] bg-white lg:mb-8" />
-      <Carousel
-        opts={{
-          align: "center",
-          loop: true,
-          axis: "y",
-        }}
-        className="w-full md:w-auto"
-      >
-        <CarouselContent className="text-white text-center flex ">
-          {PROJECTS.map((project, index) => (
-            <CarouselItem
-              key={project.name}
-              className={cn("flex  rounded-xl", index === 0 && "!opacity-90")}
-              style={{ transition: "opacity 500ms ease-out" }}
-            >
-              <Link href={project.link}>
-                <div className="p-1 flex flex-col aspect-square font-light pb-3">
-                  <img
-                    src={project.img}
-                    alt={project.name}
-                    className="rounded"
-                  />
-                  <h2 className="pt-4 text-lg font-bold uppercase">
-                    {project.name}
-                  </h2>
-                  <p className="text-sm pt-1 mx-2 line-clamp-3 ">
-                    {project.description}
-                  </p>
-                </div>
-              </Link>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+      {/* <div className=" rounded-xl   w-auto h-auto  hover:bg-[#111c2c] hover:outline outline-1  py-2 px-[30px] relative md:right-[30px] md:hover:right-0 lg:hover:right-[150px] duration-1000 delay-50 hover:z-50"> */}
+      <div className="carousel-hover-boundary rounded-xl   w-auto h-auto  hover:bg-green-600/50 hover:outline outline-1  py-4 px-[30px] relative md:right-[30px] md:hover:right-0 lg:hover:right-[280px] duration-1000 delay-50 hover:z-50">
+        <Carousel
+          opts={{
+            align: "center",
+            loop: true,
+            axis: "y",
+          }}
+          className="w-full md:w-auto relative right-0  "
+        >
+          <CarouselContent className="text-white text-center flex ">
+            {PROJECTS.map((project, index) => (
+              <CarouselItem
+                key={project.name}
+                className={cn("flex  rounded-xl")}
+                // style={{ transition: "opacity 500ms ease-out" }}
+              >
+                <Link href={project.link}>
+                  <div className="p-1 flex flex-col aspect-square font-light pb-3">
+                    <img
+                      src={project.img}
+                      alt={project.name}
+                      className="rounded"
+                    />
+                    <h2 className="pt-4 text-lg font-bold uppercase">
+                      {project.name}
+                    </h2>
+                    <p className="text-sm pt-1 mx-2 line-clamp-3 ">
+                      {project.description}
+                    </p>
+                  </div>
+                </Link>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </div>
     </div>
   );
 }

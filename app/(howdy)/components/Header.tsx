@@ -27,7 +27,13 @@ const Header = ({ showModal, setShowModal }: HeaderProps) => {
         id="header-blur"
         className=" flex flex-col  max-w-sm md:max-w-md gotta-blur relative "
       >
-        <div className={cn("", showModal && "modal-bg-blur")}>
+        <div
+          className={cn(
+            "",
+            showModal &&
+              "modal-bg-blur hover:!blur-0 transition-all duration-400"
+          )}
+        >
           <h1 className="text-5xl lg:text-6xl font-semibold text-primary-foreground lg:pb-4 row-name">
             Eamon Travers
           </h1>

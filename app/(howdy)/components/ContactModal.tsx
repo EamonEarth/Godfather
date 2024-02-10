@@ -21,9 +21,12 @@ const ContactModal = forwardRef<HTMLDivElement, ContactModalProps>(
     return (
       <div
         ref={mergeRefs([ref, outsideClickRef])}
-        className={cn("lg:left-10", showModal ? "relative" : "hidden")}
+        className={cn("lg:left-10", showModal ? "relative " : "hidden")}
       >
-        <div className="flex flex-col z-50 mt-16">
+        <div className=" flex flex-col z-50 mt-16 lg:fixed lg:top-[0]">
+          <h1 className="text-primary-foreground font-sans text-left font-bold text-lg md:relative uppercase spread-font-spacing lg:pb-5">
+            Contact
+          </h1>
           <div className="text-primary text-3xl modal-3d min-w-80">
             <ContactForm setShowModal={setShowModal} />
           </div>

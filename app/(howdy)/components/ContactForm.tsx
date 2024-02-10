@@ -79,7 +79,7 @@ const ContactForm = ({ setShowModal }: ContactFormProps) => {
     >
       <form
         autoComplete="off"
-        className="grid md:grid-cols-1[auto_1fr] gap-4 resize opacity-90"
+        className="grid md:grid-cols-1[auto_1fr] gap-4 resize opacity-90 pt-2"
         onSubmit={handleSubmit}
       >
         <div className="grid md:grid-cols-[auto_1fr] gap-2 items-center  md:w-auto  ">

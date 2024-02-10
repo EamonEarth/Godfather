@@ -29,12 +29,19 @@ export default function Home() {
           if (entry.isIntersecting) {
             const id = entry.target.getAttribute("id");
             if (id) {
-              window.history.pushState({}, "", `#${id}`);
+              const newUrl = id;
+              window.history.replaceState(
+                { ...window.history.state, as: newUrl, url: newUrl },
+                "",
+                newUrl
+              );
+              // window.history.pushState({}, "", `#${id}`);
+              // window.location.
             }
           }
         });
       },
-      { rootMargin: "0px", threshold: 0.5 } // Adjust rootMargin and threshold as needed
+      { rootMargin: "0px", threshold: 0.1 } // Adjust rootMargin and threshold as needed
     );
 
     const aboutEl = aboutRef.current;
@@ -53,7 +60,7 @@ export default function Home() {
     <main>
       <div className="w-screen h-full   ">
         <div className="flex flex-col lg:gap-y-6 justify-center px-2 ">
-          <div className="flex flex-col lg:flex-row lg:justify-around lg:items-center mt-24 mx-4 ">
+          <div className="flex flex-col lg:flex-row lg:justify-around lg:items-center relative lg:-inset-x-10 mt-24 mx-4 ">
             <div className="flex flex-col ">
               <div
                 className={cn(
@@ -61,26 +68,24 @@ export default function Home() {
                   showModal ? "lg:absolute" : "lg:fixed"
                 )}
               >
-                <Header
-                  showModal={showModal}
-                  setShowModal={() => setShowModal(!showModal)}
-                />
-                {/* <Haiku /> */}
-                {showModal && (
-                  <ContactModal
-                    ref={modalRef}
+                <div className={cn(showModal && "lg:hidden")}>
+                  <Header
                     showModal={showModal}
-                    setShowModal={setShowModal}
+                    setShowModal={() => setShowModal(!showModal)}
                   />
-                )}
+                  <Haiku />
+                </div>
               </div>
+              {showModal && (
+                <ContactModal
+                  ref={modalRef}
+                  showModal={showModal}
+                  setShowModal={setShowModal}
+                />
+              )}
             </div>
-            <div className="flex row">
-              <div
-                id="About"
-                ref={aboutRef}
-                className="w-[350px] hidden lg:flex"
-              ></div>
+            <div id="about" ref={aboutRef} className="flex row ">
+              <div className="w-[350px] hidden lg:flex"></div>
               <About showModal={showModal} />
             </div>
           </div>
@@ -89,16 +94,15 @@ export default function Home() {
           
           */}
 
-          <div className="flex flex-col">
+          <div ref={experienceRef} className="flex flex-col">
             <div
-              id="Experience"
-              ref={experienceRef}
+              id="experience"
               className="flex flex-col lg:flex-row justify-around lg:items-center mx-4"
             >
               <div className="w-[350px] hidden md:flex"></div>
               <Experience showModal={showModal} />
             </div>
-            <div className="flex justify-around">
+            <div className="flex justify-around md:pt-8 lg:pt-24">
               <div
                 id="Projects"
                 ref={projectsRef}

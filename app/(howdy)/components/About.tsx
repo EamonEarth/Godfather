@@ -11,7 +11,8 @@ const About = ({ showModal }: AboutProps) => {
       id="about"
       className={cn(
         "tracking-wider font-light pt-10  md:relative z-50",
-        showModal && "modal-bg-blur"
+        showModal &&
+          "lg:modal-bg-blur hover:!blur-0 transition-all duration-400"
       )}
       // style={{ transform: "translateX(110px)" }}
     >
