@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, ReactComponentElement } from "react";
 import ContactModal from "./components/ContactModal";
 import Header from "./components/Header";
 import Experience from "./components/Experience";
@@ -10,6 +10,9 @@ import { cn } from "../../lib/utils";
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const experienceRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (showModal) {
@@ -18,6 +21,33 @@ export default function Home() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [showModal]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            if (id) {
+              window.history.pushState({}, "", `#${id}`);
+            }
+          }
+        });
+      },
+      { rootMargin: "0px", threshold: 0.5 } // Adjust rootMargin and threshold as needed
+    );
+
+    const aboutEl = aboutRef.current;
+    const experienceEl = experienceRef.current;
+
+    if (aboutEl) observer.observe(aboutEl);
+    if (experienceEl) observer.observe(experienceEl);
+
+    return () => {
+      if (aboutEl) observer.unobserve(aboutEl);
+      if (experienceEl) observer.unobserve(experienceEl);
+    };
+  }, []);
 
   return (
     <main>
@@ -35,7 +65,7 @@ export default function Home() {
                   showModal={showModal}
                   setShowModal={() => setShowModal(!showModal)}
                 />
-                <Haiku />
+                {/* <Haiku /> */}
                 {showModal && (
                   <ContactModal
                     ref={modalRef}
@@ -46,7 +76,11 @@ export default function Home() {
               </div>
             </div>
             <div className="flex row">
-              <div className="w-[350px] hidden lg:flex"></div>
+              <div
+                id="About"
+                ref={aboutRef}
+                className="w-[350px] hidden lg:flex"
+              ></div>
               <About showModal={showModal} />
             </div>
           </div>
@@ -57,14 +91,19 @@ export default function Home() {
 
           <div className="flex flex-col">
             <div
-              id="EXPERIENCE"
+              id="Experience"
+              ref={experienceRef}
               className="flex flex-col lg:flex-row justify-around lg:items-center mx-4"
             >
               <div className="w-[350px] hidden md:flex"></div>
               <Experience showModal={showModal} />
             </div>
             <div className="flex justify-around">
-              <div className="w-[350px] hidden lg:flex"></div>
+              <div
+                id="Projects"
+                ref={projectsRef}
+                className="w-[350px] hidden lg:flex"
+              ></div>
               <ProjectCarousel />
             </div>
           </div>
