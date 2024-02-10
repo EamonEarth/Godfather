@@ -57,7 +57,7 @@ const About = ({ showModal }: AboutProps) => {
               structure and creativity. Working with smart people towards a
               shared goal makes me happy and, for my money at least, I think the
               satisfaction of creating quality is one of the true joys of the
-              world! And it's cool!
+              world! And it&apos;s cool!
             </p>
           </div>
         </div>
