@@ -5,7 +5,6 @@ import Header from "./components/Header";
 import Experience from "./components/Experience";
 import About from "./components/About";
 import Haiku from "./components/Haiku";
-import { ProjectCarousel } from "./components/ProjectCarousel";
 import { cn } from "../../lib/utils";
 import Projects, { PROJECTS } from "./components/Projects";
 
@@ -92,7 +91,6 @@ export default function Home() {
             </div>
             <div className="flex justify-around mx-8 lg:mx-0 md:pt-8 lg:pt-24 carousel-hover-boundary">
               <div className="w-[350px] hidden lg:flex"></div>
-              {/* <ProjectCarousel className="chunk" /> */}
               <Projects
                 expandedStates={expandedStates}
                 setExpandedStates={setExpandedStates}
