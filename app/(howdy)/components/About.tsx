@@ -3,16 +3,17 @@ import React from "react";
 
 interface AboutProps {
   showModal: boolean;
+  className: string;
 }
 
-const About = ({ showModal }: AboutProps) => {
+const About = ({ showModal, className }: AboutProps) => {
   return (
     <section
       id="about"
       className={cn(
-        "tracking-wider font-light pt-10  md:relative z-50",
-        showModal &&
-          "lg:modal-bg-blur hover:!blur-0 transition-all duration-400"
+        "tracking-wider font-light pt-10  md:relative lg:top-20 lg:pb-20 z-50",
+        showModal && "modal-bg-blur hover:blur-0 transition-all duration-400",
+        className
       )}
       // style={{ transform: "translateX(110px)" }}
     >

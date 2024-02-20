@@ -6,6 +6,7 @@ import { cn } from "../../../../lib/utils";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useOutsideClick } from "../../../../hooks/use-outside-click";
+import { ChevronRightSquare } from "lucide-react";
 
 interface MobileNavbarProps {
   showSidebar: boolean | null;
@@ -26,6 +27,10 @@ const MobileNavbar = ({ showSidebar, setShowSidebar }: MobileNavbarProps) => {
         showSidebar && "flex open"
       )}
     >
+      <ChevronRightSquare
+        className="size-6 absolute top-[30px] right-4"
+        onClick={() => setShowSidebar(false)}
+      />
       {NAV_LINKS.map((item, index) => (
         <span key={index} onClick={() => setShowSidebar(false)}>
           <Link href={item.href}>

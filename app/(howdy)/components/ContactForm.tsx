@@ -75,7 +75,7 @@ const ContactForm = ({ setShowModal }: ContactFormProps) => {
   return (
     <div
       id="form-box"
-      className="relative left-2 bottom-2  rounded-2xl shadow-2xl p-2.5 "
+      className="relative left-2 bottom-2  rounded-2xl shadow-2xl p-2.5 pr-3"
     >
       <form
         autoComplete="off"

@@ -225,12 +225,9 @@
 }
 
 
-
-
-
-
 .modal-bg-blur {
   filter: blur(1px);
+  transition: filter 1s
 }
 
 .modal-bg-blur-exception {
@@ -245,32 +242,119 @@
   transition: outline opacity 1000ms ease-in-out;
 }
 
-.wide-outline:hover {
-  outline: 20px solid  rgba(111, 111, 143, .8) ;
+.wide-outline-lg.active {
+  outline: 19px solid  rgba(111, 111, 143, .8) ;
+}
+.wide-outline-sm.active {
+  outline: 10px solid  rgba(111, 111, 143, .8) ;
+}
+/* .wide-outline:hover {
+  outline: 19px solid  rgba(111, 111, 143, .8) ;
+} */
+
+@media(min-width: 1024px ){
+
+  .experience-item.active {
+    right: 150px;
+    background-color: #111c2c;
+    transition: outline opacity 500ms ease-in-out;
+    opacity: 1;
+  }
 }
 
+.experience-item-opac.active {
+  opacity: 1;
+}
+  
 
-.hover-boundary::before {
+  .chunk {
+    right: 0;
+  }
+
+  .chunk:active {
+    right: 150px;
+    background-color: #f68120;
+  }
+  .chunk.active {
+    right: 150px;
+    background-color: #f68120;
+  }
+  
+
+
+
+
+
+
+/* PROJECTS */ /* PROJECTS */ /* PROJECTS */
+.description-transition {
+  overflow: hidden;
+  max-height: auto;  
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.expanded-description {
+  max-height: auto; /* Adjust based on your content */
+}
+
+.button-shake:hover {
+  animation: mild-tilt-shake 0.5s ease-in-out;
+  animation-iteration-count: 2;
+}
+@keyframes mild-tilt-shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  50% { transform: rotate(0eg); }
+  75% { transform: rotate(-3deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-image {
+  transition: opacity 0.2s ease-in-out; /* Smooth transition for the opacity change */
+}
+
+/* Placeholder styles */
+.image-container::before {
   content: '';
   position: absolute;
-  top: -30px; /* Extend upwards */
-  bottom: -30px; /* Extend downwards */
-  left: -100px; /* Extend to the left */
-  right: -200px; /* Extend to the right */
-  z-index: -1; /* Ensure it doesn't interfere with other elements visually */
-  pointer-events: auto; /* Ensure it can trigger hover effects */
-}
-.carousel-hover-boundary::before {
-  content: '';
-  position: absolute;
-  top: -30px; /* Extend upwards */
-  bottom: -30px; /* Extend downwards */
-  left: -300px; /* Extend to the left */
-  right: -200px; /* Extend to the right */
-  z-index: -1; /* Ensure it doesn't interfere with other elements visually */
-  pointer-events: auto; /* Ensure it can trigger hover effects */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background: url('path/to/your/placeholder.jpg') no-repeat center center;
+  background-size: cover; */
+  opacity: 0.5; /* Adjust as needed */
 }
 
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.5; } /* Maximum opacity of 70% */
+}
+
+.fade-in-out {
+  animation: fadeInOut 5s infinite, mild-tilt-shake 1s infinite; /* Adjust duration as needed */
+  animation-timing-function: ease-in-out;
+}
+
+
+
+
+/* CAROUSEL  */
+
+.project-description {
+  height: 50px;
+  overflow: auto;
+  transition: height 0.5s ease-in-out;
+}
+
+.expanded {
+  height: auto; /* Adjust to control how much content is shown when expanded */
+}
 /* TRANSITIONS */
 
 .link-text {
@@ -280,8 +364,8 @@
 }
 .link-text:hover {
   color:rgb(141, 224, 18);
-  
 }
+
 
 .grow-head {
   opacity: 1;
@@ -289,6 +373,10 @@
 }
 .grow-head:hover {
   font-size: 23px;
+}
+.experience-item.active .grow-name {
+  font-size: 47px;
+  color: rgb(141, 224, 18, 0.9);
 }
 
 .grow-name {
@@ -307,15 +395,43 @@
 }
 
 
-.wide-outline:hover .grow-head {
+.wide-outline-lg.active  .grow-head {
   font-size: 18.5px;
   color: rgb(141, 224, 18);
 }
-.wide-outline:hover .grow-employer {
+.wide-outline-lg.active .grow-employer {
   font-size: 17px;
   color: rgba(112, 181, 16, 1);
 }
-.wide-outline:hover .grow-tag-line {
+.wide-outline-lg.active .grow-tag-line {
+  font-size: 17px;
+  color: rgb(72, 117, 9);
+}
+.wide-outline-lg:hover  .grow-head {
+  font-size: 18.5px;
+  color: rgb(141, 224, 18);
+}
+.wide-outline-lg:hover .grow-employer {
+  font-size: 17px;
+  color: rgba(112, 181, 16, 1);
+}
+.wide-outline-lg:hover .grow-tag-line {
+  font-size: 17px;
+  color: rgb(72, 117, 9);
+}
+
+.wide-outline-sm.active  .grow-head,
+.wide-outline-sm:hover  .grow-head {
+  font-size: 18.5px;
+  color: rgb(141, 224, 18);
+}
+.wide-outline-sm.active .grow-employer, 
+.wide-outline-sm.hover .grow-employer {
+  font-size: 17px;
+  color: rgba(112, 181, 16, 1);
+}
+.wide-outline-sm.active .grow-tag-line, 
+.wide-outline-sm.hover .grow-tag-line {
   font-size: 17px;
   color: rgb(72, 117, 9);
 }

@@ -3,7 +3,7 @@
 import { cn } from "../../../lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
 
 // "Live coordinator for MBA/EMBA travel programmes run with Austral. Solo on-site management of flagship programmes from universities like the Cambridge Judge Business School, the Jones Graduate School at Rice, LBS in London, and more. Working directly with university programme heads and support staff to ensure across the board excellence.",
 
@@ -47,39 +47,151 @@ const experience = [
   {
     title: "Jazz~ composer & performer",
     employer: "Freelance",
-    subtitle: "International",
+    subtitle: "Piano, drums, electronics & guitar",
     times: "2013 - present",
     description:
-      "I've been lucky enough to tour internationally with commercial productions as well as some original projects. I also occasionally compose for radio/indie-films. ",
+      "I've been lucky enough to tour internationally with some original projects as well as commercial productions. I also occasionally compose for radio/indie-films. ",
     link: "https://open.spotify.com/track/7vKPf1pOrAFmgq4Rp9JSa2?si=03c4d9e006ea43e4",
   },
 ];
 
+// const observerRef = useRef<IntersectionObserver | null>(null);
+
+// useEffect(() => {
+//   const getDistanceFromCenter = (element: Element): number => {
+//     const elementRect = element.getBoundingClientRect();
+//     const elementCenter = (elementRect.top + elementRect.bottom) / 2;
+//     const viewportCenter = window.innerHeight / 2;
+//     return Math.abs(viewportCenter - elementCenter);
+//   };
+
+//   const updateActiveElement = (visibleElements: Element[]) => {
+//     let minDistance = Infinity;
+//     let mostCenteredElement: Element | null = null;
+
+//     visibleElements.forEach((element) => {
+//       const distance = getDistanceFromCenter(element);
+//       if (distance < minDistance) {
+//         minDistance = distance;
+//         mostCenteredElement = element;
+//       }
+//     });
+
+//     document
+//       .querySelectorAll(".experience-item.active")
+//       .forEach((activeElement) => {
+//         activeElement.classList.remove("active");
+//       });
+
+//     // Use type assertion here if we're confident mostCenteredElement is not null when used
+//     (mostCenteredElement as Element)?.classList.add("active");
+//   };
+
+//   const observerCallback: IntersectionObserverCallback = (
+//     entries,
+//     observer
+//   ) => {
+//     const visibleElements = entries
+//       .filter((entry) => entry.isIntersecting)
+//       .map((entry) => entry.target);
+
+//     if (visibleElements.length > 0) {
+//       updateActiveElement(visibleElements);
+//     }
+//   };
+
+//   observerRef.current = new IntersectionObserver(observerCallback, {
+//     threshold: Array.from({ length: 100 }, (_, i) => i * 0.01),
+//   });
+
+//   const elements = document.querySelectorAll(".experience-item");
+//   elements.forEach((element) => {
+//     observerRef.current?.observe(element);
+//   });
+
+//   return () => {
+//     observerRef.current?.disconnect();
+//   };
+// }, []);
 interface ExperienceProps {
   showModal: boolean;
 }
 
 const Experience = ({ showModal }: ExperienceProps) => {
+  const preventClick: MouseEventHandler<HTMLDivElement> = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
+  useEffect(() => {
+    let ticking = false;
+    const items = Array.from(document.querySelectorAll(".experience-item"));
+
+    const itemMeasurements = items.map((elem) => {
+      const rect = elem.getBoundingClientRect();
+      return {
+        elem,
+        top: rect.top + window.scrollY,
+        center: rect.top + window.scrollY + rect.height / 2,
+        height: rect.height,
+      };
+    });
+
+    const findCenterMostElementAndUpdateClass = () => {
+      const viewportCenter = window.innerHeight / 2 + window.scrollY;
+      let centerMostElement = null;
+      let minDistanceToCenter = Infinity;
+
+      itemMeasurements.forEach(({ elem, top, center, height }, index) => {
+        const distanceToCenter = Math.abs(viewportCenter - center);
+
+        // if (window.innerWidth > 400) {
+        //   if (index === 0 || index === items.length - 1) {
+        //     const visibleHeight =
+        //       Math.min(top + height, window.innerHeight) - Math.max(top, 0);
+        //     if (visibleHeight / height < 0.8) return;
+        //   }
+        // }
+
+        if (distanceToCenter - 50 < minDistanceToCenter) {
+          centerMostElement = elem;
+          minDistanceToCenter = distanceToCenter;
+        }
+      });
+
+      items.forEach((elem) => elem.classList.remove("active"));
+      const conv = centerMostElement as unknown;
+      (conv as Element)?.classList.add("active");
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          findCenterMostElementAndUpdateClass();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    findCenterMostElementAndUpdateClass();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div
       className={cn(
-        "lg:max-w-[450px] ",
-        showModal && "lg:modal-bg-blur hover:!blur-0"
+        "lg:max-w-[450px] lg:relative lg:right-[40px] mx-3 md:mx-0",
+        showModal && "modal-bg-blur hover:!blur-0"
       )}
     >
-      <div id="ANIMATION-TITLE-DIV" onClick={() => {}} className="pb-5 ">
-        <h1
-          className={cn(
-            "exper-animation text-primary-foreground font-bold text-2xl leading-tight md:relative  tracking-widest uppercase spread-font-spacing "
-          )}
-        >
+      <div id="ANIMATION-TITLE-DIV" className="pb-5 ">
+        <h1 className="exper-animation text-primary-foreground font-bold text-2xl leading-tight md:relative  tracking-widest uppercase spread-font-spacing ">
           Expe<span className="rrr">r</span>
         </h1>
-        <h1
-          className={cn(
-            "combined-animation text-primary-foreground font-bold text-2xl  md:relative tracking-widest uppercase spread-font-spacing overscroll-x-hidden max-w-fit"
-          )}
-        >
+        <h1 className="combined-animation text-primary-foreground font-bold text-2xl  md:relative tracking-widest uppercase spread-font-spacing overscroll-x-hidden max-w-fit">
           <span className="iii">i</span>
           <span className="eee">e</span>nce
         </h1>
@@ -88,9 +200,16 @@ const Experience = ({ showModal }: ExperienceProps) => {
         {experience.map((job) => (
           <div
             key={job.title}
-            // bg color : bg-[#111c2c]
-            // hover bg transparent:  hover:bg-green-600/20
-            className="hover-boundary rounded-xl   w-auto h-auto opacity-40 hover:!opacity-100 hover:bg-[#111c2c] transition-all hover:outline outline-1 wide-outline py-2 px-[30px] relative md:right-[30px] md:hover:right-0 lg:hover:right-[150px] duration-1000 delay-50 hover:z-50"
+            onClick={preventClick}
+            className="w-auto h-auto experience-item experience-item-opac hover-boundary rounded-xl opacity-60 md:opacity-40 hover:!opacity-100 md:py-8 pt-4 md:pt-0 lg:py-4
+            hover:bg-[#111c2c] 
+            transition-all   
+            wide-outline-sm   
+            lg:wide-outline-lg   
+            relative 
+            right-0
+            px-[30px]
+            lg:hover:right-[150px] duration-500 lg:duration-1000 lg:delay-200 hover:z-50"
           >
             <li className=" py-2 gap-y-10 " key={job.title}>
               <div className="md:flex lg:flex-col gap-x-24">

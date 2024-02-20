@@ -20,8 +20,9 @@ export async function GET(req: NextRequest) {
     
 
     const completion = await openai.chat.completions.create({
-        messages: [{ role: "system", content: `Write a funny haiku encouraging someone from a place in ${city} to employ the maker of this tech portfolio website. Maybe include the day (${d}). Format it clearly into the haiku syllable count.
+        messages: [{ role: "system", content: `Write a wacky funny haiku to get someone from a place in ${city} to employ the maker of this tech portfolio website. Maybe include the day (${d}). Format it clearly into the haiku syllable count.
 ` }],
+        // model: "gpt-3.5-turbo-0125",
         model: "gpt-4-0125-preview",
       });
       

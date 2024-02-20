@@ -68,7 +68,7 @@ const Navbar = () => {
       </div>
       <div
         onClick={() => setShowSidebar(!showSidebar)}
-        className="absolute right-1/2 md:hidden"
+        className="absolute right-12 md:hidden"
       >
         <Menu />
       </div>
@@ -80,7 +80,7 @@ const Navbar = () => {
         <Instagram className="w-6 h-6" />
         <Youtube className="w-6 h-6" />
       </div>
-      <div className="absolute md:top-28 right-0 md:right-6">
+      <div className="absolute top-[90px] md:top-28 right-0 md:right-6">
         <EcoSwitch />
       </div>
     </div>

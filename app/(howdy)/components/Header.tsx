@@ -7,9 +7,18 @@ import React from "react";
 interface HeaderProps {
   showModal: boolean;
   setShowModal: () => void;
+  className: string;
+  carouselExpansionBlur: boolean;
+  projectsOnScreen: boolean;
 }
 
-const Header = ({ showModal, setShowModal }: HeaderProps) => {
+const Header = ({
+  showModal,
+  setShowModal,
+  className,
+  carouselExpansionBlur,
+  projectsOnScreen,
+}: HeaderProps) => {
   const handleContactClick = () => {
     setShowModal();
     // const toBlur = ["header-blur", "folio-blur"];
@@ -25,14 +34,16 @@ const Header = ({ showModal, setShowModal }: HeaderProps) => {
     <div className=" flex flex-col z-0 font-sans">
       <div
         id="header-blur"
-        className=" flex flex-col  max-w-sm md:max-w-md gotta-blur relative "
+        className={cn(
+          "flex flex-col  max-w-sm md:max-w-md gotta-blur relative",
+          className
+        )}
       >
         <div
-          className={cn(
-            "",
-            showModal &&
-              "modal-bg-blur hover:!blur-0 transition-all duration-400"
-          )}
+          className={cn("", {
+            "modal-bg-blur hover:!blur-0 transition-all duration-400":
+              showModal || (carouselExpansionBlur && projectsOnScreen),
+          })}
         >
           <h1 className="text-5xl lg:text-6xl font-semibold text-primary-foreground lg:pb-4 row-name">
             Eamon Travers
@@ -45,11 +56,11 @@ const Header = ({ showModal, setShowModal }: HeaderProps) => {
               <span className="grow-solver">Problem Solver</span>
               <br></br>
               <span className="font-light leading-normal mr-3 opacity-80 text-md text-primary-foreground">
-                Graduated maths & music tech. work experience; Digital audio
+                Graduated maths & music tech. Work experience; Digital audio
                 engineer, MBA/EMBA programme coordinator, composition &
                 performance.
                 <br></br>
-                Speed chess fiend.
+                Speed chess addict.
               </span>
             </p>
           </div>
