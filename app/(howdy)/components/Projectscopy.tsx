@@ -16,12 +16,30 @@ import port2 from "../../../public/portfolio/port-wide2.png";
 export const PROJECTS = [
   {
     id: 0,
+    name: "Project Lowding",
+    link: "https://github.com/EamonEarth/Lowding",
+    images: [lowding0, lowding1, lowding2],
+
+    shortDescription:
+      "Neat little design thesis project advocating for lower impact design choices. ",
+    longDescription: {
+      text: "A fun challenge to reinforce the theme/brand of the website with web development choices. As well as building the site I refined the UX.",
+      listTitle: "Worth a mention:",
+      listPoints: [
+        "Pixel-perfect fidelity with the designer's mock-up, achieved with Figma and silky communication.",
+        "Performant/efficient development choices were a must, at the risk of hypocrisy! Achieved both with general best practices and framework specific resources.",
+      ],
+    },
+    technologies: ["figma", "html", "css", "typescript", "prisma", "tailwind"],
+  },
+  {
+    id: 1,
     name: "Personal Site",
     link: "https://github.com/EamonEarth/Lowding",
     images: [port0, port1, port2],
     shortDescription: "Every detail counts on this sleek portfolio homepage.",
     longDescription: {
-      text: "Built with NextJS, I think this site is proof that ensuring responsiveness and accessibility don't have to get in the way of pleasant design. Site skeleton inspired by Brittany Chiang's beautiful site.",
+      text: "Built with NextJS & site skeleton inspired by Brittany Chiang's beautiful site.",
       listTitle: "Some details you might have missed:",
       listPoints: [
         "Integration with RESTful APIs to populate the Haiku generation with user info (no user information is saved).",
@@ -40,24 +58,6 @@ export const PROJECTS = [
       "figma",
     ],
   },
-  {
-    id: 1,
-    name: "Project Lowding",
-    link: "https://github.com/EamonEarth/Lowding",
-    images: [lowding0, lowding1, lowding2],
-
-    shortDescription:
-      "Neat little design thesis project advocating for lower impact design choices. ",
-    longDescription: {
-      text: "A fun challenge to reinforce the theme/brand of the website with web development choices. As well as building the site I refined the UX.",
-      listTitle: "Worth a mention:",
-      listPoints: [
-        "Pixel-perfect fidelity with the designer's mock-up, achieved with Figma and silky communication.",
-        "Performant/efficient development choices were a must, at the risk of hypocrisy! Achieved both with general best practices and framework specific resources.",
-      ],
-    },
-    technologies: ["figma", "html", "css", "typescript", "prisma", "tailwind"],
-  },
 ];
 
 const IMAGE_COUNTER = 2;
@@ -69,7 +69,7 @@ interface ProjectsProps {
   setProjectsOnScreen: (value: boolean) => void;
 }
 
-const Projects = ({
+const Projectscopy = ({
   expandedStates,
   setExpandedStates,
   projectsOnScreen,
@@ -147,19 +147,14 @@ const Projects = ({
             ? [350, 350]
             : imageSrcIndex[index] === 1
             ? [175, 700]
-            : [150, 250];
+            : [150, 225];
       } else {
-        // if (imageSrcIndex[index] === 1) {
-        //   imgRatioVar = [350, 350];
-        // } else {
         imgRatioVar =
           imageSrcIndex[index] === 0
             ? [270, 270]
             : imageSrcIndex[index] === 1
             ? [270, 270]
             : [150, 225];
-        // [270, 270];
-        // }
       }
       updatedRatios[index] = imgRatioVar;
     });
@@ -193,9 +188,11 @@ const Projects = ({
     if (expandedStates[index]) {
       return;
     }
-    const currStates = [...expandedStates];
-    currStates[index] = !currStates[index];
-    setExpandedStates(currStates);
+    if (!expandedStates[index] && showMore) {
+      const currStates = [...expandedStates];
+      currStates[index] = !currStates[index];
+      setExpandedStates(currStates);
+    }
   };
 
   //    if index=1, and the imageSrcIndex=1, set the
@@ -221,7 +218,7 @@ const Projects = ({
 
   return (
     // <div className=" max-w-full grid gap-y-12 mt-12 main-project ">
-    <div className="xl:max-w-[50%] lg:max-w-[50%] h-auto max-w-full grid gap-y-12 mt-12 main-project ">
+    <div className="xl:max-w-[50%] lg:max-w-[50%] max-w-[95%] h-auto grid gap-y-12 mt-12 main-project ">
       <h1
         className={cn(
           "text-primary-foreground font-sans text-right font-bold text-2xl md:relative uppercase spread-font-spacing "
@@ -232,33 +229,34 @@ const Projects = ({
       {PROJECTS.map((project, index: number) => {
         const imageSrc = project.images[imageSrcIndex[index]];
         const imageSizesArray = imageSrcRatio[index];
+        const imageDivHeight = imageSizesArray[1];
 
         return (
           <div
+            id="BOUNDING DIV FOR EACH PROJECT"
             key={project.id}
             className={cn(
-              "project flex flex-col md:flex-row max-h-screen gap-x-2 text-white justify-center bg-teal-500/5 items-center py-6 px-4 hover:bg-teal-400/20 border-teal-400/50 border-2 rounded-xl transition-all relative right-0",
+              "overflow-scroll md:overflow-visible project flex flex-col w-auto gap-y-5 md:flex-row max-h-screen gap-x-2 text-white justify-center bg-teal-500/5 items-center py-6 px-4 hover:bg-teal-400/20 border-teal-400/50 border-4 rounded-2xl transition-all relative right-0",
               expandedStates[index] &&
-                "!items-left lg:right-12 hover:!bg-teal-500/5",
-              { "!bg-teal-500/5": index === 1 && imageSrcIndex[index] === 1 }
+                "!items-left lg:right-12 hover:!bg-teal-500/5 ",
+              { "!bg-teal-500/5": index === 0 && imageSrcIndex[index] === 1 }
             )}
             style={{
               transition:
                 "background-color 0.3s ease-in, right 0.5s ease-in-out",
             }}
           >
-            <p className="absolute  text-lg">{imageSrcRatio}</p>
             {/* IMG DIV START */}
             <div
               className={cn(
-                "shrink-0 h-[370px]  flex flex-col justify-center items-center relative"
-                // {
-                //   "lg:relative lg:right-[55%] lg:-mr-[50%]":
-                //     expandedStates[index] && imageSrcIndex[index] === 1,
-                // }
+                "shrink-0 h-[350px] flex flex-col justify-center items-center relative",
+                {
+                  "lg:relative lg:right-[55%] lg:-mr-[55%]":
+                    expandedStates[index] && imageSrcIndex[index] === 1,
+                }
               )}
             >
-              <p className="font-light text-italic  opacity-50 text-xs uppercase text-right relative left-[33%]">
+              <p className="font-light text-italic opacity-50 text-xs uppercase text-right relative left-[28%] ">
                 <i>
                   {imageSrcIndex[index] === 0
                     ? "Tablet view"
@@ -278,11 +276,9 @@ const Projects = ({
                 style={{
                   opacity: opacity[index],
                   transition: "opacity 0.5s ease-in-out",
-                }} // Apply dynamic opacity and transition                // height={expandedStates[index] ? 180 : 60}
-                // width={expandedStates[index] ? 750 : 250}
+                }}
                 className={cn(
-                  "carousel-image border relative rounded mr-2 z-40 cursor-pointer object-contain ",
-                  // "carousel-image border object-contain absolute bottom-3 mt-6 rounded mr-2 max-h-[80vh] z-40 cursor-pointer",
+                  "border-[2.5px] border-teal-500/20 relative rounded-2xl mr-2 z-40 cursor-pointer object-contain ",
                   expandedStates[index] && "shadow-2xl"
                 )}
               ></Image>
@@ -297,33 +293,40 @@ const Projects = ({
 
             <div
               className={cn(
-                "flex flex-col gap-y-1 md:gap-y-2 text-end text-xs ",
+                "flex flex-col gap-y-1 md:gap-y- text-end text-xs ",
                 expandedStates[index] && "!text-start"
               )}
             >
-              <h2 className="text-base uppercase font-semibold !text-end z-50">
-                {project.name}
-              </h2>
-              <span className="w-full ml-auto h-[0.5px] bg-white"></span>
+              {showMore !== index && (
+                <div className="flex flex-col justify-center">
+                  <span className="w-full h-[0.5px] bg-teal-500 ml-auto "></span>
+                  <h2
+                    // style={{ fontSize: "14px" }}
+                    className="text-lg text-end uppercase font-semibold z-50  text-teal-500 name-text-outline tracking-widest"
+                  >
+                    <i>{project.name}</i>
+                  </h2>
+                  <span className="w-full ml-auto h-[0.5px] bg-teal-500"></span>
+                </div>
+              )}
 
               {/* CARD TEXT CONTENT */}
               <div
                 style={{ transition: "background-color 0.2s ease-in-out" }}
                 className={cn(
-                  "bg-black/90 rounded-xl p-4 flex flex-col gap-y-2 text-xs shadow-2xl  ml-auto",
-                  // "bg-black/90 rounded-xl p-4 flex flex-col gap-y-2 text-xs shadow-2xl lg:max-w-[60%] ml-auto",
+                  "bg-black/90 rounded-2xl p-4 flex flex-col gap-y-2 text-xs shadow-2xl  ml-auto",
 
                   {
                     "!bg-teal-900/40":
-                      index === 1 && imageSrcIndex[index] === 1,
+                      index === 0 && imageSrcIndex[index] === 1,
                   }
                 )}
               >
                 {showMore === index ? (
-                  <div className="flex flex-col description-transition expanded-description pl-4 max-w-[95%]">
+                  <div className="flex flex-col description-transition expanded-description pl-4 max-w-[95%] h-[250px]">
                     <p className=" text-end font-semibold tracking-wide flex flex-col ">
                       {project.longDescription.text}
-                      <span className="w-full h-[0.5px] bg-white ml-auto my-4"></span>
+                      <span className="w-full h-[0.5px] bg-teal-500 ml-auto my-4"></span>
                     </p>
                     <p className="text-start font-semibold tracking-wide">
                       {project.longDescription.listTitle}
@@ -337,7 +340,7 @@ const Projects = ({
                     </ul>
                   </div>
                 ) : (
-                  <div className="description-transition max-w-[95%] text-left font-semibold tracking-wide text-sm">
+                  <div className="description-transition max-w-[95%]  text-left font-semibold tracking-wide text-sm">
                     {project.shortDescription}
                   </div>
                 )}
@@ -346,7 +349,7 @@ const Projects = ({
 
                   <Button
                     variant="ghost"
-                    className="rounded-full hover:bg-transparent hover:scale-125 hover:text-white !px-0"
+                    className="rounded-full hover:bg-transparent hover:scale-125 hover:text-teal-500 !px-0 "
                     style={{ transition: "transform 0.4s" }}
                     onClick={() => handlePrevImage(index)}
                   >
@@ -358,19 +361,19 @@ const Projects = ({
 
                   <Button
                     variant="ghost"
-                    className="rounded-full hover:bg-transparent hover:scale-125 hover:text-white !px-0"
+                    className="rounded-full hover:bg-transparent hover:scale-125 hover:text-teal-500 !px-0"
                     style={{ transition: "transform 0.4s" }}
                     onClick={() => handleNextImage(index)}
                   >
-                    <ArrowRightSquare strokeWidth={2} className="size-7" />
+                    <ArrowRightSquare strokeWidth={2} className="size-7 " />
                   </Button>
                   {/* </div> */}
-                  <span className="w-[0.5px] h-6 bg-white mx-1" />
+                  <span className="w-[0.5px] h-6  mx-1" />
                   <Button
                     variant="ghost"
                     size="sm"
                     className={cn(
-                      "button-shake text-xs border-[3px] rounded-full relative transition-all duration-500 right-0 max-w-[50%] px-4 "
+                      "button-shake text-xs border-[3px] hover:bg-teal-500 rounded-full relative transition-all duration-500 right-0 max-w-[50%] px-4 hover:border-teal-500 "
                     )}
                     onClick={() => handleShowMore(index)}
                   >
@@ -380,11 +383,6 @@ const Projects = ({
                     <Github className="size-7 z-50" />
                   </Link>
                 </div>
-                {/* {expandedStates[index] && ( */}
-                {/* )} */}
-                {/* <Button className="" onClick={() => handleNextImage(index)}>
-                NEXT IMAGE
-              </Button> */}
 
                 <div className="flex flex-wrap gap-x-2 gap-y-2 mt-3 items-end justify-end">
                   {project.technologies.map((technology) => (
@@ -397,7 +395,7 @@ const Projects = ({
                   ))}
                 </div>
               </div>
-              <span className="w-[100%] h-[0.5px] bg-white ml-auto"></span>
+              <span className="w-[100%] h-[0.5px] bg-teal-500 ml-auto"></span>
             </div>
           </div>
         );
@@ -406,50 +404,4 @@ const Projects = ({
   );
 };
 
-export default Projects;
-
-// useEffect(() => {
-//   let currentActive: Element | null = null;
-
-//   const items = Array.from(document.querySelectorAll(".project"));
-//   const itemMeasurements = items.map((elem) => {
-//     const rect = elem.getBoundingClientRect();
-//     return {
-//       elem,
-//       center: rect.top + window.scrollY + rect.height / 2,
-//     };
-//   });
-
-//   const observer = new IntersectionObserver(
-//     (entries) => {
-//       let mostCentralElement: Element | null = null;
-//       let minDistanceToViewportCenter = Infinity;
-//       const viewportCenter = window.innerHeight / 2 + window.scrollY;
-
-//       entries.forEach((entry) => {
-//         if (entry.isIntersecting) {
-//           const { elem, center } = itemMeasurements.find(
-//             (im) => im.elem === entry.target
-//           )!;
-//           const distanceToViewportCenter = Math.abs(viewportCenter - center);
-
-//           if (distanceToViewportCenter < minDistanceToViewportCenter) {
-//             minDistanceToViewportCenter = distanceToViewportCenter;
-//             mostCentralElement = elem;
-//           }
-//         }
-//       });
-
-//       if (mostCentralElement && mostCentralElement !== currentActive) {
-//         currentActive?.classList.remove("active");
-//         (mostCentralElement as any).classList.add("active");
-//         currentActive = mostCentralElement;
-//       }
-//     },
-//     { threshold: 0.5 }
-//   );
-
-//   items.forEach((project) => observer.observe(project));
-
-//   return () => observer.disconnect();
-// }, []);
+export default Projectscopy;

@@ -37,7 +37,16 @@
 
 /* GENERAL  */
 
+
+
 /* ABOUT */
+
+.opac-observer {
+  opacity: 0.4;
+}
+.opac-observer.active {
+  opacity: 1;
+}
 
 .spread-font-spacing {
   letter-spacing: 12px;
@@ -287,6 +296,11 @@
 
 
 /* PROJECTS */ /* PROJECTS */ /* PROJECTS */
+.name-text-outline {
+  -webkit-text-stroke-width: 0.4px;
+  -webkit-text-stroke-color: black;
+}
+
 .description-transition {
   overflow: hidden;
   max-height: auto;  

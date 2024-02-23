@@ -21,7 +21,10 @@ const ContactModal = forwardRef<HTMLDivElement, ContactModalProps>(
     return (
       <div
         ref={mergeRefs([ref, outsideClickRef])}
-        className={cn("lg:left-10", showModal ? "relative " : "hidden")}
+        className={cn(
+          "lg:left-10 max-w-[95%]",
+          showModal ? "relative " : "hidden"
+        )}
       >
         <div className=" flex flex-col z-50 mt-16 lg:fixed lg:top-[0]">
           <h1 className="text-primary-foreground font-sans text-left font-bold text-lg md:relative uppercase spread-font-spacing lg:pb-5">

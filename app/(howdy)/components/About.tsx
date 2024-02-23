@@ -1,5 +1,6 @@
+"use client";
 import { cn } from "../../../lib/utils";
-import React from "react";
+import React, { useEffect } from "react";
 
 interface AboutProps {
   showModal: boolean;
@@ -7,11 +8,30 @@ interface AboutProps {
 }
 
 const About = ({ showModal, className }: AboutProps) => {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          } else {
+            entry.target.classList.remove("active");
+          }
+        });
+      },
+
+      { threshold: 0.9 }
+    );
+    const aboutDiv = document.getElementById("opac-observer");
+    observer.observe(aboutDiv!);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="about"
       className={cn(
-        "tracking-wider font-light pt-10  md:relative lg:top-20 lg:pb-20 z-50",
+        "tracking-wider font-light pt-10  md:relative lg:top-20 lg:pb-20 z-50 max-w-[95%]",
         showModal && "modal-bg-blur hover:blur-0 transition-all duration-400",
         className
       )}
@@ -25,7 +45,11 @@ const About = ({ showModal, className }: AboutProps) => {
         >
           About
         </h1>
-        <div className=" flex flex-col opacity-60 hover:!opacity-100 transition-all ">
+        <div
+          id="opac-observer"
+          className="flex flex-col opacity-40 hover:opacity-100 opac-observer"
+          style={{ transition: "opacity 0.5s ease-in-out" }}
+        >
           <div className=" text-primary-foreground text-md text-left  ">
             <p className="mb-4 flex flex-col ">
               Born in &apos;95 on the edge of the world{" "}

@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "../../lib/utils";
 import TrackerProvider from "./components/TrackerProvider";
 import { Toaster } from "sonner";
+import Navbar from "./components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("bg-primary antialiased", inter.className)}>
+        {children}
         <Toaster />
         <TrackerProvider />
-        {children}
       </body>
     </html>
   );

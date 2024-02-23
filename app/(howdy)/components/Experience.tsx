@@ -145,14 +145,6 @@ const Experience = ({ showModal }: ExperienceProps) => {
       itemMeasurements.forEach(({ elem, top, center, height }, index) => {
         const distanceToCenter = Math.abs(viewportCenter - center);
 
-        // if (window.innerWidth > 400) {
-        //   if (index === 0 || index === items.length - 1) {
-        //     const visibleHeight =
-        //       Math.min(top + height, window.innerHeight) - Math.max(top, 0);
-        //     if (visibleHeight / height < 0.8) return;
-        //   }
-        // }
-
         if (distanceToCenter - 50 < minDistanceToCenter) {
           centerMostElement = elem;
           minDistanceToCenter = distanceToCenter;
@@ -183,7 +175,7 @@ const Experience = ({ showModal }: ExperienceProps) => {
   return (
     <div
       className={cn(
-        "lg:max-w-[450px] lg:relative lg:right-[40px] mx-3 md:mx-0",
+        "lg:max-w-[450px] max-w-[90%] lg:relative lg:right-[40px] mx-3 md:mx-0",
         showModal && "modal-bg-blur hover:!blur-0"
       )}
     >
@@ -201,7 +193,7 @@ const Experience = ({ showModal }: ExperienceProps) => {
           <div
             key={job.title}
             onClick={preventClick}
-            className="w-auto h-auto experience-item experience-item-opac hover-boundary rounded-xl opacity-60 md:opacity-40 hover:!opacity-100 md:py-8 pt-4 md:pt-0 lg:py-4
+            className="w-auto h-auto experience-item experience-item-opac hover-boundary rounded-xl opacity-60 md:opacity-40 hover:!opacity-100 md:py-8 pt-4  lg:py-4
             hover:bg-[#111c2c] 
             transition-all   
             wide-outline-sm   

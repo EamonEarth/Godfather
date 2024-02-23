@@ -2,6 +2,7 @@ import { Button } from "../../../components/ui/button";
 import { cn } from "../../../lib/utils";
 import { Github, Instagram, Mail } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface HeaderProps {
@@ -27,7 +28,7 @@ const Header = ({
     //   document!.getElementById(section)!.classList.toggle("gotta-blur")
     // );
 
-    // console.log("Modal hjust got set. ", setShowModal);
+    // console.log("Modal just got set. ", setShowModal);
   };
 
   return (
@@ -40,7 +41,8 @@ const Header = ({
         )}
       >
         <div
-          className={cn("", {
+          style={{ transition: "filter 0.5s ease-in-out" }}
+          className={cn("blur-0", {
             "modal-bg-blur hover:!blur-0 transition-all duration-400":
               showModal || (carouselExpansionBlur && projectsOnScreen),
           })}
@@ -55,7 +57,7 @@ const Header = ({
             <p className="text-primary-foreground font-thin lg:relative left-2 text-shiner ">
               <span className="grow-solver">Problem Solver</span>
               <br></br>
-              <span className="font-light leading-normal mr-3 opacity-80 text-md text-primary-foreground">
+              <span className="font-light leading-normal  opacity-80 text-md text-primary-foreground">
                 Graduated maths & music tech. Work experience; Digital audio
                 engineer, MBA/EMBA programme coordinator, composition &
                 performance.

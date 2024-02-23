@@ -83,8 +83,27 @@ const Haiku = () => {
     newHaiku();
   }, [city, trigger]);
 
+  const throttle = (cb: () => void, delay: number) => {
+    let inThrottle = false;
+
+    return () => {
+      if (inThrottle) {
+        return;
+      }
+      cb();
+      inThrottle = true;
+      setTimeout(() => {
+        inThrottle = false;
+      }, delay);
+    };
+  };
+  const throttledSetTrigger = throttle(() => {
+    setTrigger((trigger) => trigger + 1);
+    console.log(Date.now());
+  }, 1000);
+
   const handleNextHaikuClick = () => {
-    setTrigger(() => trigger + 1);
+    throttledSetTrigger();
   };
 
   return (
