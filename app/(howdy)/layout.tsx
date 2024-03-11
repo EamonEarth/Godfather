@@ -5,6 +5,8 @@ import { cn } from "../../lib/utils";
 import TrackerProvider from "./components/TrackerProvider";
 import { Toaster } from "sonner";
 import Navbar from "./components/Navbar";
+import { ScrollProvider } from "./context/ScrollContext";
+import Sidebar from "./components/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,9 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("bg-primary antialiased", inter.className)}>
-        {children}
-        <Toaster />
-        <TrackerProvider />
+        <ScrollProvider>
+          <TrackerProvider />
+          {children}
+          <Toaster />
+        </ScrollProvider>
       </body>
     </html>
   );

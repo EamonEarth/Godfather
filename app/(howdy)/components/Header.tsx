@@ -4,6 +4,7 @@ import { Github, Instagram, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Sidebar from "./Sidebar";
 
 interface HeaderProps {
   showModal: boolean;
@@ -32,22 +33,28 @@ const Header = ({
   };
 
   return (
-    <div className=" flex flex-col z-0 font-sans">
+    <div className="flex flex-col z-0 font-sans header-text-outline">
       <div
-        id="header-blur"
         className={cn(
-          "flex flex-col  max-w-sm md:max-w-md gotta-blur relative",
+          "flex flex-col  max-w-sm md:max-w-md relative",
           className
         )}
       >
         <div
-          style={{ transition: "filter 0.5s ease-in-out" }}
-          className={cn("blur-0", {
-            "modal-bg-blur hover:!blur-0 transition-all duration-400":
-              showModal || (carouselExpansionBlur && projectsOnScreen),
+          style={{
+            transition: "filter 0.5s ease-in-out, opacity 0.5s ease-in-out",
+          }}
+          className={cn("", {
+            "blur-none opacity-100":
+              !showModal && !(carouselExpansionBlur && projectsOnScreen), // Ensure "blur-none" or the correct initial state class is used
+            "blur-sm opacity-20 hover:!blur-0":
+              showModal || (carouselExpansionBlur && projectsOnScreen), // Apply the blurred state
           })}
         >
-          <h1 className="text-5xl lg:text-6xl font-semibold text-primary-foreground lg:pb-4 row-name">
+          <h1
+            id="home"
+            className="text-5xl lg:text-6xl font-semibold text-primary-foreground lg:pb-4 row-name"
+          >
             Eamon Travers
           </h1>
           <div className="lg:max-w-sm lg:relative lg:left-2">
@@ -59,8 +66,7 @@ const Header = ({
               <br></br>
               <span className="font-light leading-normal  opacity-80 text-md text-primary-foreground">
                 Graduated maths & music tech. Work experience; Digital audio
-                engineer, MBA/EMBA programme coordinator, composition &
-                performance.
+                engineer, MBA/EMBA programme coordinator, composer & performer.
                 <br></br>
                 Speed chess addict.
               </span>
@@ -90,6 +96,7 @@ const Header = ({
             >
               <img
                 src="/portfolio/lichess.svg"
+                alt="lichess logo"
                 className="text-white lichess-invert h-7 w-7"
               />
             </a>

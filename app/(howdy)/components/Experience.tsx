@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "../../../lib/utils";
+import { cn, debounce } from "../../../lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
@@ -115,9 +115,10 @@ const experience = [
 // }, []);
 interface ExperienceProps {
   showModal: boolean;
+  navRef: React.Ref<HTMLHeadingElement>;
 }
 
-const Experience = ({ showModal }: ExperienceProps) => {
+const Experience = ({ showModal, navRef }: ExperienceProps) => {
   const preventClick: MouseEventHandler<HTMLDivElement> = (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -127,15 +128,21 @@ const Experience = ({ showModal }: ExperienceProps) => {
     let ticking = false;
     const items = Array.from(document.querySelectorAll(".experience-item"));
 
-    const itemMeasurements = items.map((elem) => {
-      const rect = elem.getBoundingClientRect();
-      return {
-        elem,
-        top: rect.top + window.scrollY,
-        center: rect.top + window.scrollY + rect.height / 2,
-        height: rect.height,
-      };
-    });
+    const updateMeasurements = () => {
+      return Array.from(document.querySelectorAll(".experience-item")).map(
+        (elem) => {
+          const rect = elem.getBoundingClientRect();
+          return {
+            elem,
+            top: rect.top + window.scrollY,
+            height: rect.height,
+            center: rect.top + window.scrollY + rect.height / 2,
+          };
+        }
+      );
+    };
+
+    let itemMeasurements = updateMeasurements();
 
     const findCenterMostElementAndUpdateClass = () => {
       const viewportCenter = window.innerHeight / 2 + window.scrollY;
@@ -145,7 +152,7 @@ const Experience = ({ showModal }: ExperienceProps) => {
       itemMeasurements.forEach(({ elem, top, center, height }, index) => {
         const distanceToCenter = Math.abs(viewportCenter - center);
 
-        if (distanceToCenter - 50 < minDistanceToCenter) {
+        if (distanceToCenter - 30 < minDistanceToCenter) {
           centerMostElement = elem;
           minDistanceToCenter = distanceToCenter;
         }
@@ -166,21 +173,31 @@ const Experience = ({ showModal }: ExperienceProps) => {
       }
     };
 
+    const onResize = debounce(() => {
+      itemMeasurements = updateMeasurements(); // Update measurements on resize
+      findCenterMostElementAndUpdateClass(); // Optionally re-evaluate the center-most element
+    }, 250);
+
     findCenterMostElementAndUpdateClass();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <div
+      id="experience"
       className={cn(
         "lg:max-w-[450px] max-w-[90%] lg:relative lg:right-[40px] mx-3 md:mx-0",
-        showModal && "modal-bg-blur hover:!blur-0"
+        showModal && "modal-bg-blur hover:!blur-0 "
       )}
     >
-      <div id="ANIMATION-TITLE-DIV" className="pb-5 ">
-        <h1 className="exper-animation text-primary-foreground font-bold text-2xl leading-tight md:relative  tracking-widest uppercase spread-font-spacing ">
+      <div className="pb-5 ">
+        <h1
+          ref={navRef}
+          className="exper-animation text-primary-foreground font-bold text-2xl leading-tight md:relative  tracking-widest uppercase spread-font-spacing nav-focus"
+        >
           Expe<span className="rrr">r</span>
         </h1>
         <h1 className="combined-animation text-primary-foreground font-bold text-2xl  md:relative tracking-widest uppercase spread-font-spacing overscroll-x-hidden max-w-fit">
@@ -195,13 +212,13 @@ const Experience = ({ showModal }: ExperienceProps) => {
             onClick={preventClick}
             className="w-auto h-auto experience-item experience-item-opac hover-boundary rounded-xl opacity-60 md:opacity-40 hover:!opacity-100 md:py-8 pt-4  lg:py-4
             hover:bg-[#111c2c] 
-            transition-all   
-            wide-outline-sm   
-            lg:wide-outline-lg   
-            relative 
-            right-0
-            px-[30px]
-            lg:hover:right-[150px] duration-500 lg:duration-1000 lg:delay-200 hover:z-50"
+transition-all   
+wide-outline-sm   
+lg:wide-outline-lg   
+relative 
+right-0
+px-[30px]
+ duration-500 lg:duration-1000 lg:delay-200 hover:z-50"
           >
             <li className=" py-2 gap-y-10 " key={job.title}>
               <div className="md:flex lg:flex-col gap-x-24">
@@ -215,13 +232,13 @@ const Experience = ({ showModal }: ExperienceProps) => {
                   </h2>
                   <p className="font-semibold grow-tag-line">{job.subtitle}</p>
                   <p
-                    style={{ fontSize: 16 }}
-                    className="pt-2 text-md font-semibold"
+                    style={{ fontSize: 16, letterSpacing: "0.02rem" }}
+                    className="pt-2 text-md text-white/70 font-semibold"
                   >
                     {job.description}
                   </p>
                   <Link href={job.link} target="_blank">
-                    <ArrowUpRight className="cursor-pointer " />
+                    <ArrowUpRight className="cursor-pointer z-50" />
                   </Link>
                   <p></p>
                 </div>

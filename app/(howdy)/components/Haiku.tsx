@@ -2,7 +2,12 @@ import { Dices, Hourglass } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { cn, dayOfTheWeek } from "../../../lib/utils";
 
-const Haiku = () => {
+interface HaikuProps {
+  carouselExpansionBlur: boolean;
+  projectsOnScreen: boolean;
+}
+
+const Haiku = ({ carouselExpansionBlur, projectsOnScreen }: HaikuProps) => {
   const [trigger, setTrigger] = useState(0);
   const [ipAddress, setIpAddress] = useState("");
   const [city, setCity] = useState("");
@@ -107,7 +112,12 @@ const Haiku = () => {
   };
 
   return (
-    <div className="z-50 max-w-fit md:relative pt-10 ">
+    <div
+      style={{ transition: "filter 0.5s ease-in-out" }}
+      className={cn("z-50 max-w-fit md:relative pt-2 min-w-[256px]", {
+        "blur-sm": carouselExpansionBlur && projectsOnScreen,
+      })}
+    >
       {lines ? (
         <div className="text-primary-foreground font-extralight text-sm px-14 pt-1  md:py-5 pb-5 opacity-80 gap-y-0.5 justify-start h-auto flex flex-col bg-green-500/10 rounded ">
           <p className="relative text-xs text-primary-foreground opacity-80 uppercase font-bold flex items-center gap-x-1 pt-2">

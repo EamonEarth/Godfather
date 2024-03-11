@@ -2,23 +2,29 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowRightSquare, Github, ZoomIn } from "lucide-react";
+import {
+  ArrowRightCircle,
+  ArrowRightSquare,
+  Github,
+  ZoomIn,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import lowding0 from "../../../public/portfolio/lowding-wide0.png";
-import lowding1 from "../../../public/portfolio/lowding-wide1.png";
+import lowdingMobile from "../../../public/portfolio/lowding-wide0.png";
+import lowdingDesktop from "../../../public/portfolio/lowding-wide1.png";
 import lowding2 from "../../../public/portfolio/lowding-wide2.png";
-import port0 from "../../../public/portfolio/port-wide0.png";
-import port1 from "../../../public/portfolio/port-wide1.png";
+import portMobile from "../../../public/portfolio/port-wide0.png";
+import portDesktop from "../../../public/portfolio/port-wide1.png";
 import port2 from "../../../public/portfolio/port-wide2.png";
+import FullscreenImage from "./FullscreenImage";
 
 export const PROJECTS = [
   {
     id: 0,
     name: "Project Lowding",
     link: "https://github.com/EamonEarth/Lowding",
-    images: [lowding0, lowding1, lowding2],
+    images: [lowdingDesktop, lowdingMobile],
 
     shortDescription:
       "Neat little design thesis project advocating for lower impact design choices. ",
@@ -36,10 +42,10 @@ export const PROJECTS = [
     id: 1,
     name: "Personal Site",
     link: "https://github.com/EamonEarth/Lowding",
-    images: [port0, port1, port2],
+    images: [portDesktop, portMobile],
     shortDescription: "Every detail counts on this sleek portfolio homepage.",
     longDescription: {
-      text: "Built with NextJS & site skeleton inspired by Brittany Chiang's beautiful site.",
+      text: "Built with NextJS. Site skeleton inspired by Brittany Chiang's beautiful site.",
       listTitle: "Some details you might have missed:",
       listPoints: [
         "Integration with RESTful APIs to populate the Haiku generation with user info (no user information is saved).",
@@ -49,6 +55,7 @@ export const PROJECTS = [
     },
 
     technologies: [
+      "ChatGPT",
       "nextjs",
       "APIs",
       "html",
@@ -60,34 +67,33 @@ export const PROJECTS = [
   },
 ];
 
-const IMAGE_COUNTER = 2;
-
 interface ProjectsProps {
   expandedStates: boolean[];
   setExpandedStates: React.Dispatch<React.SetStateAction<boolean[]>>;
   projectsOnScreen: boolean;
   setProjectsOnScreen: (value: boolean) => void;
+  navRef: React.Ref<HTMLHeadingElement>;
 }
 
-const Projectscopy = ({
+const ProjectsGrid = ({
   expandedStates,
   setExpandedStates,
   projectsOnScreen,
   setProjectsOnScreen,
+  navRef,
 }: ProjectsProps) => {
   const [showMore, setShowMore] = useState(-1);
+  const [opacity, setOpacity] = useState(Array(PROJECTS.length).fill(1));
 
   const [imageSrcIndex, setImageSrcIndex] = useState(
     Array(PROJECTS.length).fill(0)
   );
   const [imageSrcRatio, setImageSrcRatio] = useState([
-    [372, 372],
-    [372, 372],
+    [175, 750],
+    [175, 750],
   ]);
-  //   const [imageSrcRatio, setImageSrcRatio] = useState([
-  //     [60, 250],
-  //     [180, 750],
-  //   ]);
+  const [fsImage, setFsImage] = useState(false);
+  const [fsImageSrc, setFsImageSrc] = useState([0, 0]);
 
   const handleNextImage = (index: number) => {
     console.log(imageSrcIndex);
@@ -96,17 +102,16 @@ const Projectscopy = ({
     updatedOpacity[index] = 0.5;
     setOpacity(updatedOpacity);
     setTimeout(() => {
-      if (imageSrcIndex[index] < IMAGE_COUNTER) {
+      if (imageSrcIndex[index] < 1) {
         updatedIndices[index] += 1;
         setImageSrcIndex(updatedIndices);
       } else {
         updatedIndices[index] = 0;
         setImageSrcIndex(updatedIndices);
       }
-      // Start fade-in effect
       updatedOpacity[index] = 1;
       setOpacity(updatedOpacity);
-    }, 300); // Adjust the delay to match your fade-out transition duration
+    }, 300);
   };
   const handlePrevImage = (index: number) => {
     console.log(imageSrcIndex);
@@ -115,56 +120,39 @@ const Projectscopy = ({
     updatedOpacity[index] = 0.5;
     setOpacity(updatedOpacity);
     setTimeout(() => {
-      if (imageSrcIndex[index] > 0) {
-        updatedIndices[index] -= 1;
+      if (imageSrcIndex[index] === 0) {
+        updatedIndices[index] = 1;
         setImageSrcIndex(updatedIndices);
       } else {
-        updatedIndices[index] = 2;
+        updatedIndices[index] = 0;
         setImageSrcIndex(updatedIndices);
       }
-      // Start fade-in effect
       updatedOpacity[index] = 1;
       setOpacity(updatedOpacity);
-    }, 300); // Adjust the delay to match your fade-out transition duration
+    }, 300);
   };
-
-  // if (imageSrcIndex[index] < IMAGE_COUNTER) {
-  //   updatedIndices[index] += 1;
-  //   setImageSrcIndex(updatedIndices);
-  // } else {
-  //   updatedIndices[index] = 0;
-  //   setImageSrcIndex(updatedIndices);
-  // }
 
   useEffect(() => {
     const updatedRatios = [...imageSrcRatio];
 
     PROJECTS.forEach((_, index) => {
       let imgRatioVar;
-      if (expandedStates[index]) {
-        imgRatioVar =
-          imageSrcIndex[index] === 0
-            ? [350, 350]
-            : imageSrcIndex[index] === 1
-            ? [175, 700]
-            : [150, 225];
-      } else {
-        imgRatioVar =
-          imageSrcIndex[index] === 0
-            ? [270, 270]
-            : imageSrcIndex[index] === 1
-            ? [270, 270]
-            : [150, 225];
-      }
+      imgRatioVar = imageSrcIndex[index] === 1 ? [350, 350] : [175, 700];
       updatedRatios[index] = imgRatioVar;
     });
 
     setImageSrcRatio(updatedRatios);
   }, [imageSrcIndex, expandedStates]);
 
-  const [opacity, setOpacity] = useState(Array(PROJECTS.length).fill(1));
+  const handleExpandImage = (index: number, imageSrc: number) => {
+    console.log("index", index, "-- imageSrc", imageSrc);
+    if (window.innerWidth < 768) {
+      console.log("expandedStates[index]", expandedStates[index]);
+      setFsImage(true);
+      setFsImageSrc([index, imageSrc]);
+      return;
+    }
 
-  const handleExpandImage = (index: number) => {
     const updatedStates = [...expandedStates];
     const updatedOpacity = [...opacity];
     updatedOpacity[index] = 0.5;
@@ -172,11 +160,9 @@ const Projectscopy = ({
     setTimeout(() => {
       updatedStates[index] = !updatedStates[index];
       setExpandedStates(updatedStates);
-
-      // Start fade-in effect
       updatedOpacity[index] = 1;
       setOpacity(updatedOpacity);
-    }, 500); // Adjust the delay to match your fade-out transition duration
+    }, 500);
   };
 
   const handleShowMore = (index: number) => {
@@ -185,6 +171,7 @@ const Projectscopy = ({
     } else {
       setShowMore(index);
     }
+
     if (expandedStates[index]) {
       return;
     }
@@ -194,8 +181,6 @@ const Projectscopy = ({
       setExpandedStates(currStates);
     }
   };
-
-  //    if index=1, and the imageSrcIndex=1, set the
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -217,9 +202,16 @@ const Projectscopy = ({
   }, []);
 
   return (
-    // <div className=" max-w-full grid gap-y-12 mt-12 main-project ">
-    <div className="xl:max-w-[50%] lg:max-w-[50%] max-w-[95%] h-auto grid gap-y-12 mt-12 main-project ">
+    <div
+      id="projects-container"
+      className="md:max-w-[75%] lg:max-w-[50%] max-w-[95%] h-auto grid gap-y-8 md:gap-y-2 mt-12 lg:mr-12 main-project "
+    >
+      {fsImage && (
+        <FullscreenImage setFsImage={setFsImage} fsImageSrc={fsImageSrc} />
+      )}
       <h1
+        id="projects"
+        ref={navRef}
         className={cn(
           "text-primary-foreground font-sans text-right font-bold text-2xl md:relative uppercase spread-font-spacing "
         )}
@@ -236,10 +228,10 @@ const Projectscopy = ({
             id="BOUNDING DIV FOR EACH PROJECT"
             key={project.id}
             className={cn(
-              "overflow-scroll md:overflow-visible project flex flex-col w-auto gap-y-5 md:flex-row max-h-screen gap-x-2 text-white justify-center bg-teal-500/5 items-center py-6 px-4 hover:bg-teal-400/20 border-teal-400/50 border-4 rounded-2xl transition-all relative right-0",
-              expandedStates[index] &&
-                "!items-left lg:right-12 hover:!bg-teal-500/5 ",
-              { "!bg-teal-500/5": index === 0 && imageSrcIndex[index] === 1 }
+              "overflow-scroll md:overflow-visible bg-teal-500/10 md:bg-transparent py-4 project flex flex-col gap-y-1 md:flex-row max-h-screen gap-x-2 text-white justify-center items-center px-4 rounded-2xl transition-all relative right-0",
+
+              //   !expandedStates[index] && "border-teal-400/50 border-4",
+              expandedStates[index] && "!items-left lg:right-24"
             )}
             style={{
               transition:
@@ -249,60 +241,66 @@ const Projectscopy = ({
             {/* IMG DIV START */}
             <div
               className={cn(
-                "shrink-0 h-[350px] flex flex-col justify-center items-center relative",
+                "shrink-0  bg-gradient-to-l from-teal-500/20 via-transparent to-teal-500/20 rounded-3xl border border-teal-400/50 image-container",
                 {
-                  "lg:relative lg:right-[55%] lg:-mr-[55%]":
-                    expandedStates[index] && imageSrcIndex[index] === 1,
+                  "": expandedStates[index] && imageSrcIndex[index] === 1,
                 }
               )}
             >
-              <p className="font-light text-italic opacity-50 text-xs uppercase text-right relative left-[28%] ">
-                <i>
-                  {imageSrcIndex[index] === 0
-                    ? "Tablet view"
-                    : imageSrcIndex[index] === 1
-                    ? "Desktop view"
-                    : "Mobile view"}
-                </i>
-              </p>
               <Image
                 src={imageSrc}
                 alt={project.name}
-                // height={500}
-                // width={500}
                 height={imageSizesArray[0]}
                 width={imageSizesArray[1]}
-                onClick={() => handleExpandImage(index)}
+                onClick={() => handleExpandImage(index, imageSrcIndex[index])}
                 style={{
                   opacity: opacity[index],
-                  transition: "opacity 0.5s ease-in-out",
+                  transition: "opacity 0.5s ease-in-out ",
                 }}
                 className={cn(
-                  "border-[2.5px] border-teal-500/20 relative rounded-2xl mr-2 z-40 cursor-pointer object-contain ",
-                  expandedStates[index] && "shadow-2xl"
+                  "image rounded-2xl cursor-pointer",
+                  expandedStates[index] && "shadow-2xl "
                 )}
               ></Image>
-              {!expandedStates[index] && (
-                <ZoomIn
-                  className="size-9 relative bottom-[50px] left-[40%] z-50 fade-in-out"
-                  color="white"
-                />
-              )}
+
+              <div className="absolute bottom-[42%] flex justify-between mx-4 z-40 w-full opacity-60 pointer-events-none ">
+                <Button
+                  variant="ghost"
+                  className=" hover:bg-transparent  hover:scale-125 text-white hover:text-teal-500  pointer-events-auto"
+                  // className="rounded- hover:bg-transparent bg-orange-500/20 hover:scale-125 hover:text-teal-500 !px-0 "
+                  style={{ transition: "transform 0.4s" }}
+                  onClick={() => handlePrevImage(index)}
+                >
+                  <ArrowRightCircle
+                    strokeWidth={2}
+                    className="size-7 rotate-180"
+                  />
+                </Button>
+
+                <Button
+                  variant="ghost"
+                  className="rounded-full hover:bg-transparent hover:scale-125 hover:text-teal-500 pointer-events-auto"
+                  style={{ transition: "transform 0.4s" }}
+                  onClick={() => handleNextImage(index)}
+                >
+                  <ArrowRightCircle strokeWidth={2} className="size-7 " />
+                </Button>
+              </div>
             </div>
             {/* IMAGE DIV END */}
 
             <div
               className={cn(
-                "flex flex-col gap-y-1 md:gap-y- text-end text-xs ",
+                "flex flex-col  md:gap-y- text-end text-xs ",
                 expandedStates[index] && "!text-start"
               )}
             >
               {showMore !== index && (
                 <div className="flex flex-col justify-center">
-                  <span className="w-full h-[0.5px] bg-teal-500 ml-auto "></span>
+                  <span className="hidden md:block w-full h-[0.5px] bg-teal-500 ml-auto "></span>
                   <h2
                     // style={{ fontSize: "14px" }}
-                    className="text-lg text-end uppercase font-semibold z-50  text-teal-500 name-text-outline tracking-widest"
+                    className="text-xl text-end uppercase font-semibold z-40  text-teal-500 name-text-outline tracking-widest"
                   >
                     <i>{project.name}</i>
                   </h2>
@@ -314,7 +312,7 @@ const Projectscopy = ({
               <div
                 style={{ transition: "background-color 0.2s ease-in-out" }}
                 className={cn(
-                  "bg-black/90 rounded-2xl p-4 flex flex-col gap-y-2 text-xs shadow-2xl  ml-auto",
+                  "bg-teal-500/10 rounded-2xl p-4 flex flex-col gap-y-2 text-xs shadow-2xl  -ml-auto",
 
                   {
                     "!bg-teal-900/40":
@@ -323,15 +321,15 @@ const Projectscopy = ({
                 )}
               >
                 {showMore === index ? (
-                  <div className="flex flex-col description-transition expanded-description pl-4 max-w-[95%] h-[250px]">
-                    <p className=" text-end font-semibold tracking-wide flex flex-col ">
+                  <div className="flex flex-col description-transition expanded-description pl-4 max-w-[95%] md:h-[250px]">
+                    <p className=" text-end font-light tracking-wide flex flex-col ">
                       {project.longDescription.text}
                       <span className="w-full h-[0.5px] bg-teal-500 ml-auto my-4"></span>
                     </p>
                     <p className="text-start font-semibold tracking-wide">
                       {project.longDescription.listTitle}
                     </p>
-                    <ul className=" text-start ">
+                    <ul className=" text-start">
                       {project.longDescription.listPoints.map((point) => (
                         <li className="py-2" key={point}>
                           • {point}
@@ -344,43 +342,24 @@ const Projectscopy = ({
                     {project.shortDescription}
                   </div>
                 )}
-                <div className="flex ml-auto gap-x-1 items-center ">
+                <div className="flex ml-12 gap-x-3 justify-end items-center ">
                   {/* <div className=" flex  z-50 opacity-70 p-6 sm:hidden md:flex"> */}
 
-                  <Button
-                    variant="ghost"
-                    className="rounded-full hover:bg-transparent hover:scale-125 hover:text-teal-500 !px-0 "
-                    style={{ transition: "transform 0.4s" }}
-                    onClick={() => handlePrevImage(index)}
-                  >
-                    <ArrowRightSquare
-                      strokeWidth={2}
-                      className="size-7 rotate-180"
-                    />
-                  </Button>
-
-                  <Button
-                    variant="ghost"
-                    className="rounded-full hover:bg-transparent hover:scale-125 hover:text-teal-500 !px-0"
-                    style={{ transition: "transform 0.4s" }}
-                    onClick={() => handleNextImage(index)}
-                  >
-                    <ArrowRightSquare strokeWidth={2} className="size-7 " />
-                  </Button>
                   {/* </div> */}
+
                   <span className="w-[0.5px] h-6  mx-1" />
                   <Button
                     variant="ghost"
                     size="sm"
                     className={cn(
-                      "button-shake text-xs border-[3px] hover:bg-teal-500 rounded-full relative transition-all duration-500 right-0 max-w-[50%] px-4 hover:border-teal-500 "
+                      "button-shake text-xs border-[3px] hover:bg-teal-500 rounded-full relative transition-all duration-500 right-0 max-w-[50%] px-6 hover:border-teal-500 "
                     )}
                     onClick={() => handleShowMore(index)}
                   >
                     {showMore === index ? "show less" : "read more"}
                   </Button>
                   <Link href="https://github.com/EamonEarth/Godfather">
-                    <Github className="size-7 z-50" />
+                    <Github className="size-7 z-40" />
                   </Link>
                 </div>
 
@@ -395,7 +374,7 @@ const Projectscopy = ({
                   ))}
                 </div>
               </div>
-              <span className="w-[100%] h-[0.5px] bg-teal-500 ml-auto"></span>
+              <span className=" hidden md:block w-[100%] h-[0.5px] bg-teal-500 ml-auto"></span>
             </div>
           </div>
         );
@@ -404,4 +383,4 @@ const Projectscopy = ({
   );
 };
 
-export default Projectscopy;
+export default ProjectsGrid;

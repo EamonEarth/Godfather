@@ -6,7 +6,9 @@ export const useOutsideClick = (callback:any ) => {
 
   useEffect(() => {
     const handleClick = (event:any) => {
-      if (ref.current && !ref.current.contains(event.target)) {
+
+      const projectsDiv = document.getElementById("projects-container")
+      if (ref.current && !ref.current.contains(event.target) && !(projectsDiv && projectsDiv.contains(event.target as Node)) ) {
         callback();
       }
     };

@@ -1,31 +1,57 @@
 "use client";
 import { cn } from "../../../lib/utils";
-import React, { useEffect } from "react";
+import React, { SetStateAction, useEffect } from "react";
 
 interface AboutProps {
   showModal: boolean;
   className: string;
+  navPosition: number;
+  setNavPosition: React.Dispatch<SetStateAction<number>>;
+  navRef: React.Ref<HTMLHeadingElement>;
 }
 
-const About = ({ showModal, className }: AboutProps) => {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          } else {
-            entry.target.classList.remove("active");
-          }
-        });
-      },
+const About = ({
+  showModal,
+  className,
+  navPosition,
+  setNavPosition,
+  navRef,
+}: AboutProps) => {
+  // setNavPosition is set by the Intersection Observer.
+  // The location of the h1 within 'aboutDiv' is determined.
+  // The location of the <h1> is measured from the top of the window.
+  // This number is used to move the nav's containing <div> to align with the <h1>
+  // Is it possible to use the anchor as the locay the containing <div> is brought to?
+  // Because then it's resize resistant.
 
-      { threshold: 0.9 }
-    );
-    const aboutDiv = document.getElementById("opac-observer");
-    observer.observe(aboutDiv!);
-    return () => observer.disconnect();
-  }, []);
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         if (entry.isIntersecting) {
+  //           entry.target.classList.add("active");
+  //           // want to target the entry.target's h1
+  //           const h1Element = entry.target.querySelector("h1");
+  //           console.log("h1", h1Element);
+  //           if (h1Element) {
+  //             // Get the position of the h1 element
+  //             const entryPos = h1Element.getBoundingClientRect();
+  //             console.log("entry - THIS IS NOT FIRING", entryPos.top);
+  //             // Use the top position of the h1 to set the navigation position
+  //             setNavPosition(entryPos.top);
+  //           }
+  //         } else {
+  //           entry.target.classList.remove("active");
+  //         }
+  //       });
+  //     },
+
+  //     { threshold: 0.9 }
+  //   );
+  //   const aboutDiv = document.getElementById("opac-observer");
+  //   observer.observe(aboutDiv!);
+  //   return () => observer.disconnect();
+  // }, []);
 
   return (
     <section
@@ -37,17 +63,21 @@ const About = ({ showModal, className }: AboutProps) => {
       )}
       // style={{ transform: "translateX(110px)" }}
     >
-      <div className="  lg:max-w-[450px] md:max-w-[75%] flex flex-col ">
+      <div id="home" className="absolute top-0 bg-white"></div>
+      <div
+        id="opac-observer"
+        className="  lg:max-w-[450px] md:max-w-[75%] flex flex-col "
+      >
         <h1
+          ref={navRef}
           className={cn(
-            "text-primary-foreground font-sans text-left font-bold text-2xl md:relative uppercase spread-font-spacing lg:pb-5"
+            "text-primary-foreground font-sans text-left font-bold text-2xl md:relative uppercase spread-font-spacing lg:pb-5 nav-ocus "
           )}
         >
           About
         </h1>
         <div
-          id="opac-observer"
-          className="flex flex-col opacity-40 hover:opacity-100 opac-observer"
+          className="flex flex-col md:opacity-40  !opacity-80 hover:opacity-100 opac-observer"
           style={{ transition: "opacity 0.5s ease-in-out" }}
         >
           <div className=" text-primary-foreground text-md text-left  ">
@@ -57,6 +87,7 @@ const About = ({ showModal, className }: AboutProps) => {
                 (Donegal, Ireland
                 <img
                   src="/portfolio/irish-flag.svg"
+                  alt="irish flag"
                   className="w-5 h-3 -mr-1"
                 />
                 )

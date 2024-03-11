@@ -70,6 +70,7 @@ const ContactForm = ({ setShowModal }: ContactFormProps) => {
     setFormData({ name: "", email: "", subject: "", message: "" });
     const fields = ["name", "email", "subject", "message"];
     fields.map((field) => localStorage.removeItem(`contactForm${field}`));
+    setShowModal(false);
   };
 
   return (
