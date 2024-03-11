@@ -146,7 +146,7 @@ const ProjectsGrid = ({
 
   const handleExpandImage = (index: number, imageSrc: number) => {
     console.log("index", index, "-- imageSrc", imageSrc);
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 1024) {
       console.log("expandedStates[index]", expandedStates[index]);
       setFsImage(true);
       setFsImageSrc([index, imageSrc]);
@@ -263,7 +263,7 @@ const ProjectsGrid = ({
                 )}
               ></Image>
 
-              <div className="absolute bottom-[42%] flex justify-between mx-4 z-40 w-full opacity-60 pointer-events-none ">
+              <div className="absolute bottom-[45%] flex justify-between mx-4 z-40 w-full opacity-60 pointer-events-none ">
                 <Button
                   variant="ghost"
                   className=" hover:bg-transparent  hover:scale-125 text-white hover:text-teal-500  pointer-events-auto"
