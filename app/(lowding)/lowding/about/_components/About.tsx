@@ -59,15 +59,15 @@ const About = () => {
               Why is it relevant?
             </h3>
             <p className="text-[15px]">
-              Low impact websites are relevant due to the internet's significant
-              ecological footprint, contributing to greenhouse gas emissions,
-              energy consumption, and resource depletion. By prioritizing
-              sustainability with efficient coding, optimized files, and
-              sustainable hosting, they help mitigate these impacts. They
-              promote eco-friendly practices and exemplify how the digital
+              Low impact websites are relevant due to the internet&apos;s
+              significant ecological footprint, contributing to greenhouse gas
+              emissions, energy consumption, and resource depletion. By
+              prioritizing sustainability with efficient coding, optimized
+              files, and sustainable hosting, they help mitigate these impacts.
+              They promote eco-friendly practices and exemplify how the digital
               sphere can contribute to a sustainable future. In an increasingly
               digital world, low impact websites play a crucial role in
-              minimizing online activities' environmental impact.
+              minimizing online activities&apos; environmental impact.
             </p>
           </div>
           <div className="flex flex-col justify-center  pb-8 ">
