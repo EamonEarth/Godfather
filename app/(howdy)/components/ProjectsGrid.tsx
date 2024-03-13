@@ -11,8 +11,8 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import lowdingMobile from "../../../public/portfolio/lowding-wide0.png";
-import lowdingDesktop from "../../../public/portfolio/lowding-wide1.png";
+import lowdingMobile from "../../../public/portfolio/lowding-wide0-comp.jpg";
+import lowdingDesktop from "../../../public/portfolio/lowding-wide1-comp.jpg";
 import lowding2 from "../../../public/portfolio/lowding-wide2.png";
 import portMobile from "../../../public/portfolio/port-wide0.png";
 import portDesktop from "../../../public/portfolio/port-wide1.png";
@@ -40,7 +40,7 @@ export const PROJECTS = [
   },
   {
     id: 1,
-    name: "Personal Site",
+    name: "Portfolio Site",
     link: "https://github.com/EamonEarth/Lowding",
     images: [portDesktop, portMobile],
     shortDescription: "Every detail counts on this sleek portfolio homepage.",
@@ -73,6 +73,7 @@ interface ProjectsProps {
   projectsOnScreen: boolean;
   setProjectsOnScreen: (value: boolean) => void;
   navRef: React.Ref<HTMLHeadingElement>;
+  showModal: boolean;
 }
 
 const ProjectsGrid = ({
@@ -81,6 +82,7 @@ const ProjectsGrid = ({
   projectsOnScreen,
   setProjectsOnScreen,
   navRef,
+  showModal,
 }: ProjectsProps) => {
   const [showMore, setShowMore] = useState(-1);
   const [opacity, setOpacity] = useState(Array(PROJECTS.length).fill(1));
@@ -146,7 +148,7 @@ const ProjectsGrid = ({
 
   const handleExpandImage = (index: number, imageSrc: number) => {
     console.log("index", index, "-- imageSrc", imageSrc);
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth < 768) {
       console.log("expandedStates[index]", expandedStates[index]);
       setFsImage(true);
       setFsImageSrc([index, imageSrc]);
@@ -204,7 +206,10 @@ const ProjectsGrid = ({
   return (
     <div
       id="projects-container"
-      className="md:max-w-[75%] lg:max-w-[50%] max-w-[95%] h-auto grid gap-y-8 md:gap-y-2 mt-12 lg:mr-12 main-project "
+      className={cn(
+        "md:max-w-[75%] lg:max-w-[50%] max-w-[95%] h-auto grid gap-y-8 md:gap-y-2 mt-12 lg:mr-12 main-project",
+        showModal && "blur-[1px]"
+      )}
     >
       {fsImage && (
         <FullscreenImage setFsImage={setFsImage} fsImageSrc={fsImageSrc} />
@@ -241,7 +246,7 @@ const ProjectsGrid = ({
             {/* IMG DIV START */}
             <div
               className={cn(
-                "shrink-0  bg-gradient-to-l from-teal-500/20 via-transparent to-teal-500/20 rounded-3xl border border-teal-400/50 image-container",
+                "shrink-0  bg-gradient-to-l from-teal-500/20 via-transparent  to-teal-500/20 rounded-3xl border border-teal-400/50 image-container",
                 {
                   "": expandedStates[index] && imageSrcIndex[index] === 1,
                 }
@@ -258,7 +263,7 @@ const ProjectsGrid = ({
                   transition: "opacity 0.5s ease-in-out ",
                 }}
                 className={cn(
-                  "image rounded-2xl cursor-pointer",
+                  "image rounded-3xl cursor-pointer",
                   expandedStates[index] && "shadow-2xl "
                 )}
               ></Image>
@@ -291,7 +296,7 @@ const ProjectsGrid = ({
 
             <div
               className={cn(
-                "flex flex-col  md:gap-y- text-end text-xs ",
+                "flex flex-col text-end text-xs ",
                 expandedStates[index] && "!text-start"
               )}
             >
@@ -312,7 +317,7 @@ const ProjectsGrid = ({
               <div
                 style={{ transition: "background-color 0.2s ease-in-out" }}
                 className={cn(
-                  "bg-teal-500/10 rounded-2xl p-4 flex flex-col gap-y-2 text-xs shadow-2xl  -ml-auto",
+                  "md:bg-teal-500/10 rounded-2xl p-4 flex flex-col gap-y-2 text-xs shadow-2xl  -ml-auto",
 
                   {
                     "!bg-teal-900/40":
@@ -342,7 +347,7 @@ const ProjectsGrid = ({
                     {project.shortDescription}
                   </div>
                 )}
-                <div className="flex ml-12 gap-x-3 justify-end items-center ">
+                <div className="flex ml-12 mt-2 gap-x-3 justify-end items-center ">
                   {/* <div className=" flex  z-50 opacity-70 p-6 sm:hidden md:flex"> */}
 
                   {/* </div> */}

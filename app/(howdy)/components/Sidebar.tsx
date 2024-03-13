@@ -57,7 +57,8 @@ const Sidebar = ({ aboutRef, experienceRef, projectsRef }: SidebarProps) => {
   useEffect(() => console.log("active Hash", activeHash), [activeHash]);
   return (
     <div
-      className={cn("relative bottom-0 lg:bottom-6 left-0 z-40 w-[256px]")}
+      className={cn("relative bottom-0 lg:bottom-6 left-0 z-40 w-auto")}
+      // className={cn("relative bottom-0 lg:bottom-6 left-0 z-40 w-[256px]")}
       style={{ transition: "left 0.5s ease-in-out" }}
     >
       <div className="flex flex-col   py-8 gap-y-3 relative text-xs text-teal-500 uppercase cursor-pointer">
@@ -85,9 +86,9 @@ const Sidebar = ({ aboutRef, experienceRef, projectsRef }: SidebarProps) => {
                 />
               </div>
               <p
-                style={{ fontSize: "8px" }}
+                style={{ fontSize: "12px" }}
                 className={cn(
-                  "text-xs text-teal-300/80 absolute bottom-[23%] -left-5 cursor-pointer pointer-events-none text-center font-sans w-[60px] "
+                  " text-teal-300/80 absolute bottom-[23%] -left-9 cursor-pointer pointer-events-none text-center font-sans w-[60px] "
                 )}
               >
                 {item.name}

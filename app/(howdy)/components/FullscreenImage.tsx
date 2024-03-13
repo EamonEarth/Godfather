@@ -40,7 +40,7 @@ const FullscreenImage = ({ fsImageSrc, setFsImage }: FullscreenImageProps) => {
     //   onClick={() => setFsImage(false)} // Close on background click
     // >
     <div
-      className="w-screen h-screen fixed inset-0 flex justify-center items-center bg-black bg-opacity-9 z-50 cursor-pointer"
+      className="w-screen h-screen fixed inset-0 flex justify-center items-center bg-black bg-opacity-70 z-50 cursor-pointer"
       onClick={(e) => {
         e.stopPropagation();
         setFsImage(false);

@@ -24,7 +24,8 @@ export default function Home() {
     if (showModal) {
       modalRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const aboutDiv = document.getElementById("about");
+      aboutDiv?.scrollIntoView({ behavior: "instant" });
     }
   }, [showModal]);
 
@@ -70,7 +71,7 @@ export default function Home() {
               <div
                 id="header"
                 className={cn(
-                  "observer-slide relative",
+                  "observer-slide relative flex flex-col items-center",
                   showModal && "lg:hidden"
                 )}
                 style={{
@@ -102,13 +103,6 @@ export default function Home() {
                 />
               </div>
             </div>
-            {showModal && (
-              <ContactModal
-                ref={modalRef}
-                showModal={showModal}
-                setShowModal={setShowModal}
-              />
-            )}
           </div>
           <div className="flex lg:ml-16">
             <div className="w-[350px] hidden lg:flex pt-[400px]"></div>
@@ -127,6 +121,13 @@ export default function Home() {
           */}
 
         <div className="flex flex-col ">
+          {showModal && (
+            <ContactModal
+              ref={modalRef}
+              showModal={showModal}
+              setShowModal={setShowModal}
+            />
+          )}
           <div className="flex flex-col lg:flex-row justify-around pt-24 lg:items-center  mx-4">
             <div className="w-[350px] hidden lg:flex"></div>
             <Experience navRef={experienceRef} showModal={showModal} />
@@ -139,6 +140,7 @@ export default function Home() {
               setExpandedStates={setExpandedStates}
               projectsOnScreen={projectsOnScreen}
               setProjectsOnScreen={setProjectsOnScreen}
+              showModal={showModal}
             />
           </div>
         </div>

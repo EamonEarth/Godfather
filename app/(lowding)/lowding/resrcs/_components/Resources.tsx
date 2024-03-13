@@ -36,7 +36,7 @@ const Resources = ({ darkTheme }: ResourcesProps) => {
               {resource}
             </AccordionTrigger>
             <AccordionContent>
-              <div className="flex flex-col md:flex-row gap-y-12 relative justify-around px-12">
+              <div className="flex flex-col md:flex-row gap-y-12 relative items-center justify-around px-12">
                 <div className="flex flex-col">
                   <ul className="list-disc dark:text-on-foreground ">
                     <li>
@@ -62,19 +62,19 @@ const Resources = ({ darkTheme }: ResourcesProps) => {
                 <div className="flex flex-col md:my-12 max-w-[75%] dark:text-on-foreground">
                   <span className="gap-x-2">
                     •
-                    <a href="" className="hover:underline transition">
+                    <a href="" className="underline transition">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit
                     </a>
                   </span>
                   <span className="gap-x-2">
                     •
-                    <a href="" className="hover:underline transition">
+                    <a href="" className="underline transition">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit
                     </a>
                   </span>
                   <span className="gap-x-2">
                     •
-                    <a href="" className="hover:underline transition">
+                    <a href="" className="underline transition">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit
                     </a>
                   </span>
