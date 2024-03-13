@@ -233,7 +233,7 @@ const ProjectsGrid = ({
             id="BOUNDING DIV FOR EACH PROJECT"
             key={project.id}
             className={cn(
-              "overflow-scroll md:overflow-visible bg-teal-500/10 md:bg-transparent py-4 project flex flex-col gap-y-1 md:flex-row max-h-screen gap-x-2 text-white justify-center items-center px-4 rounded-2xl transition-all relative right-0",
+              "overflow-scroll md:overflow-visible bg-teal-500/10 md:bg-transparent py-4 project flex flex-col gap-y-1 md:flex-row max-h-screen gap-x-2 text-white justify-center items-center px-4 rounded-3xl transition-all relative right-0",
 
               //   !expandedStates[index] && "border-teal-400/50 border-4",
               expandedStates[index] && "!items-left lg:right-24"
