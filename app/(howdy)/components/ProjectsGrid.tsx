@@ -14,6 +14,8 @@ import React, { useEffect, useState } from "react";
 import lowdingMobile from "../../../public/portfolio/lowding-wide0-comp.jpg";
 import lowdingDesktop from "../../../public/portfolio/lowding-wide1-comp.jpg";
 import lowding2 from "../../../public/portfolio/lowding-wide2.png";
+import phasmicMobile from "../../../public/portfolio/phasmic-wide0.png";
+import phasmicDesktop from "../../../public/portfolio/phasmic-wide1.png";
 import portMobile from "../../../public/portfolio/port-wide0.png";
 import portDesktop from "../../../public/portfolio/port-wide1.png";
 import port2 from "../../../public/portfolio/port-wide2.png";
@@ -40,6 +42,33 @@ export const PROJECTS = [
   },
   {
     id: 1,
+    name: "Phasmic",
+    link: "https://github.com/EamonEarth/phasmic",
+    images: [phasmicDesktop, phasmicMobile],
+    shortDescription: "Weird meets wonderful for quirky company site",
+    longDescription: {
+      text: "Wacky but convincing. This site has to both appeal to the out-crowd and convince funders.",
+      listTitle: "Worth a mention:",
+      listPoints: [
+        "Custom randomiser to select from fontArray for the Header element.",
+        "Constant design balance between quirky and respectable",
+        "Nodemailer implementation",
+      ],
+    },
+
+    technologies: [
+      "UX",
+      "Nodemailer",
+      "Node",
+      "html",
+      "css",
+      "typescript",
+      "tailwind",
+      "figma",
+    ],
+  },
+  {
+    id: 2,
     name: "Portfolio Site",
     link: "https://github.com/EamonEarth/Lowding",
     images: [portDesktop, portMobile],
@@ -90,10 +119,9 @@ const ProjectsGrid = ({
   const [imageSrcIndex, setImageSrcIndex] = useState(
     Array(PROJECTS.length).fill(0)
   );
-  const [imageSrcRatio, setImageSrcRatio] = useState([
-    [175, 750],
-    [175, 750],
-  ]);
+  const [imageSrcRatio, setImageSrcRatio] = useState(
+    Array(PROJECTS.length).fill([175, 750])
+  );
   const [fsImage, setFsImage] = useState(false);
   const [fsImageSrc, setFsImageSrc] = useState([0, 0]);
 

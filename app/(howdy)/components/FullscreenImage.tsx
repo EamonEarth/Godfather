@@ -5,6 +5,8 @@ import lowdingMobile from "../../../public/portfolio/lowding-wide0.png";
 import lowdingDesktop from "../../../public/portfolio/lowding-wide1.png";
 import portMobile from "../../../public/portfolio/port-wide0.png";
 import portDesktop from "../../../public/portfolio/port-wide1.png";
+import phasmicMobile from "../../../public/portfolio/phasmic-wide0.png";
+import phasmicDesktop from "../../../public/portfolio/phasmic-wide1.png";
 import { Button } from "@/components/ui/button";
 
 interface FullscreenImageProps {
@@ -15,6 +17,7 @@ interface FullscreenImageProps {
 const projectsImages = [
   [lowdingDesktop, lowdingMobile],
   [portDesktop, portMobile],
+  [phasmicDesktop, phasmicMobile],
 ];
 
 const FullscreenImage = ({ fsImageSrc, setFsImage }: FullscreenImageProps) => {
