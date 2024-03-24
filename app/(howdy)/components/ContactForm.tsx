@@ -1,4 +1,5 @@
 "use client";
+import { sendEmail } from "@/lib/utils";
 import { create } from "../../../actions/create-message";
 import { Button } from "../../../components/ui/button";
 import useMousePosition from "../../../hooks/useMousePosition";
@@ -44,34 +45,50 @@ const ContactForm = ({ setShowModal }: ContactFormProps) => {
     setFormData((prevState) => ({ ...prevState, ...storedFormData }));
   }, []);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData.entries());
 
-    try {
-      const result = await create(formData);
-      console.log(result);
-
-      toast.success("Thanks for getting in touch!");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-
-      const fields = ["name", "email", "subject", "message"];
-      fields.map((field) => localStorage.removeItem(`contactForm${field}`));
-
-      setTimeout(() => {
-        setShowModal(false);
-      }, 1000);
-    } catch (error: any) {
-      toast.error("Email invalid", error);
-    }
+    sendEmail(data);
+    handleClear();
+    setTimeout(() => {
+      setShowModal(false);
+    }, 1000);
   };
 
   const handleClear = () => {
     setFormData({ name: "", email: "", subject: "", message: "" });
     const fields = ["name", "email", "subject", "message"];
     fields.map((field) => localStorage.removeItem(`contactForm${field}`));
-    setShowModal(false);
+    // setShowContact(false);
   };
+  // const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const formData = new FormData(event.currentTarget);
+
+  //   try {
+  //     const result = await create(formData);
+  //     toast.success("Thanks for getting in touch!");
+  //     setFormData({ name: "", email: "", subject: "", message: "" });
+
+  //     const fields = ["name", "email", "subject", "message"];
+  //     fields.map((field) => localStorage.removeItem(`contactForm${field}`));
+
+  //     setTimeout(() => {
+  //       setShowModal(false);
+  //     }, 1000);
+  //   } catch (error: any) {
+  //     toast.error("Email invalid", error);
+  //   }
+  // };
+
+  // const handleClear = () => {
+  //   setFormData({ name: "", email: "", subject: "", message: "" });
+  //   const fields = ["name", "email", "subject", "message"];
+  //   fields.map((field) => localStorage.removeItem(`contactForm${field}`));
+  //   setShowModal(false);
+  // };
 
   return (
     <div

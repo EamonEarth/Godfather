@@ -13,7 +13,6 @@ import { PROJECTS } from "./components/ProjectsGrid";
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
-  const [navPosition, setNavPosition] = useState(0);
 
   const [expandedStates, setExpandedStates] = useState(
     Array(PROJECTS.length).fill(false)
@@ -54,8 +53,6 @@ export default function Home() {
 
     return () => observer.disconnect();
   }, []);
-
-  useEffect(() => console.log("navPos", navPosition), [navPosition, aboutRef]);
 
   return (
     <div className="h-full relative">
@@ -106,13 +103,7 @@ export default function Home() {
           </div>
           <div className="flex lg:ml-16">
             <div className="w-[350px] hidden lg:flex pt-[400px]"></div>
-            <About
-              navRef={aboutRef}
-              className=""
-              navPosition={navPosition}
-              setNavPosition={setNavPosition}
-              showModal={showModal}
-            />
+            <About navRef={aboutRef} className="" showModal={showModal} />
           </div>
         </div>
 
@@ -132,7 +123,7 @@ export default function Home() {
             <div className="w-[350px] hidden lg:flex"></div>
             <Experience navRef={experienceRef} showModal={showModal} />
           </div>
-          <div className="flex justify-around mx-8 lg:mx-0 md:pt-8 lg:pt-24 carousel-hover-boundary">
+          <div className="flex justify-around md:mx-8 lg:mx-0 md:pt-8 lg:pt-24 carousel-hover-boundary">
             <div className="w-[350px] hidden lg:flex"></div>
             <ProjectsGrid
               navRef={projectsRef}

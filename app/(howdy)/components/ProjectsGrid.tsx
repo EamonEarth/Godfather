@@ -126,7 +126,6 @@ const ProjectsGrid = ({
   const [fsImageSrc, setFsImageSrc] = useState([0, 0]);
 
   const handleNextImage = (index: number) => {
-    console.log(imageSrcIndex);
     const updatedIndices = [...imageSrcIndex];
     const updatedOpacity = [...opacity];
     updatedOpacity[index] = 0.5;
@@ -144,7 +143,6 @@ const ProjectsGrid = ({
     }, 300);
   };
   const handlePrevImage = (index: number) => {
-    console.log(imageSrcIndex);
     const updatedIndices = [...imageSrcIndex];
     const updatedOpacity = [...opacity];
     updatedOpacity[index] = 0.5;
@@ -175,9 +173,7 @@ const ProjectsGrid = ({
   }, [imageSrcIndex, expandedStates]);
 
   const handleExpandImage = (index: number, imageSrc: number) => {
-    console.log("index", index, "-- imageSrc", imageSrc);
     if (window.innerWidth < 768) {
-      console.log("expandedStates[index]", expandedStates[index]);
       setFsImage(true);
       setFsImageSrc([index, imageSrc]);
       return;
@@ -261,7 +257,7 @@ const ProjectsGrid = ({
             id="BOUNDING DIV FOR EACH PROJECT"
             key={project.id}
             className={cn(
-              "overflow-scroll md:overflow-visible bg-teal-500/10 md:bg-transparent py-4 project flex flex-col gap-y-1 md:flex-row max-h-screen gap-x-2 text-white justify-center items-center px-4 rounded-3xl transition-all relative right-0",
+              "overflow-scroll md:overflow-visible md:bg-transparent py-4 project flex flex-col gap-y-1 md:flex-row max-h-screen -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 rounded-3xl transition-all relative right-0",
 
               //   !expandedStates[index] && "border-teal-400/50 border-4",
               expandedStates[index] && "!items-left lg:right-24"
@@ -324,7 +320,7 @@ const ProjectsGrid = ({
 
             <div
               className={cn(
-                "flex flex-col text-end text-xs ",
+                "flex flex-col text-end text-xs  bg-teal-500/10 md:bg-transparent rounded-3xl p-2 -mt-1 max-w-[85%] md:max-w-[100%]",
                 expandedStates[index] && "!text-start"
               )}
             >

@@ -16,8 +16,8 @@ interface FullscreenImageProps {
 
 const projectsImages = [
   [lowdingDesktop, lowdingMobile],
-  [portDesktop, portMobile],
   [phasmicDesktop, phasmicMobile],
+  [portDesktop, portMobile],
 ];
 
 const FullscreenImage = ({ fsImageSrc, setFsImage }: FullscreenImageProps) => {

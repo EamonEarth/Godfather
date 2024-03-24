@@ -32,7 +32,7 @@ const experience = [
     subtitle: "Artists' collective",
     times: "2016 - 2019",
     description:
-      "Founder and vice-chair of a succesful Artists' collective. Creative and Technical director for core events, including slots at all major Irish festivals & flying 8200km to put on a festival in Parkfield, California.",
+      "Founder and vice-chair of a successful Artists' collective. Creative and Technical director for core events, including slots at all major Irish festivals & flying 8200km to put on a festival in Parkfield, California.",
     link: "https://www.facebook.com/feileparkfield",
   },
   {
@@ -55,64 +55,6 @@ const experience = [
   },
 ];
 
-// const observerRef = useRef<IntersectionObserver | null>(null);
-
-// useEffect(() => {
-//   const getDistanceFromCenter = (element: Element): number => {
-//     const elementRect = element.getBoundingClientRect();
-//     const elementCenter = (elementRect.top + elementRect.bottom) / 2;
-//     const viewportCenter = window.innerHeight / 2;
-//     return Math.abs(viewportCenter - elementCenter);
-//   };
-
-//   const updateActiveElement = (visibleElements: Element[]) => {
-//     let minDistance = Infinity;
-//     let mostCenteredElement: Element | null = null;
-
-//     visibleElements.forEach((element) => {
-//       const distance = getDistanceFromCenter(element);
-//       if (distance < minDistance) {
-//         minDistance = distance;
-//         mostCenteredElement = element;
-//       }
-//     });
-
-//     document
-//       .querySelectorAll(".experience-item.active")
-//       .forEach((activeElement) => {
-//         activeElement.classList.remove("active");
-//       });
-
-//     // Use type assertion here if we're confident mostCenteredElement is not null when used
-//     (mostCenteredElement as Element)?.classList.add("active");
-//   };
-
-//   const observerCallback: IntersectionObserverCallback = (
-//     entries,
-//     observer
-//   ) => {
-//     const visibleElements = entries
-//       .filter((entry) => entry.isIntersecting)
-//       .map((entry) => entry.target);
-
-//     if (visibleElements.length > 0) {
-//       updateActiveElement(visibleElements);
-//     }
-//   };
-
-//   observerRef.current = new IntersectionObserver(observerCallback, {
-//     threshold: Array.from({ length: 100 }, (_, i) => i * 0.01),
-//   });
-
-//   const elements = document.querySelectorAll(".experience-item");
-//   elements.forEach((element) => {
-//     observerRef.current?.observe(element);
-//   });
-
-//   return () => {
-//     observerRef.current?.disconnect();
-//   };
-// }, []);
 interface ExperienceProps {
   showModal: boolean;
   navRef: React.Ref<HTMLHeadingElement>;
@@ -174,8 +116,8 @@ const Experience = ({ showModal, navRef }: ExperienceProps) => {
     };
 
     const onResize = debounce(() => {
-      itemMeasurements = updateMeasurements(); // Update measurements on resize
-      findCenterMostElementAndUpdateClass(); // Optionally re-evaluate the center-most element
+      itemMeasurements = updateMeasurements();
+      findCenterMostElementAndUpdateClass();
     }, 250);
 
     findCenterMostElementAndUpdateClass();
@@ -209,7 +151,7 @@ const Experience = ({ showModal, navRef }: ExperienceProps) => {
         {experience.map((job) => (
           <div
             key={job.title}
-            onClick={preventClick}
+            // onClick={preventClick}
             className="w-auto h-auto experience-item experience-item-opac hover-boundary rounded-xl opacity-60 md:opacity-40 hover:!opacity-100 md:py-8 pt-4  lg:py-4
             hover:bg-[#111c2c] 
 transition-all   

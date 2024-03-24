@@ -5,54 +5,10 @@ import React, { SetStateAction, useEffect } from "react";
 interface AboutProps {
   showModal: boolean;
   className: string;
-  navPosition: number;
-  setNavPosition: React.Dispatch<SetStateAction<number>>;
   navRef: React.Ref<HTMLHeadingElement>;
 }
 
-const About = ({
-  showModal,
-  className,
-  navPosition,
-  setNavPosition,
-  navRef,
-}: AboutProps) => {
-  // setNavPosition is set by the Intersection Observer.
-  // The location of the h1 within 'aboutDiv' is determined.
-  // The location of the <h1> is measured from the top of the window.
-  // This number is used to move the nav's containing <div> to align with the <h1>
-  // Is it possible to use the anchor as the locay the containing <div> is brought to?
-  // Because then it's resize resistant.
-
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry) => {
-  //         if (entry.isIntersecting) {
-  //           entry.target.classList.add("active");
-  //           // want to target the entry.target's h1
-  //           const h1Element = entry.target.querySelector("h1");
-  //           console.log("h1", h1Element);
-  //           if (h1Element) {
-  //             // Get the position of the h1 element
-  //             const entryPos = h1Element.getBoundingClientRect();
-  //             console.log("entry - THIS IS NOT FIRING", entryPos.top);
-  //             // Use the top position of the h1 to set the navigation position
-  //             setNavPosition(entryPos.top);
-  //           }
-  //         } else {
-  //           entry.target.classList.remove("active");
-  //         }
-  //       });
-  //     },
-
-  //     { threshold: 0.9 }
-  //   );
-  //   const aboutDiv = document.getElementById("opac-observer");
-  //   observer.observe(aboutDiv!);
-  //   return () => observer.disconnect();
-  // }, []);
-
+const About = ({ showModal, className, navRef }: AboutProps) => {
   return (
     <section
       id="about"
