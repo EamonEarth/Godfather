@@ -249,12 +249,11 @@ const ProjectsGrid = ({
       {PROJECTS.map((project, index: number) => {
         const imageSrc = project.images[imageSrcIndex[index]];
         const imageSizesArray = imageSrcRatio[index];
-        const imageDivHeight = imageSizesArray[1];
 
         return (
           <div
             id="BOUNDING DIV FOR EACH PROJECT"
-            key={project.id}
+            key={project.id + index * 2}
             className={cn(
               "overflow-scroll md:overflow-visible md:bg-transparent py-4 project flex flex-col gap-y-1 md:flex-row max-h-screen -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 rounded-3xl transition-all relative right-0",
               expandedStates[index] && "!items-left lg:right-24"
@@ -377,7 +376,7 @@ const ProjectsGrid = ({
                   >
                     {showMore === index ? "show less" : "read more"}
                   </Button>
-                  <Link href="https://github.com/EamonEarth/Godfather">
+                  <Link href={project.link}>
                     <Github className="size-7 z-40" />
                   </Link>
                 </div>
