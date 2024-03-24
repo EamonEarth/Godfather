@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Home, Dna, Hammer } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useScroll } from "../context/ScrollContext";
-import { Bungee_Inline } from "next/font/google";
 
 export const NAV_ITEMS = [
   {
@@ -58,7 +57,6 @@ const Sidebar = ({ aboutRef, experienceRef, projectsRef }: SidebarProps) => {
   return (
     <div
       className={cn("relative bottom-0 lg:bottom-6 left-0 z-40 w-auto")}
-      // className={cn("relative bottom-0 lg:bottom-6 left-0 z-40 w-[256px]")}
       style={{ transition: "left 0.5s ease-in-out" }}
     >
       <div className="flex flex-col   py-8 gap-y-3 relative text-xs text-teal-500 uppercase cursor-pointer">

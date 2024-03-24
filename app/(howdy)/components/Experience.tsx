@@ -3,9 +3,7 @@
 import { cn, debounce } from "../../../lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
-
-// "Live coordinator for MBA/EMBA travel programmes run with Austral. Solo on-site management of flagship programmes from universities like the Cambridge Judge Business School, the Jones Graduate School at Rice, LBS in London, and more. Working directly with university programme heads and support staff to ensure across the board excellence.",
+import React, { MouseEventHandler, useEffect } from "react";
 
 const experience = [
   {

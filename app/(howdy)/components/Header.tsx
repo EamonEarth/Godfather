@@ -1,10 +1,7 @@
 import { Button } from "../../../components/ui/button";
 import { cn } from "../../../lib/utils";
 import { Github, Instagram, Mail } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import Sidebar from "./Sidebar";
 
 interface HeaderProps {
   showModal: boolean;
@@ -23,13 +20,6 @@ const Header = ({
 }: HeaderProps) => {
   const handleContactClick = () => {
     setShowModal();
-    // const toBlur = ["header-blur", "folio-blur"];
-
-    // toBlur.map((section) =>
-    //   document!.getElementById(section)!.classList.toggle("gotta-blur")
-    // );
-
-    // console.log("Modal just got set. ", setShowModal);
   };
 
   return (
@@ -46,9 +36,9 @@ const Header = ({
           }}
           className={cn("", {
             "blur-none opacity-100":
-              !showModal && !(carouselExpansionBlur && projectsOnScreen), // Ensure "blur-none" or the correct initial state class is used
+              !showModal && !(carouselExpansionBlur && projectsOnScreen),
             "blur-sm opacity-20 hover:!blur-0":
-              showModal || (carouselExpansionBlur && projectsOnScreen), // Apply the blurred state
+              showModal || (carouselExpansionBlur && projectsOnScreen),
           })}
         >
           <h1

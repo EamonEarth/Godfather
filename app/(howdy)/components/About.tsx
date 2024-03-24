@@ -17,7 +17,6 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
         showModal && "modal-bg-blur hover:blur-0 transition-all duration-400",
         className
       )}
-      // style={{ transform: "translateX(110px)" }}
     >
       <div id="home" className="absolute top-0 bg-white"></div>
       <div

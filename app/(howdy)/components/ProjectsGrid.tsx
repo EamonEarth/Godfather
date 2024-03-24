@@ -108,7 +108,6 @@ interface ProjectsProps {
 const ProjectsGrid = ({
   expandedStates,
   setExpandedStates,
-  projectsOnScreen,
   setProjectsOnScreen,
   navRef,
   showModal,
@@ -258,8 +257,6 @@ const ProjectsGrid = ({
             key={project.id}
             className={cn(
               "overflow-scroll md:overflow-visible md:bg-transparent py-4 project flex flex-col gap-y-1 md:flex-row max-h-screen -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 rounded-3xl transition-all relative right-0",
-
-              //   !expandedStates[index] && "border-teal-400/50 border-4",
               expandedStates[index] && "!items-left lg:right-24"
             )}
             style={{
@@ -327,10 +324,7 @@ const ProjectsGrid = ({
               {showMore !== index && (
                 <div className="flex flex-col justify-center">
                   <span className="hidden md:block w-full h-[0.5px] bg-teal-500 ml-auto "></span>
-                  <h2
-                    // style={{ fontSize: "14px" }}
-                    className="text-xl text-end uppercase font-semibold z-40  text-teal-500 name-text-outline tracking-widest"
-                  >
+                  <h2 className="text-xl text-end uppercase font-semibold z-40  text-teal-500 name-text-outline tracking-widest">
                     <i>{project.name}</i>
                   </h2>
                   <span className="w-full ml-auto h-[0.5px] bg-teal-500"></span>
@@ -372,10 +366,6 @@ const ProjectsGrid = ({
                   </div>
                 )}
                 <div className="flex ml-12 mt-2 gap-x-3 justify-end items-center ">
-                  {/* <div className=" flex  z-50 opacity-70 p-6 sm:hidden md:flex"> */}
-
-                  {/* </div> */}
-
                   <span className="w-[0.5px] h-6  mx-1" />
                   <Button
                     variant="ghost"

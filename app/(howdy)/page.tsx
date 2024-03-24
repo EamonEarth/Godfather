@@ -20,11 +20,13 @@ export default function Home() {
   const [projectsOnScreen, setProjectsOnScreen] = useState(false);
 
   useEffect(() => {
-    if (showModal) {
-      modalRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      const aboutDiv = document.getElementById("about");
-      aboutDiv?.scrollIntoView({ behavior: "instant" });
+    if (window.innerWidth < 1024) {
+      if (showModal) {
+        modalRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
     }
   }, [showModal]);
 

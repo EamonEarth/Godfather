@@ -1,11 +1,8 @@
 "use client";
 import { sendEmail } from "@/lib/utils";
-import { create } from "../../../actions/create-message";
 import { Button } from "../../../components/ui/button";
-import useMousePosition from "../../../hooks/useMousePosition";
 import { SendHorizonal, Trash2 } from "lucide-react";
 import React, { FormEvent, useEffect, useState } from "react";
-import { toast } from "sonner";
 // import SuccessPopup from "./SuccessPopup";
 
 interface ContactFormProps {
