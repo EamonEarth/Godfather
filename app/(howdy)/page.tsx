@@ -80,7 +80,7 @@ export default function Home() {
               <div
                 id="header"
                 className={cn(
-                  "observer-slide relative flex flex-col items-center",
+                  "observer-slide relative flex flex-col items-center w-full",
                   showModal && "lg:hidden"
                 )}
                 style={{
@@ -88,7 +88,7 @@ export default function Home() {
                     "blur 1s ease-in, right 0.8s ease-in-out, opacity 0.8s ease-in-out",
                 }}
               >
-                <div className="flex flex-col md:flex-row lg:flex-col gap-x-12 md:items-center lg:items-baseline">
+                <div className="flex flex-col  gap-x-12 ">
                   <Header
                     showModal={showModal}
                     setShowModal={() => setShowModal(!showModal)}
@@ -104,12 +104,12 @@ export default function Home() {
                     }
                     projectsOnScreen={projectsOnScreen}
                   />
+                  <Sidebar
+                    aboutRef={aboutRef}
+                    experienceRef={experienceRef}
+                    projectsRef={projectsRef}
+                  />
                 </div>
-                <Sidebar
-                  aboutRef={aboutRef}
-                  experienceRef={experienceRef}
-                  projectsRef={projectsRef}
-                />
               </div>
             </div>
           </div>

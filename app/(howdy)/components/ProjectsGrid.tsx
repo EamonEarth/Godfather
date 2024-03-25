@@ -289,11 +289,10 @@ const ProjectsGrid = ({
                 )}
               ></Image>
 
-              <div className="absolute bottom-[45%] flex justify-between mx-4 z-40 w-full opacity-60 pointer-events-none ">
+              <div className="absolute bottom-[45%] flex justify-between mx-4 z-40 w-full  pointer-events-none ">
                 <Button
                   variant="ghost"
-                  className=" hover:bg-transparent  hover:scale-125 text-white hover:text-teal-500  pointer-events-auto"
-                  // className="rounded- hover:bg-transparent bg-orange-500/20 hover:scale-125 hover:text-teal-500 !px-0 "
+                  className=" hover:bg-transparent  hover:scale-125 text-white hover:text-teal-500 opacity-40 hover:opacity-100  pointer-events-auto"
                   style={{ transition: "transform 0.4s" }}
                   onClick={() => handlePrevImage(index)}
                 >
@@ -305,7 +304,7 @@ const ProjectsGrid = ({
 
                 <Button
                   variant="ghost"
-                  className="rounded-full hover:bg-transparent hover:scale-125 hover:text-teal-500 pointer-events-auto"
+                  className="rounded-full hover:bg-transparent hover:scale-125 hover:text-teal-500 opacity-40 hover:opacity-80 pointer-events-auto"
                   style={{ transition: "transform 0.4s" }}
                   onClick={() => handleNextImage(index)}
                 >

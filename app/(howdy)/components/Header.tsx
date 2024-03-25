@@ -51,7 +51,7 @@ const Header = ({
             <p className="text-xl lg:text-2xl font-thin text-primary-foreground ">
               Frontend Dev
             </p>
-            <p className="text-primary-foreground font-thin lg:relative left-2 text-shiner ">
+            <p className="text-primary-foreground font-thin lg:relative left-2- text-shiner ">
               <span className="grow-solver">Problem Solver</span>
               <br></br>
               <span className="font-light leading-normal  opacity-80 text-md text-primary-foreground">

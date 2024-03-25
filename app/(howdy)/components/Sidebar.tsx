@@ -53,50 +53,49 @@ const Sidebar = ({ aboutRef, experienceRef, projectsRef }: SidebarProps) => {
 
   return (
     <div
-      className={cn("relative bottom-0 lg:bottom-6 left-0 z-40 w-auto")}
+      className={cn("relative bottom-0 lg:bottom-6  z-40 w-full")}
       style={{ transition: "left 0.5s ease-in-out" }}
     >
-      <div className="flex flex-col   py-8 gap-y-3 relative text-xs text-teal-500 uppercase cursor-pointer">
+      <div className="flex flex-col  pl-4 py-8 gap-y-3 relative right-0 text-xs text-teal-500 uppercase cursor-pointer">
         {NAV_ITEMS.map((item, index) => (
           <div
             className={cn(
-              "flex items-end gap-x-2 justify-end relative cursor-pointer"
+              "flex md:items-end- gap-x-2 md:justify-end- relative cursor-pointer"
             )}
             key={item.name}
           >
-            <div className="flex flex-col  items-center relative nav-parent">
+            <div className="flex flex-col  items-center relative nav-parent ">
               <div
                 onClick={() => {
                   scrollToSection(item.name);
                   window.history.pushState(null, "", `#${item.name}`);
                   setActiveHash(`#${item.name}`);
                 }}
-                className="flex gap-x-2 cursor-pointer w-[150px] items-center justify-between"
+                className="flex gap-x-2 cursor-pointer w-[230px] items-center justify-between"
               >
-                <p></p>
+                <p
+                  style={{ fontSize: "12px" }}
+                  className={cn(
+                    " text-teal-300/80 absolute- bottom-[23%] -left-[60px] cursor-pointer pointer-events-none md:text-end font-sans w-[80px] "
+                  )}
+                >
+                  {item.name}
+                </p>
+                <span
+                  style={{
+                    transition: "width 0.5s ease-in-out",
+                  }}
+                  className={cn(
+                    " bg-teal-500/70 h-[2px] nav-indicator mt-[2px] absolute- bottom-[50%] ",
+                    activeHash === `#${item.name}` && "active"
+                  )}
+                />
                 <item.Icon
                   className="nav-icon-child"
                   size="26"
                   strokeWidth={1.5}
                 />
               </div>
-              <p
-                style={{ fontSize: "12px" }}
-                className={cn(
-                  " text-teal-300/80 absolute bottom-[23%] -left-9 cursor-pointer pointer-events-none text-center font-sans w-[60px] "
-                )}
-              >
-                {item.name}
-              </p>
-              <span
-                style={{
-                  transition: "width 0.5s ease-in-out",
-                }}
-                className={cn(
-                  " bg-teal-500/70 h-[2px] nav-indicator mt-[2px] absolute bottom-[50%] ",
-                  activeHash === `#${item.name}` && "active"
-                )}
-              />
             </div>
           </div>
         ))}

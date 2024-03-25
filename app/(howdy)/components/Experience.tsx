@@ -42,17 +42,17 @@ const experience = [
       "Founder and vice-chair of a successful Artists' collective. Creative and Technical director for core events, including slots at all major Irish festivals & flying 8200km to put on a festival in Parkfield, California.",
     link: "https://www.facebook.com/feileparkfield",
   },
+  // {
+  //   title: "Classical Piano Teacher •",
+  //   employer: "Maynooth Music Academy",
+  //   subtitle: `"Yes I'd love for you to play Für Elise. Again."`,
+  //   times: "2014 - 2017",
+  //   description:
+  //     "Covering material for conservatory auditions and personal studies. 30+ students a week, each covering different syllabi.",
+  //   link: "https://www.facebook.com/maynoothmusic",
+  // },
   {
-    title: "Classical Piano Teacher •",
-    employer: "Maynooth Music Academy",
-    subtitle: `"Yes I'd love for you to play Für Elise. Again."`,
-    times: "2014 - 2017",
-    description:
-      "Covering material for conservatory auditions and personal studies. 30+ students a week, each covering different syllabi.",
-    link: "https://www.facebook.com/maynoothmusic",
-  },
-  {
-    title: "Jazz~ composer & performer",
+    title: "Musical director, composer & performer",
     employer: "Freelance",
     subtitle: "Piano, drums, electronics & guitar",
     times: "2013 - present",
@@ -180,7 +180,9 @@ px-[30px]
                   <h2 className="font-bold text-[16px] shrink grow-employer">
                     {job.employer}
                   </h2>
-                  <p className="font-semibold grow-tag-line">{job.subtitle}</p>
+                  <p className="font-semibold grow-tag-line text-white">
+                    {job.subtitle}
+                  </p>
                   <p
                     style={{ fontSize: 16, letterSpacing: "0.02rem" }}
                     className="pt-2 text-md text-white/70 font-semibold"

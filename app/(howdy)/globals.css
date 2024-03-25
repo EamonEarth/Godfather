@@ -39,7 +39,7 @@
 
 
 .nav-parent:hover .nav-indicator {
-  width: 45%;
+  width: 30%;
 }
 
 .nav-icon-child {
@@ -292,7 +292,7 @@
 
 
 .modal-bg-blur {
-  filter: blur(1px);
+  filter: blur(2px);
   transition: filter 1s ease-in-out;
 }
 
@@ -505,12 +505,12 @@
 }
 .wide-outline-lg.active .grow-employer {
   font-size: 17px;
-  color: rgb(20, 184, 166)
+  color: rgb(22, 203, 182)
   /* color: rgba(112, 181, 16, 1); */
 }
 .wide-outline-lg.active .grow-tag-line {
   font-size: 17px;
-  color: rgb(13, 148, 136);
+  color: rgb(17, 170, 157);
   /* color: rgb(72, 117, 9); */
 }
 .wide-outline-lg:hover  .grow-head {
@@ -520,12 +520,12 @@
 }
 .wide-outline-lg:hover .grow-employer {
   font-size: 17px;
-  color: rgb(20, 184, 166)
+  color: rgb(22, 203, 182)
   /* color: rgba(112, 181, 16, 1); */
 }
 .wide-outline-lg:hover .grow-tag-line {
   font-size: 17px;
-  color: rgb(13, 148, 136);
+  color: rgb(17, 170, 157);
   /* color: rgb(72, 117, 9); */
 }
 
@@ -539,13 +539,13 @@
 .wide-outline-sm.active .grow-employer, 
 .wide-outline-sm.hover .grow-employer {
   font-size: 17px;
-  color: rgb(20, 184, 166)
+  color: rgb(22, 203, 182)
   /* color: rgba(112, 181, 16, 1); */
 }
 .wide-outline-sm.active .grow-tag-line, 
 .wide-outline-sm.hover .grow-tag-line {
   font-size: 17px;
-  color: rgb(13, 148, 136);
+  color: rgb(17, 170, 157);
   /* color: rgb(72, 117, 9); */
 }
 
