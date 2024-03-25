@@ -55,9 +55,9 @@ const Header = ({
               <span className="grow-solver">Problem Solver</span>
               <br></br>
               <span className="font-light leading-normal  opacity-80 text-md text-primary-foreground">
-                Graduated maths & music tech. Work experience; Web Dev, Digital
-                audio engineer, MBA/EMBA programme coordinator, composer &
-                performer.
+                Graduated maths & music tech. Work experience; Web Dev (React),
+                Digital audio engineer, MBA/EMBA programme coordinator, composer
+                & performer.
                 <br></br>
                 Speed chess addict.
               </span>
