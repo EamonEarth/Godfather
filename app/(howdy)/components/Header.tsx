@@ -49,14 +49,15 @@ const Header = ({
           </h1>
           <div className="lg:max-w-sm lg:relative lg:left-2">
             <p className="text-xl lg:text-2xl font-thin text-primary-foreground ">
-              Frontend Dev Einsteiger
+              Frontend Dev
             </p>
             <p className="text-primary-foreground font-thin lg:relative left-2 text-shiner ">
               <span className="grow-solver">Problem Solver</span>
               <br></br>
               <span className="font-light leading-normal  opacity-80 text-md text-primary-foreground">
-                Graduated maths & music tech. Work experience; Digital audio
-                engineer, MBA/EMBA programme coordinator, composer & performer.
+                Graduated maths & music tech. Work experience; Web Dev, Digital
+                audio engineer, MBA/EMBA programme coordinator, composer &
+                performer.
                 <br></br>
                 Speed chess addict.
               </span>
@@ -67,7 +68,8 @@ const Header = ({
           <span
             className={cn(
               "flex items-center text-white gap-x-4",
-              showModal && "modal-bg-blur"
+              showModal && "modal-bg-blur",
+              projectsOnScreen && "blur-[0.5px] "
             )}
           >
             <a target="_blank" href="https://github.com/EamonEarth">

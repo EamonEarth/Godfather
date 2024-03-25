@@ -7,6 +7,15 @@ import React, { MouseEventHandler, useEffect } from "react";
 
 const experience = [
   {
+    title: "Web Dev •",
+    employer: "Freelance",
+    subtitle: "Full-stack Web Development",
+    times: "2023 - present",
+    description:
+      "Full-stack solutions for personal and corporate clients, predominantly built with React. Design, coding, backend set-up and deployment. See Projects below for more info. ",
+    link: "https://eamontravers.dev/#projects",
+  },
+  {
     title: "MBA/EMBA Programme Coordinator •",
     employer: "Freelance / AUSTRAL TRAVEL",
     subtitle: "Programme coordination and delivery.",
@@ -39,7 +48,7 @@ const experience = [
     subtitle: `"Yes I'd love for you to play Für Elise. Again."`,
     times: "2014 - 2017",
     description:
-      "Responsible for all advanced piano students, covering material for conservatory auditions and personal studies. 30+ students a week, each covering different material.",
+      "Covering material for conservatory auditions and personal studies. 30+ students a week, each covering different syllabi.",
     link: "https://www.facebook.com/maynoothmusic",
   },
   {
@@ -128,9 +137,10 @@ const Experience = ({ showModal, navRef }: ExperienceProps) => {
   return (
     <div
       id="experience"
+      style={{ transition: "filter 0.5s ease-in-out" }}
       className={cn(
         "lg:max-w-[450px] max-w-[90%] lg:relative lg:right-[40px] mx-3 md:mx-0",
-        showModal && "modal-bg-blur hover:!blur-0 "
+        showModal && "blur-[2px] hover:!blur-0 "
       )}
     >
       <div className="pb-5 ">

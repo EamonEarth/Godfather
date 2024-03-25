@@ -229,9 +229,10 @@ const ProjectsGrid = ({
   return (
     <div
       id="projects-container"
+      style={{ transition: "filter 0.5s ease-in-out" }}
       className={cn(
         "md:max-w-[75%] lg:max-w-[50%] max-w-[95%] h-auto grid gap-y-8 md:gap-y-2 mt-12 lg:mr-12 main-project",
-        showModal && "blur-[1px]"
+        showModal && "blur-[2px]"
       )}
     >
       {fsImage && (
@@ -255,7 +256,7 @@ const ProjectsGrid = ({
             id="BOUNDING DIV FOR EACH PROJECT"
             key={project.id + index * 2}
             className={cn(
-              "overflow-scroll md:overflow-visible md:bg-transparent py-4 project flex flex-col gap-y-1 md:flex-row max-h-screen -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 rounded-3xl transition-all relative right-0",
+              "overflow-scroll md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col gap-y-1 md:flex-row max-h-screen -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 rounded-3xl transition-all relative right-0",
               expandedStates[index] && "!items-left lg:right-24"
             )}
             style={{
@@ -283,7 +284,7 @@ const ProjectsGrid = ({
                   transition: "opacity 0.5s ease-in-out ",
                 }}
                 className={cn(
-                  "image rounded-3xl cursor-pointer",
+                  "image rounded-3xl cursor-pointer w-auto h-auto",
                   expandedStates[index] && "shadow-2xl "
                 )}
               ></Image>

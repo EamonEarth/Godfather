@@ -35,7 +35,6 @@ const Sidebar = ({ aboutRef, experienceRef, projectsRef }: SidebarProps) => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log("now", entry.target.id);
             window.history.pushState(null, "", `#${entry.target.id}`);
             let newHash = `#${entry.target.id}`;
             setActiveHash(newHash);
@@ -48,12 +47,10 @@ const Sidebar = ({ aboutRef, experienceRef, projectsRef }: SidebarProps) => {
     const sectionIds = document.querySelectorAll(
       "#about, #experience, #projects"
     );
-    console.log(sectionIds);
 
     sectionIds.forEach((id) => observer.observe(id));
   }, []);
 
-  useEffect(() => console.log("active Hash", activeHash), [activeHash]);
   return (
     <div
       className={cn("relative bottom-0 lg:bottom-6 left-0 z-40 w-auto")}

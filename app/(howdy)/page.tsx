@@ -19,6 +19,16 @@ export default function Home() {
   );
   const [projectsOnScreen, setProjectsOnScreen] = useState(false);
 
+  let n = 0;
+  useEffect(() => {
+    if (n % 2 == 0) {
+      console.log(
+        " ⫷Hi! Get in touch via the contact form or directly at eamon.trav@gmail.com⫸"
+      );
+    }
+    n += 1;
+  }, []);
+
   useEffect(() => {
     if (window.innerWidth < 1024) {
       if (showModal) {
@@ -127,6 +137,7 @@ export default function Home() {
           </div>
           <div className="flex justify-around md:mx-8 lg:mx-0 md:pt-8 lg:pt-24 carousel-hover-boundary">
             <div className="w-[350px] hidden lg:flex"></div>
+
             <ProjectsGrid
               navRef={projectsRef}
               expandedStates={expandedStates}

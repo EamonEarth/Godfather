@@ -23,10 +23,6 @@ const FullscreenImage = ({ fsImageSrc, setFsImage }: FullscreenImageProps) => {
   let imageSrc = projectsImages[fsImageSrc[0]][fsImageSrc[1]];
 
   useEffect(() => {
-    console.log("UE fsImageSrc", fsImageSrc);
-  }, [fsImageSrc]);
-
-  useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";

@@ -385,6 +385,25 @@
   100% { transform: rotate(0deg); }
 }
 
+@keyframes project-orange {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+.custom-gradient- {
+  background-image: linear-gradient(
+    to bottom, 
+    #e7ea8f 20%, /* Start transitioning earlier */
+    #a8b05f 25%, /* Intermediate color for smoother transition */
+    black 50%, /* Mid-point */
+    #a8b05f 75%, /* Intermediate color for smoother transition */
+    #e7ea8f 80% /* Start transitioning back earlier */
+  );
+}
 .image-container {
   position: relative;
   overflow: hidden;
