@@ -70,7 +70,7 @@ export const PROJECTS = [
   {
     id: 2,
     name: "Portfolio Site",
-    link: "https://github.com/EamonEarth/Lowding",
+    link: "https://github.com/EamonEarth/Godfather",
     images: [portDesktop, portMobile],
     shortDescription: "Every detail counts on this sleek portfolio homepage.",
     longDescription: {
