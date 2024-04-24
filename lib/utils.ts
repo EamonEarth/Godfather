@@ -77,3 +77,4 @@ export function sendEmail(data: EmailData) {
       toast.error(err);
     });
 }
+

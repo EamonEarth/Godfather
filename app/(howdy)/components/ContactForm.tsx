@@ -2,8 +2,7 @@
 import { sendEmail } from "@/lib/utils";
 import { Button } from "../../../components/ui/button";
 import { SendHorizonal, Trash2 } from "lucide-react";
-import React, { FormEvent, useEffect, useState } from "react";
-// import SuccessPopup from "./SuccessPopup";
+import React, { useEffect, useState } from "react";
 
 interface ContactFormProps {
   setShowModal: (value: boolean) => void;
@@ -58,34 +57,7 @@ const ContactForm = ({ setShowModal }: ContactFormProps) => {
     setFormData({ name: "", email: "", subject: "", message: "" });
     const fields = ["name", "email", "subject", "message"];
     fields.map((field) => localStorage.removeItem(`contactForm${field}`));
-    // setShowContact(false);
   };
-  // const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   const formData = new FormData(event.currentTarget);
-
-  //   try {
-  //     const result = await create(formData);
-  //     toast.success("Thanks for getting in touch!");
-  //     setFormData({ name: "", email: "", subject: "", message: "" });
-
-  //     const fields = ["name", "email", "subject", "message"];
-  //     fields.map((field) => localStorage.removeItem(`contactForm${field}`));
-
-  //     setTimeout(() => {
-  //       setShowModal(false);
-  //     }, 1000);
-  //   } catch (error: any) {
-  //     toast.error("Email invalid", error);
-  //   }
-  // };
-
-  // const handleClear = () => {
-  //   setFormData({ name: "", email: "", subject: "", message: "" });
-  //   const fields = ["name", "email", "subject", "message"];
-  //   fields.map((field) => localStorage.removeItem(`contactForm${field}`));
-  //   setShowModal(false);
-  // };
 
   return (
     <div
@@ -115,11 +87,6 @@ const ContactForm = ({ setShowModal }: ContactFormProps) => {
             placeholder="email"
             onChange={handleChange}
             value={formData.email}
-            style={
-              {
-                /* box-shadow: -3px 3px  rgba(209, 209, 239, 0.8); */
-              }
-            }
           />
         </div>
         <div className="grid grid-cols-[auto_1fr] gap-2 items-center ">
@@ -130,11 +97,6 @@ const ContactForm = ({ setShowModal }: ContactFormProps) => {
             placeholder="So what's this all about then..."
             onChange={handleChange}
             value={formData.subject}
-            style={
-              {
-                /* box-shadow: -3px 3px  rgba(209, 209, 239, 0.8); */
-              }
-            }
           />
         </div>
         <div className="grid grid-cols-[auto_1fr] gap-2 items-center">
@@ -144,13 +106,9 @@ const ContactForm = ({ setShowModal }: ContactFormProps) => {
             placeholder="Your words"
             onChange={handleChange}
             value={formData.message}
-            style={
-              {
-                /* box-shadow: -3px 3px  rgba(209, 209, 239, 0.8); */
-              }
-            }
           ></textarea>
         </div>
+
         <Button className="border border-white form3D" type="submit">
           <SendHorizonal className="w-4 h-4 flex justify-right text-secondary/90 fly-right" />
         </Button>

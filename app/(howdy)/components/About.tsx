@@ -18,7 +18,7 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
         className
       )}
     >
-      <div id="home" className="absolute top-0 bg-white"></div>
+      {/* <div id="home" className="absolute top-0 bg-white"></div> */}
       <div
         id="opac-observer"
         className="  lg:max-w-[450px] md:max-w-[75%] flex flex-col "

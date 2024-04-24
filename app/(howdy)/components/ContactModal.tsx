@@ -1,9 +1,9 @@
 import React, { forwardRef, useRef } from "react";
-import ContactForm from "./ContactForm";
-import { cn } from "../../../lib/utils";
-
 import { mergeRefs } from "react-merge-refs";
 import { useOutsideClick } from "../../../hooks/use-outside-click";
+import { cn } from "../../../lib/utils";
+
+import ContactForm from "./ContactForm";
 
 interface ContactModalProps {
   showModal: boolean;
@@ -22,7 +22,7 @@ const ContactModal = forwardRef<HTMLDivElement, ContactModalProps>(
       <div
         ref={mergeRefs([ref, outsideClickRef])}
         className={cn(
-          "lg:left-10  max-w-[95%] mx-auto md:ml-0 pt-6",
+          "lg:left-[10%]  max-w-[95%] mx-auto md:ml-0 pt-6",
           showModal ? "relative " : "hidden"
         )}
       >

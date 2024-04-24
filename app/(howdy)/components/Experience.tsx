@@ -7,7 +7,7 @@ import React, { MouseEventHandler, useEffect } from "react";
 
 const experience = [
   {
-    title: "Web Dev •",
+    title: "Frontend Developer •",
     employer: "Freelance",
     subtitle: "Full-stack Web Development",
     times: "2023 - present",
@@ -42,15 +42,6 @@ const experience = [
       "Founder and vice-chair of a successful Artists' collective. Creative and Technical director for core events, including slots at all major Irish festivals & flying 8200km to put on a festival in Parkfield, California.",
     link: "https://www.facebook.com/feileparkfield",
   },
-  // {
-  //   title: "Classical Piano Teacher •",
-  //   employer: "Maynooth Music Academy",
-  //   subtitle: `"Yes I'd love for you to play Für Elise. Again."`,
-  //   times: "2014 - 2017",
-  //   description:
-  //     "Covering material for conservatory auditions and personal studies. 30+ students a week, each covering different syllabi.",
-  //   link: "https://www.facebook.com/maynoothmusic",
-  // },
   {
     title: "Musical director, composer & performer",
     employer: "Freelance",
@@ -143,6 +134,7 @@ const Experience = ({ showModal, navRef }: ExperienceProps) => {
         showModal && "blur-[2px] hover:!blur-0 "
       )}
     >
+      {/* HEADING */}
       <div className="pb-5 ">
         <h1
           ref={navRef}
@@ -159,8 +151,7 @@ const Experience = ({ showModal, navRef }: ExperienceProps) => {
         {experience.map((job) => (
           <div
             key={job.title}
-            // onClick={preventClick}
-            className="w-auto h-auto experience-item experience-item-opac hover-boundary rounded-xl opacity-60 md:opacity-40 hover:!opacity-100 md:py-8 pt-4  lg:py-4
+            className="w-auto h-auto experience-item experience-item-opac hover-boundary rounded-xl opacity-60 md:opacity-40 hover:!opacity-100 md:py-8 pt-4 lg:py-4
             hover:bg-[#111c2c] 
 transition-all   
 wide-outline-sm   

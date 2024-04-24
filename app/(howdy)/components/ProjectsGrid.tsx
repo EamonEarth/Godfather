@@ -193,16 +193,20 @@ const ProjectsGrid = ({
   const handleShowMore = (index: number) => {
     if (index === showMore) {
       setShowMore(-1);
+      const currStates = [...expandedStates];
+      currStates[index] = false;
+      setExpandedStates(currStates);
+      return;
     } else {
       setShowMore(index);
     }
 
-    if (expandedStates[index]) {
+    if (!expandedStates[index] && showMore === index) {
       return;
     }
-    if (!expandedStates[index] && showMore) {
+    if (!expandedStates[index]) {
       const currStates = [...expandedStates];
-      currStates[index] = !currStates[index];
+      currStates[index] = true;
       setExpandedStates(currStates);
     }
   };
@@ -250,13 +254,25 @@ const ProjectsGrid = ({
       {PROJECTS.map((project, index: number) => {
         const imageSrc = project.images[imageSrcIndex[index]];
         const imageSizesArray = imageSrcRatio[index];
+        const longDescriptionStyle = {
+          maxHeight: showMore === index ? "250px" : "0px",
+          opacity: showMore === index ? 1 : 0,
+          transition:
+            "max-height 0.5s 0.5s ease-in-out, opacity 0.5s ease-in-out 0.5s",
+        };
+        const shortDescriptionStyle = {
+          maxHeight: showMore === index ? "0px" : "80px",
+          opacity: showMore === index ? 0 : 1,
+          transition:
+            "max-height 0.5s ease-in-out 0.5s, opacity 0.5s ease-in-out 0.5s",
+        };
 
         return (
           <div
             id="BOUNDING DIV FOR EACH PROJECT"
             key={project.id + index * 2}
             className={cn(
-              "overflow-scroll md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col gap-y-1 md:flex-row max-h-screen -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 rounded-3xl transition-all relative right-0",
+              "overflow-scroll md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col gap-y-1 md:flex-row max-h-screen -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 rounded-3xl relative right-0",
               expandedStates[index] && "!items-left lg:right-24"
             )}
             style={{
@@ -267,7 +283,10 @@ const ProjectsGrid = ({
             {/* IMG DIV START */}
             <div
               className={cn(
-                "shrink-0  bg-gradient-to-l from-teal-500/20 via-transparent  to-teal-500/20 rounded-3xl border border-teal-400/50 image-container",
+                "shrink-0 bg-gradient-to-l via-transparent backdrop-blur-md rounded-3xl border border-teal-800/50 image-container",
+                index === 1
+                  ? "from-teal-500/10 to-teal-500/10"
+                  : " from-teal-500/20 to-teal-500/20",
                 {
                   "": expandedStates[index] && imageSrcIndex[index] === 1,
                 }
@@ -289,7 +308,7 @@ const ProjectsGrid = ({
                 )}
               ></Image>
 
-              <div className="absolute bottom-[45%] flex justify-between mx-4 z-40 w-full  pointer-events-none ">
+              <div className="absolute bottom-[45%] flex justify-between px-4 z-40 w-full  pointer-events-none ">
                 <Button
                   variant="ghost"
                   className=" hover:bg-transparent  hover:scale-125 text-white hover:text-teal-500 opacity-40 hover:opacity-100  pointer-events-auto"
@@ -320,21 +339,34 @@ const ProjectsGrid = ({
                 expandedStates[index] && "!text-start"
               )}
             >
-              {showMore !== index && (
-                <div className="flex flex-col justify-center">
-                  <span className="hidden md:block w-full h-[0.5px] bg-teal-500 ml-auto "></span>
-                  <h2 className="text-xl text-end uppercase font-semibold z-40  text-teal-500 name-text-outline tracking-widest">
-                    <i>{project.name}</i>
-                  </h2>
-                  <span className="w-full ml-auto h-[0.5px] bg-teal-500"></span>
-                </div>
-              )}
+              {/* {showMore !== index && ( */}
+              <div
+                style={{ transition: "opacity 0.5s ease-in-out" }}
+                className={cn(
+                  "flex flex-col justify-center",
+                  showMore === index ? "opacity-0" : "opacity-100"
+                )}
+              >
+                <span className="hidden md:block w-full h-[0.5px] bg-teal-500 ml-auto "></span>
+                <h2
+                  className={cn(
+                    // "text-2xl text-end uppercase font-bold z-40 bg-gradient-to-r from-transparent to-orange-800/40 text-teal-400 name-text-outline tracking-wider relative"
+                    "text-2xl text-end uppercase font-bold z-40 text-teal-500 name-text-outline tracking-wider relative"
+                  )}
+                >
+                  {/* <span className="hidden lg:block absolute -right-[6%] z-[-1] bg-gradient-to-r from-transparent to-orange-700/30 h-[85%] bottom-[5px] w-[105%] rounded-tr-full " />
+                  <span className="hidden lg:block absolute -right-[6%] z-[-1] bg-gradient-to-r from-transparent to-orange-700/30 h-[22%] opacity-80 bottom-0 w-[105%] rounded-br-full rotate-[-0.5deg] " /> */}
+                  <i>{project.name}</i>
+                </h2>
+                <span className="w-full ml-auto h-[0.5px] bg-teal-500"></span>
+              </div>
+              {/* )} */}
 
               {/* CARD TEXT CONTENT */}
               <div
-                style={{ transition: "background-color 0.2s ease-in-out" }}
+                style={{ transition: "background-color 0.5s ease-in-out" }}
                 className={cn(
-                  "md:bg-teal-500/10 rounded-2xl p-4 flex flex-col gap-y-2 text-xs shadow-2xl  -ml-auto",
+                  "md:bg-teal-500/10 rounded-2xl p-4 flex flex-col gap-y-2 text-xs shadow-2xl -ml-auto",
 
                   {
                     "!bg-teal-900/40":
@@ -342,35 +374,41 @@ const ProjectsGrid = ({
                   }
                 )}
               >
-                {showMore === index ? (
-                  <div className="flex flex-col description-transition expanded-description pl-4 max-w-[95%] md:h-[250px]">
-                    <p className=" text-end font-light tracking-wide flex flex-col ">
-                      {project.longDescription.text}
-                      <span className="w-full h-[0.5px] bg-teal-500 ml-auto my-4"></span>
-                    </p>
-                    <p className="text-start font-semibold tracking-wide">
-                      {project.longDescription.listTitle}
-                    </p>
-                    <ul className=" text-start">
-                      {project.longDescription.listPoints.map((point) => (
-                        <li className="py-2" key={point}>
-                          • {point}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : (
-                  <div className="description-transition max-w-[95%]  text-left font-semibold tracking-wide text-sm">
-                    {project.shortDescription}
-                  </div>
-                )}
+                {/* {showMore === index ? ( */}
+                <div
+                  style={longDescriptionStyle}
+                  className="flex flex-col description-transition expanded-description pl-4 max-w-[95%] md:h-[250px]"
+                >
+                  <p className=" text-end font-light tracking-wide flex flex-col ">
+                    {project.longDescription.text}
+                    <span className="w-full h-[0.5px] bg-teal-500 ml-auto my-4"></span>
+                  </p>
+                  <p className="text-start font-semibold tracking-wide">
+                    {project.longDescription.listTitle}
+                  </p>
+                  <ul className=" text-start">
+                    {project.longDescription.listPoints.map((point) => (
+                      <li className="py-2" key={point}>
+                        • {point}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/*  */}
+                <div
+                  style={shortDescriptionStyle}
+                  className="description-transition max-w-[95%]  text-left font-semibold tracking-wide text-sm"
+                >
+                  {project.shortDescription}
+                </div>
+
                 <div className="flex ml-12 mt-2 gap-x-3 justify-end items-center ">
-                  <span className="w-[0.5px] h-6  mx-1" />
+                  <span className="w-[0.5px] h-7  mx-1" />
                   <Button
                     variant="ghost"
                     size="sm"
                     className={cn(
-                      "button-shake text-xs border-[3px] hover:bg-teal-500 rounded-full relative transition-all duration-500 right-0 max-w-[50%] px-6 hover:border-teal-500 "
+                      "button-shake text-xs border-[3px] hover:bg-black hover:border-black/80 hover:text-white rounded-full relative transition-all duration-500 right-0 max-w-[50%] px-6 "
                     )}
                     onClick={() => handleShowMore(index)}
                   >
