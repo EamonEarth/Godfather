@@ -3,37 +3,41 @@
 import { cn, debounce } from "../../../lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import React, { MouseEventHandler, useEffect } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 
 const experience = [
   {
+    id: 0,
     title: "Frontend Developer •",
     employer: "Freelance",
     subtitle: "Full-stack Web Development",
-    times: "2023 - present",
+    times: "2023 - ",
     description:
       "Full-stack solutions for personal and corporate clients, predominantly built with React. Design, coding, backend set-up and deployment. See Projects below for more info. ",
     link: "https://eamontravers.dev/#projects",
   },
   {
+    id: 1,
     title: "MBA/EMBA Programme Coordinator •",
     employer: "Freelance / AUSTRAL TRAVEL",
     subtitle: "Programme coordination and delivery.",
-    times: "2021 - present",
+    times: "2021 - ",
     description:
       "Being the person on the ground who has to bring all the threads of a programme together, and deliver it. With some universities, I'm essentially a glorified tour guide. For others, an active member of sessions with organisations like DIHK, Silicon Allee, Google & Bayer. I've been lucky enough to work with some great schools like the Cambridge Judge Business School, the Jones Graduate School at Rice and London Business School.",
     link: "https://australgroup.com/",
   },
   {
+    id: 2,
     title: "Digital Audio Engineer •",
     employer: "Petersburg Art Space",
     subtitle: "Concert & Exhibition Spaces",
-    times: "2020 - present",
+    times: "2020 - ",
     description:
       "In-house live-audio and mixing engineer in a bustling Berlin art space and event venue. The only constant here is the expectation that the work is at a high enough level to represent the venue. Shows vary from single night touring intl artists to government funded installation art.",
     link: "https://pas-berlin.org/pas-eng/",
   },
   {
+    id: 3,
     title: "Vice-Chair/Prod Manager/Co-Founder •",
     employer: "Common Grounds Collective",
     subtitle: "Artists' collective",
@@ -43,6 +47,7 @@ const experience = [
     link: "https://www.facebook.com/feileparkfield",
   },
   {
+    id: 4,
     title: "Musical director, composer & performer",
     employer: "Freelance",
     subtitle: "Piano, drums, electronics & guitar",
@@ -59,6 +64,8 @@ interface ExperienceProps {
 }
 
 const Experience = ({ showModal, navRef }: ExperienceProps) => {
+  const [isExpanded, setIsExpanded] = useState(-1);
+  const [isTruncated, setIsTruncated] = useState(true);
   const preventClick: MouseEventHandler<HTMLDivElement> = (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -125,6 +132,28 @@ const Experience = ({ showModal, navRef }: ExperienceProps) => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const updateTruncatedState = () => {
+      if (window.innerWidth < 768) {
+        setIsTruncated(false);
+      } else {
+        setIsTruncated(true);
+      }
+    };
+
+    updateTruncatedState();
+
+    const handleResize = debounce(() => {
+      updateTruncatedState();
+    }, 250);
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div
       id="experience"
@@ -135,7 +164,7 @@ const Experience = ({ showModal, navRef }: ExperienceProps) => {
       )}
     >
       {/* HEADING */}
-      <div className="pb-5 ">
+      <div className="pb-5">
         <h1
           ref={navRef}
           className="exper-animation text-primary-foreground font-bold text-2xl leading-tight md:relative  tracking-widest uppercase spread-font-spacing nav-focus"
@@ -159,7 +188,14 @@ lg:wide-outline-lg
 relative 
 right-0
 px-[30px]
- duration-500 lg:duration-1000 lg:delay-200 hover:z-50"
+ duration-500 lg:duration-1000 lg:delay-200 hover:z-50 cursor-pointer"
+            onClick={() => {
+              if (isExpanded === job.id) {
+                setIsExpanded(-1);
+              } else {
+                setIsExpanded(job.id);
+              }
+            }}
           >
             <li className=" py-2 gap-y-10 " key={job.title}>
               <div className="md:flex lg:flex-col gap-x-24">
@@ -176,7 +212,10 @@ px-[30px]
                   </p>
                   <p
                     style={{ fontSize: 16, letterSpacing: "0.02rem" }}
-                    className="pt-2 text-md text-white/70 font-semibold"
+                    className={cn(
+                      "py-2 text-md text-white/70 font-semibold ",
+                      !isTruncated || isExpanded === job.id ? "" : "truncated"
+                    )}
                   >
                     {job.description}
                   </p>

@@ -50,9 +50,9 @@ export default function Home() {
         const HeaderDiv = document.getElementById("header");
         entries.forEach((entry) => {
           if (!entry.isIntersecting) {
-            HeaderDiv?.classList.add("active");
-          } else {
             HeaderDiv?.classList.remove("active");
+          } else {
+            HeaderDiv?.classList.add("active");
           }
         });
       },
@@ -69,13 +69,16 @@ export default function Home() {
   return (
     <div className="h-full relative">
       <div className="flex flex-col lg:gap-y-6 justify-center px-2 lg:mx-16 ">
-        <div className="flex flex-col lg:flex-row lg:justify-around lg:items-center relative lg:-inset-x10 mt-24 mx-8 lg:mx-12  ">
+        {/* HEADER, NAV AND ABOUT */}
+        <div className="flex flex-col lg:flex-row lg:justify-around lg:items-center relative mt-24 mx-8 lg:mx-12  ">
+          {/* HEADER AND NAV START */}
           <div className="flex flex-col ">
             <div
               className={cn(
-                "lg:fixed  md:flex lg:flex-col  lg:top-[15%] justify-between",
-                showModal ? "lg:absolute" : "lg:fixed"
+                "lg:fixed  md:flex lg:flex-col  lg:top-[15%] justify-between ",
+                showModal && "!opacity-0"
               )}
+              style={{ transition: "opacity 0.4s ease-in-out" }}
             >
               <div
                 id="header"
@@ -88,40 +91,61 @@ export default function Home() {
                     "blur 1s ease-in, right 0.8s ease-in-out, opacity 0.8s ease-in-out",
                 }}
               >
-                <div className="flex flex-col  gap-x-12 ">
-                  <Header
-                    showModal={showModal}
-                    setShowModal={() => setShowModal(!showModal)}
-                    className=""
+                <div
+                  className={cn(
+                    "flex flex-col  gap-x-12 "
+                    // projectsOnScreen && "opacity-10"
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "hover:!opacity-100",
+                      projectsOnScreen && "opacity-10"
+                    )}
+                    style={{ transition: "opacity 0.8s ease-in-out" }}
+                  >
+                    <Header
+                      showModal={showModal}
+                      setShowModal={() => setShowModal(!showModal)}
+                      className=""
+                      carouselExpansionBlur={
+                        expandedStates[0] || expandedStates[1]
+                      }
+                      projectsOnScreen={projectsOnScreen}
+                    />
+                  </span>
+                  <span
+                    className={cn(
+                      "hover:!opacity-100",
+                      projectsOnScreen && "opacity-50"
+                    )}
+                    style={{ transition: "opacity 0.4s ease-in-out" }}
+                  >
+                    <Sidebar
+                      aboutRef={aboutRef}
+                      experienceRef={experienceRef}
+                      projectsRef={projectsRef}
+                    />
+                  </span>
+                  {/* <Haiku
                     carouselExpansionBlur={
                       expandedStates[0] || expandedStates[1]
                     }
                     projectsOnScreen={projectsOnScreen}
-                  />
-                  <Haiku
-                    carouselExpansionBlur={
-                      expandedStates[0] || expandedStates[1]
-                    }
-                    projectsOnScreen={projectsOnScreen}
-                  />
-                  <Sidebar
-                    aboutRef={aboutRef}
-                    experienceRef={experienceRef}
-                    projectsRef={projectsRef}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
           </div>
+          {/* END OF HEADER NAV */}
+          {/* ABOUT  */}
           <div className="flex lg:ml-16">
             <div className="w-[350px] hidden lg:flex pt-[400px]"></div>
             <About navRef={aboutRef} className="" showModal={showModal} />
           </div>
+          {/* END OF ABOUT */}
         </div>
-
-        {/* 
-          
-          */}
+        {/* END OF HEADER NAV ABOUT */}
 
         <div className="flex flex-col ">
           {showModal && (
@@ -131,7 +155,7 @@ export default function Home() {
               setShowModal={setShowModal}
             />
           )}
-          <div className="flex flex-col lg:flex-row justify-around pt-24 lg:items-center  mx-4">
+          <div className="flex flex-col lg:flex-row justify-around pt-16 lg:items-center  mx-4">
             <div className="w-[350px] hidden lg:flex"></div>
             <Experience navRef={experienceRef} showModal={showModal} />
           </div>

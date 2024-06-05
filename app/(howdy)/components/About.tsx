@@ -13,7 +13,7 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
     <section
       id="about"
       className={cn(
-        "tracking-wider font-light pt-10  md:relative lg:top-20 lg:pb-20 z-50 max-w-[95%]",
+        "tracking-wider font-light pt-10  md:relative lg:top-5 lg:pb-20- z-50 max-w-[95%]",
         showModal && "modal-bg-blur hover:blur-0 transition-all duration-400",
         className
       )}
@@ -49,6 +49,19 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
               </span>
             </p>
             <p>
+              I&apos;m a generalist/polymath who loves making things work! Happy
+              writing unit tests, modern software, differential equations or
+              to-do lists. Specialised in coding intuitive and engaging frontend
+              interfaces, leveraging up-to-date technologies and getting excited
+              about new projects.
+            </p>
+            <p className="mt-2 ">
+              From my maths degree, I can bring logical thinking, from my music
+              career, consumer-centric creation, and from my logistical work,
+              attention to detail and pragmatic focus on deliverables. I&apos;m
+              also fun to work with!
+            </p>
+            {/* <p>
               My &quot;first job&quot; 15 years ago was as a QA tester paid in
               in-game currency for{" "}
               <a
@@ -70,7 +83,7 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
               shared goal makes me happy and, for my money at least, I think the
               satisfaction of creating quality is one of the true joys of the
               world! And it&apos;s cool!
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

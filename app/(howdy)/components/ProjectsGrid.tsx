@@ -6,6 +6,7 @@ import {
   ArrowRightCircle,
   ArrowRightSquare,
   Github,
+  Maximize2,
   ZoomIn,
 } from "lucide-react";
 import Image from "next/image";
@@ -47,7 +48,7 @@ export const PROJECTS = [
     images: [phasmicDesktop, phasmicMobile],
     shortDescription: "Weird meets wonderful for quirky company site",
     longDescription: {
-      text: "Wacky but convincing. This site has to both appeal to the out-crowd and convince funders.",
+      text: "The client expressed a desire to appear independant while still exuding corporate efficiency. As the site has to appeal both to artists and financiers, we tried to walk the line between interesting and inoffensive.",
       listTitle: "Worth a mention:",
       listPoints: [
         "Custom randomiser to select from fontArray for the Header element.",
@@ -161,7 +162,6 @@ const ProjectsGrid = ({
 
   useEffect(() => {
     const updatedRatios = [...imageSrcRatio];
-
     PROJECTS.forEach((_, index) => {
       let imgRatioVar;
       imgRatioVar = imageSrcIndex[index] === 1 ? [350, 350] : [175, 700];
@@ -171,29 +171,10 @@ const ProjectsGrid = ({
     setImageSrcRatio(updatedRatios);
   }, [imageSrcIndex, expandedStates]);
 
-  const handleExpandImage = (index: number, imageSrc: number) => {
-    if (window.innerWidth < 768) {
-      setFsImage(true);
-      setFsImageSrc([index, imageSrc]);
-      return;
-    }
-
-    const updatedStates = [...expandedStates];
-    const updatedOpacity = [...opacity];
-    updatedOpacity[index] = 0.5;
-    setOpacity(updatedOpacity);
-    setTimeout(() => {
-      updatedStates[index] = !updatedStates[index];
-      setExpandedStates(updatedStates);
-      updatedOpacity[index] = 1;
-      setOpacity(updatedOpacity);
-    }, 500);
-  };
-
   const handleShowMore = (index: number) => {
+    const currStates = new Array(expandedStates.length).fill(false);
     if (index === showMore) {
       setShowMore(-1);
-      const currStates = [...expandedStates];
       currStates[index] = false;
       setExpandedStates(currStates);
       return;
@@ -205,10 +186,14 @@ const ProjectsGrid = ({
       return;
     }
     if (!expandedStates[index]) {
-      const currStates = [...expandedStates];
       currStates[index] = true;
       setExpandedStates(currStates);
     }
+  };
+
+  const handleSetFullScreenImage = (index: number, imageSrc: number) => {
+    setFsImage(true);
+    setFsImageSrc([index, imageSrc]);
   };
 
   useEffect(() => {
@@ -222,7 +207,7 @@ const ProjectsGrid = ({
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.33 }
     );
     const mainDiv = document.querySelector(".main-project")!;
     observer.observe(mainDiv);
@@ -236,11 +221,15 @@ const ProjectsGrid = ({
       style={{ transition: "filter 0.5s ease-in-out" }}
       className={cn(
         "md:max-w-[75%] lg:max-w-[50%] max-w-[95%] h-auto grid gap-y-8 md:gap-y-2 mt-12 lg:mr-12 main-project",
-        showModal && "blur-[2px]"
+        showModal && "blur-[2px] hover:!blur-0"
       )}
     >
       {fsImage && (
-        <FullscreenImage setFsImage={setFsImage} fsImageSrc={fsImageSrc} />
+        <FullscreenImage
+          setFsImage={setFsImage}
+          setFsImageSrc={setFsImageSrc}
+          fsImageSrc={fsImageSrc}
+        />
       )}
       <h1
         id="projects"
@@ -273,11 +262,12 @@ const ProjectsGrid = ({
             key={project.id + index * 2}
             className={cn(
               "overflow-scroll md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col gap-y-1 md:flex-row max-h-screen -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 rounded-3xl relative right-0",
-              expandedStates[index] && "!items-left lg:right-24"
+              expandedStates[index] && "!items-left lg:right-24",
+              fsImage && "blur-[1px]"
             )}
             style={{
               transition:
-                "background-color 0.3s ease-in, right 0.5s ease-in-out",
+                "background-color 0.3s ease-in, right 0.4s ease-in-out",
             }}
           >
             {/* IMG DIV START */}
@@ -297,7 +287,6 @@ const ProjectsGrid = ({
                 alt={project.name}
                 height={imageSizesArray[0]}
                 width={imageSizesArray[1]}
-                onClick={() => handleExpandImage(index, imageSrcIndex[index])}
                 style={{
                   opacity: opacity[index],
                   transition: "opacity 0.5s ease-in-out ",
@@ -307,11 +296,22 @@ const ProjectsGrid = ({
                   expandedStates[index] && "shadow-2xl "
                 )}
               ></Image>
+              {!showModal && (
+                <Maximize2
+                  className={cn(
+                    "size-8 p-2 md:hover:scale-110 z-50 opacity-40 hover:opacity-80 absolute right-7 bottom-7 bg-black rounded-full cursor-pointer"
+                  )}
+                  style={{ transition: "transform 0.2s" }}
+                  onClick={() =>
+                    handleSetFullScreenImage(index, imageSrcIndex[index])
+                  }
+                />
+              )}
 
               <div className="absolute bottom-[45%] flex justify-between px-4 z-40 w-full  pointer-events-none ">
                 <Button
                   variant="ghost"
-                  className=" hover:bg-transparent  hover:scale-125 text-white hover:text-teal-500 opacity-40 hover:opacity-100  pointer-events-auto"
+                  className="rounded-full md:hover:bg-transparent  md:hover:scale-125 text-white opacity-40 md:hover:opacity-90  pointer-events-auto"
                   style={{ transition: "transform 0.4s" }}
                   onClick={() => handlePrevImage(index)}
                 >
@@ -323,7 +323,7 @@ const ProjectsGrid = ({
 
                 <Button
                   variant="ghost"
-                  className="rounded-full hover:bg-transparent hover:scale-125 hover:text-teal-500 opacity-40 hover:opacity-80 pointer-events-auto"
+                  className="rounded-full md:hover:bg-transparent md:hover:scale-125 opacity-40 md:hover:opacity-90 pointer-events-auto"
                   style={{ transition: "transform 0.4s" }}
                   onClick={() => handleNextImage(index)}
                 >
@@ -339,28 +339,29 @@ const ProjectsGrid = ({
                 expandedStates[index] && "!text-start"
               )}
             >
-              {/* {showMore !== index && ( */}
               <div
-                style={{ transition: "opacity 0.5s ease-in-out" }}
+                style={{
+                  transition:
+                    "opacity 0.5s ease-in-out, max-height 1s ease-in-out 0.5s",
+                  overflow: "hidden",
+                }}
                 className={cn(
                   "flex flex-col justify-center",
-                  showMore === index ? "opacity-0" : "opacity-100"
+                  showMore === index
+                    ? "opacity-0 max-h-0"
+                    : "opacity-100 max-h-100 "
                 )}
               >
-                <span className="hidden md:block w-full h-[0.5px] bg-teal-500 ml-auto "></span>
+                <span className="hidden md:block w-full h-[0.5px] bg-teal-500 ml-auto opacity-70"></span>
                 <h2
                   className={cn(
-                    // "text-2xl text-end uppercase font-bold z-40 bg-gradient-to-r from-transparent to-orange-800/40 text-teal-400 name-text-outline tracking-wider relative"
                     "text-2xl text-end uppercase font-bold z-40 text-teal-500 name-text-outline tracking-wider relative"
                   )}
                 >
-                  {/* <span className="hidden lg:block absolute -right-[6%] z-[-1] bg-gradient-to-r from-transparent to-orange-700/30 h-[85%] bottom-[5px] w-[105%] rounded-tr-full " />
-                  <span className="hidden lg:block absolute -right-[6%] z-[-1] bg-gradient-to-r from-transparent to-orange-700/30 h-[22%] opacity-80 bottom-0 w-[105%] rounded-br-full rotate-[-0.5deg] " /> */}
                   <i>{project.name}</i>
                 </h2>
-                <span className="w-full ml-auto h-[0.5px] bg-teal-500"></span>
+                <span className="w-full ml-auto h-[0.5px] bg-teal-500 opacity-70"></span>
               </div>
-              {/* )} */}
 
               {/* CARD TEXT CONTENT */}
               <div
@@ -374,12 +375,11 @@ const ProjectsGrid = ({
                   }
                 )}
               >
-                {/* {showMore === index ? ( */}
                 <div
                   style={longDescriptionStyle}
                   className="flex flex-col description-transition expanded-description pl-4 max-w-[95%] md:h-[250px]"
                 >
-                  <p className=" text-end font-light tracking-wide flex flex-col ">
+                  <p className="text-sm  pt-0 md:text-xs text-end font-light tracking-wide flex flex-col ">
                     {project.longDescription.text}
                     <span className="w-full h-[0.5px] bg-teal-500 ml-auto my-4"></span>
                   </p>
@@ -408,7 +408,7 @@ const ProjectsGrid = ({
                     variant="ghost"
                     size="sm"
                     className={cn(
-                      "button-shake text-xs border-[3px] hover:bg-black hover:border-black/80 hover:text-white rounded-full relative transition-all duration-500 right-0 max-w-[50%] px-6 "
+                      "button-shake text-xs border-[3px] md:hover:bg-black md:hover:border-black/80 md:hover:text-white rounded-full relative transition-all duration-500 right-0 max-w-[50%] px-6 "
                     )}
                     onClick={() => handleShowMore(index)}
                   >
@@ -430,7 +430,7 @@ const ProjectsGrid = ({
                   ))}
                 </div>
               </div>
-              <span className=" hidden md:block w-[100%] h-[0.5px] bg-teal-500 ml-auto"></span>
+              <span className=" hidden md:block relative right-[5%] w-[60%] h-[0.5px] bg-teal-500 opacity-70 ml-auto"></span>
             </div>
           </div>
         );
