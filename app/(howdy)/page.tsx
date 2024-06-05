@@ -127,12 +127,6 @@ export default function Home() {
                       projectsRef={projectsRef}
                     />
                   </span>
-                  {/* <Haiku
-                    carouselExpansionBlur={
-                      expandedStates[0] || expandedStates[1]
-                    }
-                    projectsOnScreen={projectsOnScreen}
-                  /> */}
                 </div>
               </div>
             </div>
@@ -174,6 +168,12 @@ export default function Home() {
         </div>
 
         <div className="h-[150px]"></div>
+        <span className="absolute bottom-1  right-[10%]">
+          <Haiku
+            carouselExpansionBlur={expandedStates[0] || expandedStates[1]}
+            projectsOnScreen={projectsOnScreen}
+          />
+        </span>
       </div>
     </div>
   );

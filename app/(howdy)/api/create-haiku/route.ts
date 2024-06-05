@@ -23,7 +23,8 @@ export async function GET(req: NextRequest) {
         messages: [{ role: "system", content: `Write a funny, non-cheesy, off-beat haiku to get someone from a place in ${city} to employ me. Maybe include the day (${d}). Format it clearly into the haiku syllable count.
 ` }],
         // model: "gpt-3.5-turbo-0125",
-        model: "gpt-4-0125-preview",
+        // model: "gpt-4-0125-preview",
+        model: "gpt-4o",
       });
       
       const final = completion.choices[0].message.content

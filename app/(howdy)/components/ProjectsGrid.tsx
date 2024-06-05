@@ -292,7 +292,7 @@ const ProjectsGrid = ({
                   transition: "opacity 0.5s ease-in-out ",
                 }}
                 className={cn(
-                  "image rounded-3xl cursor-pointer w-auto h-auto",
+                  "image rounded-3xl w-auto h-auto",
                   expandedStates[index] && "shadow-2xl "
                 )}
               ></Image>
