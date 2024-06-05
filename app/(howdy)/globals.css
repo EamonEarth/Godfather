@@ -142,11 +142,11 @@
 
 .truncated {
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Number of lines to show */
+  -webkit-line-clamp: 4; /* Number of lines to show */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 80px; 
+  max-height: 100px; 
 }
 
 .combined-animation {
