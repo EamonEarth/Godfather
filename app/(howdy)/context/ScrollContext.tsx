@@ -19,8 +19,13 @@ export const useScroll = (): ScrollContextType => {
 export const ScrollProvider = ({ children }: { children: React.ReactNode }) => {
   const scrollToSection = useCallback((sectionId: string) => {
     const section = document.getElementById(sectionId);
+    console.log(section);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      if (section.id === "about") {
+        section.scrollIntoView({ behavior: "smooth", block: "end" });
+      } else {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
     }
   }, []);
 

@@ -168,7 +168,7 @@ export default function Home() {
         </div>
 
         <div className="h-[150px]"></div>
-        <span className="absolute bottom-1  right-[10%]">
+        <span className="absolute bottom-1 right-[10%] flex items-center justify-center ">
           <Haiku
             carouselExpansionBlur={expandedStates[0] || expandedStates[1]}
             projectsOnScreen={projectsOnScreen}

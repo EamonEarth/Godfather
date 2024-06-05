@@ -13,7 +13,7 @@ const experience = [
     subtitle: "Full-stack Web Development",
     times: "2023 - ",
     description:
-      "Full-stack solutions for personal and corporate clients, predominantly built with React. Design, coding, backend set-up and deployment. See Projects below for more info. ",
+      "Full-stack solutions for personal and corporate clients, predominantly built with React. Design, coding, backend set-up and deployment. Special emphasis on full testing coverage and reliability. See Projects below for more info. ",
     link: "https://eamontravers.dev/#projects",
   },
   {
@@ -220,7 +220,7 @@ px-[30px]
                     {job.description}
                   </p>
                   <Link href={job.link} target="_blank">
-                    <ArrowUpRight className="cursor-pointer z-50" />
+                    <ArrowUpRight className="cursor-pointer z-50 mt-1" />
                   </Link>
                   <p></p>
                 </div>
