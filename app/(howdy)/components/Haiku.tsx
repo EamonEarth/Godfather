@@ -114,9 +114,12 @@ const Haiku = ({ carouselExpansionBlur, projectsOnScreen }: HaikuProps) => {
   return (
     <div
       style={{ transition: "filter 0.5s ease-in-out" }}
-      className={cn("z-50 max-w-fit md:relative pt-2 min-w-[256px]", {
-        "blur-sm": carouselExpansionBlur && projectsOnScreen,
-      })}
+      className={cn(
+        "z-50 max-w-fit md:relative pt-2 min-w-[256px]"
+        // {
+        //   "blur-sm": carouselExpansionBlur && projectsOnScreen,
+        // }
+      )}
     >
       {lines ? (
         <div className="text-primary-foreground font-extralight text-sm px-14 pt-1  md:py-5 pb-5 opacity-80 gap-y-0.5 justify-end h-auto flex flex-col bg-green-500/10 rounded ">
