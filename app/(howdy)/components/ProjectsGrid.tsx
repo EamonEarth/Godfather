@@ -261,7 +261,7 @@ const ProjectsGrid = ({
             id="BOUNDING DIV FOR EACH PROJECT"
             key={project.id + index * 2}
             className={cn(
-              "overflow-scroll md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col gap-y-1 md:flex-row max-h-screen -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 rounded-3xl relative right-0",
+              "overflow-scroll md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col gap-y-1 md:flex-row max-h-screen -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 relative right-0",
               expandedStates[index] && "!items-left lg:right-24",
               fsImage && "blur-[1px]"
             )}
@@ -273,7 +273,7 @@ const ProjectsGrid = ({
             {/* IMG DIV START */}
             <div
               className={cn(
-                "shrink-0 bg-gradient-to-l via-transparent backdrop-blur-md rounded-3xl border border-teal-800/50 image-container",
+                "shrink-0 bg-gradient-to-l via-transparent backdrop-blur-md rounded border border-teal-800/50 image-container",
                 index === 1
                   ? "from-teal-500/10 to-teal-500/10"
                   : " from-teal-500/20 to-teal-500/20",

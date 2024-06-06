@@ -39,7 +39,8 @@ const FullscreenImage = ({
   let imageSrc = projectsImages[fsImageSrc[0]][fsImageSrc[1]];
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const loadingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -124,7 +125,6 @@ const FullscreenImage = ({
   }, [fsImageSrc, setFsImageSrc]);
 
   const handleNextImage = () => {
-    setIsLoading(true);
     let newImgSrc = [...fsImageSrc];
     newImgSrc[1] += 1;
     if (newImgSrc[1] > 1) {
@@ -134,10 +134,12 @@ const FullscreenImage = ({
   };
 
   useEffect(() => {
-    setIsLoading(false);
-  }, fsImageSrc);
-
-  useEffect(() => {
+    if (loadingTimeoutRef.current) {
+      clearTimeout(loadingTimeoutRef.current);
+    }
+    loadingTimeoutRef.current = setTimeout(() => {
+      setIsLoading(true);
+    }, 100);
     imageSrc = projectsImages[fsImageSrc[0]][fsImageSrc[1]];
   }, [fsImageSrc]);
 
@@ -187,7 +189,7 @@ const FullscreenImage = ({
         {/* </div> */}
         {isLoading && (
           <Loader2
-            className="animate-spin z-50 text-white size-10 opacity-70"
+            className="animate-spin z-50 text-white size-6 opacity-50"
             style={{ animationDuration: "1s" }}
           />
         )}
@@ -197,6 +199,12 @@ const FullscreenImage = ({
           layout="fill"
           objectFit="contain"
           className=""
+          onLoadingComplete={() => {
+            if (loadingTimeoutRef.current) {
+              clearTimeout(loadingTimeoutRef.current);
+            }
+            setIsLoading(false);
+          }}
         />
         <Minimize2
           className="size-10 p-2 rounded-full bg-black absolute right-8 bottom-[15%] z-50 hover:scale-110 opacity-40 hover:opacity-80 cursor-pointer"
