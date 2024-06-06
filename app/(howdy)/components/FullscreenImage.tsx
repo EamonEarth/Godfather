@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { SetStateAction, useEffect, useRef } from "react";
+import React, { SetStateAction, useEffect, useRef, useState } from "react";
 import lowdingMobile from "../../../public/portfolio/lowding-wide0.png";
 import lowdingDesktop from "../../../public/portfolio/lowding-wide1.png";
 import portMobile from "../../../public/portfolio/port-wide0.png";
@@ -11,6 +11,7 @@ import {
   ArrowRightCircle,
   Github,
   Home,
+  Loader2,
   Minimize,
   Minimize2,
 } from "lucide-react";
@@ -38,6 +39,7 @@ const FullscreenImage = ({
   let imageSrc = projectsImages[fsImageSrc[0]][fsImageSrc[1]];
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -122,6 +124,7 @@ const FullscreenImage = ({
   }, [fsImageSrc, setFsImageSrc]);
 
   const handleNextImage = () => {
+    setIsLoading(true);
     let newImgSrc = [...fsImageSrc];
     newImgSrc[1] += 1;
     if (newImgSrc[1] > 1) {
@@ -129,6 +132,10 @@ const FullscreenImage = ({
     }
     setFsImageSrc(newImgSrc);
   };
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, fsImageSrc);
 
   useEffect(() => {
     imageSrc = projectsImages[fsImageSrc[0]][fsImageSrc[1]];
@@ -178,6 +185,12 @@ const FullscreenImage = ({
           className="w-full h-full z-50"
           > */}
         {/* </div> */}
+        {isLoading && (
+          <Loader2
+            className="animate-spin z-50 text-white size-10 opacity-70"
+            style={{ animationDuration: "1s" }}
+          />
+        )}
         <Image
           src={imageSrc}
           alt="Fullscreen Image"
@@ -232,11 +245,6 @@ const FullscreenImage = ({
             </Link>
           </span>
         </div>
-        {/* <span className="w-full flex relative -top-4">
-          <Link href={descriptions.link}>
-            <Github className="size-7 z-40" />
-          </Link>
-        </span> */}
       </div>
     </div>
   );

@@ -48,14 +48,14 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
                 )
               </span>
             </p>
-            <p>
+            <p className="">
               I&apos;m a generalist/polymath who loves making things work! Happy
               writing unit tests, modern software, differential equations or
               to-do lists. Specialised in coding intuitive and engaging frontend
               interfaces, leveraging up-to-date technologies and getting excited
               about new projects.
             </p>
-            <p className="mt-2 ">
+            <p className="mt-2">
               From my maths degree, I can bring logical thinking, from my music
               career, consumer-centric creation, and from my logistical work,
               attention to detail and pragmatic focus on deliverables. I&apos;m

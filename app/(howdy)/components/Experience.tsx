@@ -64,7 +64,7 @@ interface ExperienceProps {
 }
 
 const Experience = ({ showModal, navRef }: ExperienceProps) => {
-  const [isExpanded, setIsExpanded] = useState(-1);
+  const [isExpanded, setIsExpanded] = useState(0);
   const [isTruncated, setIsTruncated] = useState(true);
   const preventClick: MouseEventHandler<HTMLDivElement> = (event) => {
     event.preventDefault();
