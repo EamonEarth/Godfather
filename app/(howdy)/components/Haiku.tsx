@@ -1,13 +1,13 @@
 import { Dices, Hourglass } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import { cn, dayOfTheWeek } from "../../../lib/utils";
+import { cn, dayOfTheWeek } from "@/lib/utils";
 
 interface HaikuProps {
-  carouselExpansionBlur: boolean;
-  projectsOnScreen: boolean;
+  // carouselExpansionBlur: boolean;
+  // projectsOnScreen: boolean;
 }
 
-const Haiku = ({ carouselExpansionBlur, projectsOnScreen }: HaikuProps) => {
+const Haiku = ({  }: HaikuProps) => {
   const [trigger, setTrigger] = useState(0);
   const [ipAddress, setIpAddress] = useState("");
   const [city, setCity] = useState("");
@@ -52,7 +52,8 @@ const Haiku = ({ carouselExpansionBlur, projectsOnScreen }: HaikuProps) => {
         const city = data.data.city;
         setCity(city);
       } catch (error) {
-        console.error("Poetry said no today :(");
+        console.log("Moving you to Berlin for poetry purposes", error)
+        setCity("Berlin")
       }
     };
     fetchLocation();
@@ -115,7 +116,7 @@ const Haiku = ({ carouselExpansionBlur, projectsOnScreen }: HaikuProps) => {
     <div
       style={{ transition: "filter 0.5s ease-in-out" }}
       className={cn(
-        "z-50 max-w-fit md:relative pt-2 min-w-[256px]"
+        "z-40 max-w-fit md:relative pt-2 min-w-[256px]"
         // {
         //   "blur-sm": carouselExpansionBlur && projectsOnScreen,
         // }

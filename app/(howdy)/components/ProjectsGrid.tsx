@@ -12,90 +12,9 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import lowdingMobile from "../../../public/portfolio/lowding-wide0-comp.jpg";
-import lowdingDesktop from "../../../public/portfolio/lowding-wide1-comp.jpg";
-import lowding2 from "../../../public/portfolio/lowding-wide2.png";
-import phasmicMobile from "../../../public/portfolio/phasmic-wide0.png";
-import phasmicDesktop from "../../../public/portfolio/phasmic-wide1.png";
-import portMobile from "../../../public/portfolio/port-wide0.png";
-import portDesktop from "../../../public/portfolio/port-wide1.png";
-import port2 from "../../../public/portfolio/port-wide2.png";
 import FullscreenImage from "./FullscreenImage";
+import { PROJECTS } from "@/lib/data";
 
-export const PROJECTS = [
-  {
-    id: 0,
-    name: "Project Lowding",
-    link: "https://github.com/EamonEarth/Lowding",
-    images: [lowdingDesktop, lowdingMobile],
-
-    shortDescription:
-      "Neat little design thesis project advocating for lower impact design choices. ",
-    longDescription: {
-      text: "A fun challenge to reinforce the theme/brand of the website with web development choices. As well as building the site I refined the UX.",
-      listTitle: "Worth a mention:",
-      listPoints: [
-        "Pixel-perfect fidelity with the designer's mock-up, achieved with Figma and silky communication.",
-        "Performant/efficient development choices were a must, at the risk of hypocrisy! Achieved both with general best practices and framework specific resources.",
-      ],
-    },
-    technologies: ["figma", "html", "css", "typescript", "prisma", "tailwind"],
-  },
-  {
-    id: 1,
-    name: "Phasmic",
-    link: "https://github.com/EamonEarth/phasmic",
-    images: [phasmicDesktop, phasmicMobile],
-    shortDescription: "Weird meets wonderful for quirky company site",
-    longDescription: {
-      text: "The client expressed a desire to appear independant while still exuding corporate efficiency. As the site has to appeal both to artists and financiers, we tried to walk the line between interesting and inoffensive.",
-      listTitle: "Worth a mention:",
-      listPoints: [
-        "Custom randomiser to select from fontArray for the Header element.",
-        "Constant design balance between quirky and respectable",
-        "Nodemailer implementation",
-      ],
-    },
-
-    technologies: [
-      "UX",
-      "Nodemailer",
-      "Node",
-      "html",
-      "css",
-      "typescript",
-      "tailwind",
-      "figma",
-    ],
-  },
-  {
-    id: 2,
-    name: "Portfolio Site",
-    link: "https://github.com/EamonEarth/Godfather",
-    images: [portDesktop, portMobile],
-    shortDescription: "Every detail counts on this sleek portfolio homepage.",
-    longDescription: {
-      text: "Built with NextJS. Site skeleton inspired by Brittany Chiang's beautiful site.",
-      listTitle: "Some details you might have missed:",
-      listPoints: [
-        "Integration with RESTful APIs to populate the Haiku generation with user info (no user information is saved).",
-        "LocalStorage used to persist contact form drafts, with state and storage being reset upon completion/deletion.",
-        "Intersection Observers and complex state-management enable a confident and smooth UX.",
-      ],
-    },
-
-    technologies: [
-      "ChatGPT",
-      "nextjs",
-      "APIs",
-      "html",
-      "css",
-      "typescript",
-      "tailwind",
-      "figma",
-    ],
-  },
-];
 
 interface ProjectsProps {
   expandedStates: boolean[];
@@ -119,9 +38,9 @@ const ProjectsGrid = ({
   const [imageSrcIndex, setImageSrcIndex] = useState(
     Array(PROJECTS.length).fill(0)
   );
-  const [imageSrcRatio, setImageSrcRatio] = useState(
-    Array(PROJECTS.length).fill([175, 750])
-  );
+  // const [imageSrcRatio, setImageSrcRatio] = useState(
+  //   Array(PROJECTS.length).fill([175, 750])
+  // );
   const [fsImage, setFsImage] = useState(false);
   const [fsImageSrc, setFsImageSrc] = useState([0, 0]);
 
@@ -160,16 +79,16 @@ const ProjectsGrid = ({
     }, 300);
   };
 
-  useEffect(() => {
-    const updatedRatios = [...imageSrcRatio];
-    PROJECTS.forEach((_, index) => {
-      let imgRatioVar;
-      imgRatioVar = imageSrcIndex[index] === 1 ? [350, 350] : [175, 700];
-      updatedRatios[index] = imgRatioVar;
-    });
+  // useEffect(() => {
+  //   const updatedRatios = [...imageSrcRatio];
+  //   PROJECTS.forEach((_, index) => {
+  //     let imgRatioVar;
+  //     imgRatioVar = imageSrcIndex[index] === 1 ? [350, 350] : [175, 700];
+  //     updatedRatios[index] = imgRatioVar;
+  //   });
 
-    setImageSrcRatio(updatedRatios);
-  }, [imageSrcIndex, expandedStates]);
+  //   setImageSrcRatio(updatedRatios);
+  // }, [imageSrcIndex, expandedStates]);
 
   const handleShowMore = (index: number) => {
     const currStates = new Array(expandedStates.length).fill(false);
@@ -207,7 +126,7 @@ const ProjectsGrid = ({
           }
         });
       },
-      { threshold: 0.33 }
+      { threshold: 0.1 }
     );
     const mainDiv = document.querySelector(".main-project")!;
     observer.observe(mainDiv);
@@ -220,7 +139,7 @@ const ProjectsGrid = ({
       id="projects-container"
       style={{ transition: "filter 0.5s ease-in-out" }}
       className={cn(
-        "md:max-w-[75%] lg:max-w-[50%] max-w-[95%] h-auto grid gap-y-8 md:gap-y-2 mt-12 lg:mr-12 main-project",
+        "md:max-w-[75%] lg:max-w-[50%]- max-w-[95%] h-auto grid gap-y-8 md:gap-y-2 mt-12 lg:mr-12- main-project",
         showModal && "blur-[2px] hover:!blur-0"
       )}
     >
@@ -242,7 +161,7 @@ const ProjectsGrid = ({
       </h1>
       {PROJECTS.map((project, index: number) => {
         const imageSrc = project.images[imageSrcIndex[index]];
-        const imageSizesArray = imageSrcRatio[index];
+        // const imageSizesArray = imageSrcRatio[index];
         const longDescriptionStyle = {
           maxHeight: showMore === index ? "250px" : "0px",
           opacity: showMore === index ? 1 : 0,
@@ -262,7 +181,7 @@ const ProjectsGrid = ({
             key={project.id + index * 2}
             className={cn(
               "overflow-scroll md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col gap-y-1 md:flex-row max-h-screen -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 relative right-0",
-              expandedStates[index] && "!items-left lg:right-24",
+              expandedStates[index] && "!items-left lg:right-24-",
               fsImage && "blur-[1px]"
             )}
             style={{
@@ -285,21 +204,22 @@ const ProjectsGrid = ({
               <Image
                 src={imageSrc}
                 alt={project.name}
-                height={imageSizesArray[0]}
-                width={imageSizesArray[1]}
+                fill
+                // height={imageSizesArray[0]}
+                // width={imageSizesArray[1]}
                 style={{
                   opacity: opacity[index],
                   transition: "opacity 0.5s ease-in-out ",
                 }}
                 className={cn(
-                  "image rounded-3xl w-auto h-auto",
+                  "image- rounded-3xl w-auto h-auto p-4 object-contain",
                   expandedStates[index] && "shadow-2xl "
                 )}
               ></Image>
               {!showModal && (
                 <Maximize2
                   className={cn(
-                    "size-8 p-2 md:hover:scale-110 z-50 opacity-40 hover:opacity-80 absolute right-7 bottom-7 bg-black rounded-full cursor-pointer"
+                    "size-8 p-2 md:hover:scale-110 md:hidden z-50 opacity-40 hover:opacity-80 absolute right-7 bottom-7 bg-black rounded-full cursor-pointer"
                   )}
                   style={{ transition: "transform 0.2s" }}
                   onClick={() =>
@@ -308,7 +228,7 @@ const ProjectsGrid = ({
                 />
               )}
 
-              <div className="absolute bottom-[45%] flex justify-between px-4 z-40 w-full  pointer-events-none ">
+              <div className={cn("absolute bottom-[45%] flex justify-between px-4 z-40 w-full  pointer-events-none", project.images.length < 2 && "hidden")}>
                 <Button
                   variant="ghost"
                   className="rounded-full md:hover:bg-transparent  md:hover:scale-125 text-white opacity-40 md:hover:opacity-90  pointer-events-auto"
@@ -345,7 +265,7 @@ const ProjectsGrid = ({
                     "opacity 0.5s ease-in-out, max-height 1s ease-in-out 0.5s",
                   overflow: "hidden",
                 }}
-                className={cn(
+                className={cn( 
                   "flex flex-col justify-center",
                   showMore === index
                     ? "opacity-0 max-h-0"
@@ -360,7 +280,7 @@ const ProjectsGrid = ({
                 >
                   <i>{project.name}</i>
                 </h2>
-                <span className="w-full ml-auto h-[0.5px] bg-teal-500 opacity-70"></span>
+                <span className="w-full ml-auto h-[0.5px] bg-teal-500 opacity-70 mb-1"></span>
               </div>
 
               {/* CARD TEXT CONTENT */}

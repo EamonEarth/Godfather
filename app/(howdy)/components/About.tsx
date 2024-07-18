@@ -1,6 +1,8 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { cn } from "../../../lib/utils";
 import React, { SetStateAction, useEffect } from "react";
+import Link from "next/link";
 
 interface AboutProps {
   showModal: boolean;
@@ -9,6 +11,7 @@ interface AboutProps {
 }
 
 const About = ({ showModal, className, navRef }: AboutProps) => {
+
   return (
     <section
       id="about"
@@ -49,9 +52,10 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
               </span>
             </p>
             <p className="">
-              I&apos;m a generalist/polymath who loves making things work! Happy
+              I&apos;m a generalist/polymath who loves making things work! With 
+              a degree in Mathemathics and years of experience working as a developer, I&apos;m happy
               writing unit tests, modern software, differential equations or
-              to-do lists. Specialised in coding intuitive and engaging frontend
+              to-do lists. I love coding intuitive and engaging frontend
               interfaces, leveraging up-to-date technologies and getting excited
               about new projects.
             </p>
@@ -61,6 +65,13 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
               attention to detail and pragmatic focus on deliverables. I&apos;m
               also fun to work with!
             </p>
+            <div className="flex justify-end">
+            <Link href="/skills">
+            <Button className="ml-auto">
+              See skills & CV
+            </Button>
+            </Link>
+            </div>
             {/* <p>
               My &quot;first job&quot; 15 years ago was as a QA tester paid in
               in-game currency for{" "}

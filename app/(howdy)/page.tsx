@@ -8,7 +8,7 @@ import Haiku from "./components/Haiku";
 import { cn } from "../../lib/utils";
 import ProjectsGrid from "./components/ProjectsGrid";
 import Sidebar from "./components/Sidebar";
-import { PROJECTS } from "./components/ProjectsGrid";
+import { PROJECTS } from "@/lib/data";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
@@ -108,9 +108,7 @@ export default function Home() {
                       showModal={showModal}
                       setShowModal={() => setShowModal(!showModal)}
                       className=""
-                      carouselExpansionBlur={
-                        expandedStates[0] || expandedStates[1]
-                      }
+                      
                       projectsOnScreen={projectsOnScreen}
                     />
                   </span>
@@ -151,10 +149,10 @@ export default function Home() {
           )}
           <div className="flex flex-col lg:flex-row justify-around pt-16 lg:items-center  mx-4">
             <div className="w-[350px] hidden lg:flex"></div>
-            <Experience navRef={experienceRef} showModal={showModal} />
+            <Experience navRef={experienceRef} showModal={showModal}  />
           </div>
           <div className="flex justify-around md:mx-8 lg:mx-0 md:pt-8 lg:pt-24 carousel-hover-boundary">
-            <div className="w-[350px] hidden lg:flex"></div>
+            {/* <div className="w-[350px] hidden lg:flex"></div> */}
 
             <ProjectsGrid
               navRef={projectsRef}
@@ -170,8 +168,8 @@ export default function Home() {
         <div className="h-[150px]"></div>
         <span className="absolute bottom-1 right-[10%] flex items-center justify-center ">
           <Haiku
-            carouselExpansionBlur={expandedStates[0] || expandedStates[1]}
-            projectsOnScreen={projectsOnScreen}
+            // carouselExpansionBlur={expandedStates[0] || expandedStates[1]}
+            // projectsOnScreen={projectsOnScreen}
           />
         </span>
       </div>

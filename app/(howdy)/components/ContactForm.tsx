@@ -57,6 +57,7 @@ const ContactForm = ({ setShowModal }: ContactFormProps) => {
     setFormData({ name: "", email: "", subject: "", message: "" });
     const fields = ["name", "email", "subject", "message"];
     fields.map((field) => localStorage.removeItem(`contactForm${field}`));
+    setShowModal(false)
   };
 
   return (
@@ -94,7 +95,7 @@ const ContactForm = ({ setShowModal }: ContactFormProps) => {
             name="subject"
             className="border rounded-md p-2 pl-3 col-span-2 placeholder:text-sm text-base bg-primary form3D"
             type="text"
-            placeholder="So what's this all about then..."
+            placeholder="subject"
             onChange={handleChange}
             value={formData.subject}
           />
@@ -103,7 +104,7 @@ const ContactForm = ({ setShowModal }: ContactFormProps) => {
           <textarea
             name="message"
             className="border rounded-md p-2 pb-24 pl-3 col-span-2 placeholder:text-sm text-base bg-primary form3D resize-none"
-            placeholder="Your words"
+            placeholder="your words"
             onChange={handleChange}
             value={formData.message}
           ></textarea>

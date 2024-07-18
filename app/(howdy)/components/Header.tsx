@@ -7,7 +7,6 @@ interface HeaderProps {
   showModal: boolean;
   setShowModal: () => void;
   className: string;
-  carouselExpansionBlur: boolean;
   projectsOnScreen: boolean;
 }
 
@@ -15,7 +14,6 @@ const Header = ({
   showModal,
   setShowModal,
   className,
-  carouselExpansionBlur,
   projectsOnScreen,
 }: HeaderProps) => {
   const handleContactClick = () => {
@@ -50,15 +48,13 @@ const Header = ({
           </h1>
           <div className="lg:max-w-sm lg:relative lg:left-2">
             <p className="text-xl lg:text-2xl font-thin text-primary-foreground ">
-              Frontend Dev
+              Developer
             </p>
             <p className="text-primary-foreground font-thin lg:relative left-2- text-shiner ">
               <span className="grow-solver">Problem Solver</span>
               <br></br>
               <span className="font-light leading-normal  opacity-80 text-md text-primary-foreground">
-                Graduated maths & music tech. Work experience; Web Dev (React),
-                Digital audio engineer, MBA/EMBA programme coordinator, composer
-                & performer.
+                Developer, mathematician and lifetime learner. I love making frontends, software and web apps, and most enjoy the lines between form and function!
                 <br></br>
                 Speed chess addict.
               </span>

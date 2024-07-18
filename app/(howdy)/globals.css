@@ -83,6 +83,15 @@
    /* or 'cover' depending on desired effect */
 }
 
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
 @media(min-width: 1024px ){
 
 .observer-slide.active {
@@ -446,13 +455,40 @@
 }
 
 @keyframes fadeInOut {
-  0%, 100% { opacity: 0.05; }
-  50% { opacity: 0.5; } /* Maximum opacity of 70% */
+  0% { opacity: 0.0; }
+  25% { opacity: 0.8; }
+  50% { opacity: 0.3; } 
+  75% { opacity: 0.8; } 
+  100% { opacity: 0.4; } 
 }
 
+@keyframes shaker {
+  0% { transform:  rotate(0deg) }
+  25% { transform:  rotate(3deg) }
+  50% { transform: rotate(0deg)}
+  75% { transform:  rotate(-3deg) }
+  100% { transform: rotate(0deg)}
+}
+
+@keyframes scaler  {
+  0% { transform: scale(0.45)  }
+  25% { transform: scale(.8) }
+  50% { transform: scale(0.7) }
+  75% { transform: scale(.8) }
+  100% { transform: scale(.6) }
+  }
+
+
+
+
+
 .fade-in-out {
-  animation: fadeInOut 5s infinite, mild-tilt-shake 1s infinite; /* Adjust duration as needed */
+  animation: fadeInOut 6s, scaler 7s forwards; /* Adjust duration as needed */
   animation-timing-function: ease-in-out;
+}
+
+.nav-shaker {
+  animation: shaker 1s ease-in-out 7;
 }
 
 

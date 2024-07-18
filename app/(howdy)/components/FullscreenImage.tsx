@@ -7,16 +7,17 @@ import portMobile from "../../../public/portfolio/port-wide0.png";
 import portDesktop from "../../../public/portfolio/port-wide1.png";
 import phasmicMobile from "../../../public/portfolio/phasmic-wide0.png";
 import phasmicDesktop from "../../../public/portfolio/phasmic-wide1.png";
+import wacmn from "../../../public/portfolio/wacmn.png"
+import navKeysImg from "../../../public/portfolio/navkeys.png";
+import escKeyImg from "../../../public/portfolio/escKeyImg.png";
 import {
   ArrowRightCircle,
   Github,
-  Home,
   Loader2,
-  Minimize,
   Minimize2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PROJECTS } from "./ProjectsGrid";
+import { PROJECTS } from "@/lib/data";
 import Link from "next/link";
 
 interface FullscreenImageProps {
@@ -26,6 +27,7 @@ interface FullscreenImageProps {
 }
 
 const projectsImages = [
+  [wacmn, wacmn],
   [lowdingDesktop, lowdingMobile],
   [phasmicDesktop, phasmicMobile],
   [portDesktop, portMobile],
@@ -65,10 +67,12 @@ const FullscreenImage = ({
 
   useEffect(() => {
     const handleKeydown = (event: KeyboardEvent) => {
+      event.preventDefault()
       if (event.key === "Escape") {
         setFsImage(false);
         console.log("esc");
       } else if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+        if (imageSrc !== wacmn)
         handleNextImage();
         console.log("arrowed");
       } else if (event.key === "ArrowUp") {
@@ -160,6 +164,23 @@ const FullscreenImage = ({
 
   return (
     <div className="w-screen h-screen fixed inset-0 flex flex-col md:flex-row z-50 bg-black bg-opacity-90">
+      <span className="absolute bottom-0 left-0 z-50 opacity-40 hidden lg:flex fade-in-out">
+        <Image
+          src={escKeyImg}
+          height={75}
+          width={75}
+          alt="esc"
+          className="absolute -left-2 bottom-10 invert nav-shaker"
+        />
+
+        <Image
+          src={navKeysImg}
+          height={166}
+          width={166}
+          alt="nav keys"
+          className="invert nav-shaker"
+        />
+      </span>
       <div className="w-full md:w-3/4 h-[66%] md:h-full flex items-center justify-center relative bg-teal-300/10 -mt-3">
         <div className="absolute bottom-[47%] flex  justify-between  z-40 w-full  pointer-events-none ">
           <Button
@@ -227,9 +248,9 @@ const FullscreenImage = ({
             <p className="text-start font-semibold tracking-wide">
               {descriptions.longDescription.listTitle}
             </p>
-            <ul className=" text-start">
+            <ul className="text-start ml-4">
               {descriptions.longDescription.listPoints.map((point) => (
-                <li className="py-2" key={point}>
+                <li className="py-2 text-sm" key={point}>
                   • {point}
                 </li>
               ))}
