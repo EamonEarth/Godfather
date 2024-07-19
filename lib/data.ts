@@ -63,7 +63,7 @@ export const experience = [
     {
       id: 0,
       name: "WACMN Map",
-      link: "https://github.com/EamonEarth/Lowding",
+      link: "https://github.com/EamonEarth/maps-ts",
       images: [wacmn],
   
       shortDescription:

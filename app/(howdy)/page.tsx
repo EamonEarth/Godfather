@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect, ReactComponentElement } from "react";
+import { useState, useRef, useEffect } from "react";
 import ContactModal from "./components/ContactModal";
 import Header from "./components/Header";
 import Experience from "./components/Experience";
@@ -44,27 +44,27 @@ export default function Home() {
   const experienceRef = useRef<HTMLHeadingElement>(null);
   const projectsRef = useRef<HTMLHeadingElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const HeaderDiv = document.getElementById("header");
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            HeaderDiv?.classList.remove("active");
-          } else {
-            HeaderDiv?.classList.add("active");
-          }
-        });
-      },
-      {
-        threshold: 0.5,
-      }
-    );
-    const aboutDiv = document.getElementById("about");
-    if (aboutDiv) observer.observe(aboutDiv);
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       const HeaderDiv = document.getElementById("header");
+  //       entries.forEach((entry) => {
+  //         if (!entry.isIntersecting) {
+  //           HeaderDiv?.classList.remove("active");
+  //         } else {
+  //           HeaderDiv?.classList.add("active");
+  //         }
+  //       });
+  //     },
+  //     {
+  //       threshold: 0.5,
+  //     }
+  //   );
+  //   const aboutDiv = document.getElementById("about");
+  //   if (aboutDiv) observer.observe(aboutDiv); 
 
-    return () => observer.disconnect();
-  }, []);
+  //   return () => observer.disconnect();
+  // }, []);
 
   return (
     <div className="h-full relative">
@@ -81,7 +81,6 @@ export default function Home() {
               style={{ transition: "opacity 0.4s ease-in-out" }}
             >
               <div
-                id="header"
                 className={cn(
                   "observer-slide relative flex flex-col items-center w-full",
                   showModal && "lg:hidden"
@@ -98,6 +97,7 @@ export default function Home() {
                   )}
                 >
                   <span
+                  id="header"
                     className={cn(
                       "hover:!opacity-100",
                       projectsOnScreen && "opacity-10"
@@ -166,7 +166,7 @@ export default function Home() {
         </div>
 
         <div className="h-[150px]"></div>
-        <span className="absolute bottom-1 right-[10%] flex items-center justify-center ">
+        <span className="absolute w-full bottom-1 md:right-[10%] flex items-center justify-center ">
           <Haiku
             // carouselExpansionBlur={expandedStates[0] || expandedStates[1]}
             // projectsOnScreen={projectsOnScreen}

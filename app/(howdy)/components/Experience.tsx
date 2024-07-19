@@ -78,6 +78,7 @@ const Experience = ({ showModal, navRef }: ExperienceProps) => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  
   useEffect(() => {
     const updateTruncatedState = () => {
       if (window.innerWidth < 768) {
