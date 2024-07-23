@@ -2,14 +2,14 @@ import { cn } from "@/lib/utils"
 
 const skillList = {
     advanced: ["Typescript/Javascript", "Python", "React", "HTML5", "CSS", "Data Structures", "NextJS", "APIs", "Responsive Design", "Dynamic Programming", "Algorithms" ],
-    intermediate: ["Zustand", "AWS", "SQL", "Git", "SCSS", "Testing", "SEO", "NodeJS", "Figma", "ORM", "UI/UX"],
-    junior: ["Angular", "Redux", "Selenium", "Prompt Engineering", "Botpress", "Photoshop","Vue", "Java", "Go", "Jest", "WebSockets"]
+    intermediate: ["Zustand", "Redux", "AWS", "SQL", "Git", "SCSS", "Testing", "SEO", "NodeJS", "Figma", "ORM", "UI/UX"],
+    junior: ["Angular", "Selenium", "Prompt Engineering", "Botpress", "Photoshop","Vue", "Java", "Go", "Jest", "WebSockets"]
 }
 
 const skillGroupings = {
-    "Frontend": ["React","Typescript/Javascript", "HTML5", "CSS", "Responsive Design", "SCSS" , "UI/UX", "Selenium",  "Angular", "Vue"],
+    "Frontend": ["React","Typescript/Javascript", "HTML5", "CSS", "Responsive Design", "Redux", "SCSS" , "UI/UX", "Selenium",  "Angular", "Vue"],
     "Backend": ["Python", "SQL", "AWS", "ORM", "Java" ],
-    "Inbetween / General": ["Dynamic Programming", "Algorithms", "NodeJS", "Git", "SEO","Redux", "Photoshop", "Prompt Engineering"   ],
+    "Inbetween / General": ["Dynamic Programming", "Algorithms", "NodeJS", "Git", "SEO", "Photoshop", "Prompt Engineering"   ],
     "Design": ["Figma", "Photoshop"]
 }
 
