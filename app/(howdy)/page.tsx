@@ -44,33 +44,34 @@ export default function Home() {
   const experienceRef = useRef<HTMLHeadingElement>(null);
   const projectsRef = useRef<HTMLHeadingElement>(null);
 
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       const HeaderDiv = document.getElementById("header");
-  //       entries.forEach((entry) => {
-  //         if (!entry.isIntersecting) {
-  //           HeaderDiv?.classList.remove("active");
-  //         } else {
-  //           HeaderDiv?.classList.add("active");
-  //         }
-  //       });
-  //     },
-  //     {
-  //       threshold: 0.5,
-  //     }
-  //   );
-  //   const aboutDiv = document.getElementById("about");
-  //   if (aboutDiv) observer.observe(aboutDiv); 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const HeaderDiv = document.getElementById("header");
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            HeaderDiv?.classList.remove("active");
+          } else {
+            HeaderDiv?.classList.add("active");
+            console.log("hit it")
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+    );
+    const aboutDiv = document.getElementById("about");
+    if (aboutDiv) observer.observe(aboutDiv); 
 
-  //   return () => observer.disconnect();
-  // }, []);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="h-full relative">
       <div className="flex flex-col lg:gap-y-6 justify-center px-2 lg:mx-16 ">
         {/* HEADER, NAV AND ABOUT */}
-        <div className="flex flex-col lg:flex-row lg:justify-around lg:items-center relative mt-24 mx-8 lg:mx-12  ">
+        <div className="flex flex-col lg:flex-row lg:justify-around lg:items-center- relative mt-24 mx-8 lg:mx-12  ">
           {/* HEADER AND NAV START */}
           <div className="flex flex-col ">
             <div
@@ -81,6 +82,7 @@ export default function Home() {
               style={{ transition: "opacity 0.4s ease-in-out" }}
             >
               <div
+              id="header"
                 className={cn(
                   "observer-slide relative flex flex-col items-center w-full",
                   showModal && "lg:hidden"
@@ -92,7 +94,7 @@ export default function Home() {
               >
                 <div
                   className={cn(
-                    "flex flex-col  gap-x-12 "
+                    "flex flex-col  gap-x-12 pl-4"
                     // projectsOnScreen && "opacity-10"
                   )}
                 >
@@ -131,8 +133,9 @@ export default function Home() {
           </div>
           {/* END OF HEADER NAV */}
           {/* ABOUT  */}
-          <div className="flex lg:ml-16">
-            <div className="w-[350px] hidden lg:flex pt-[400px]"></div>
+          <div 
+          id="about" className="flex ">
+            {/* <div className="w-[350px] hidden lg:flex pt-[400px]"></div> */}
             <About navRef={aboutRef} className="" showModal={showModal} />
           </div>
           {/* END OF ABOUT */}

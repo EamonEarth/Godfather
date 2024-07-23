@@ -28,7 +28,7 @@ const Sidebar = ({ aboutRef, experienceRef, projectsRef }: SidebarProps) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        entries.forEach((entry:IntersectionObserverEntry) => {
           if (entry.isIntersecting) {
             window.history.pushState(null, "", `#${entry.target.id}`);
             let newHash = `#${entry.target.id}`;
@@ -36,7 +36,7 @@ const Sidebar = ({ aboutRef, experienceRef, projectsRef }: SidebarProps) => {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.3 }
     );
 
     const sectionIds = document.querySelectorAll(

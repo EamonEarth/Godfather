@@ -14,9 +14,9 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
 
   return (
     <section
-      id="about"
+      
       className={cn(
-        "tracking-wider font-light pt-10  md:relative lg:top-5 lg:pb-20- z-50 max-w-[95%]",
+        "tracking-wider font-light pt-10  md:relative lg:top-5 z-50 max-w-[95%]",
         showModal && "modal-bg-blur hover:blur-0 transition-all duration-400",
         className
       )}
@@ -24,7 +24,7 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
       {/* <div id="home" className="absolute top-0 bg-white"></div> */}
       <div
         id="opac-observer"
-        className="  lg:max-w-[450px] md:max-w-[75%] flex flex-col "
+        className="lg:max-w-[450px] md:max-w-[75%] flex flex-col "
       >
         <h1
           ref={navRef}
