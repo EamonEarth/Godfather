@@ -20,25 +20,28 @@ const SkillsPage = () => {
 
             </div>
             <Skills />
-            <div className="flex flex-col items-center justify-center text-primary-foreground border-[0.5px] p-4 rounded-lg">
-                <h2 className="text-center p-4 font-light">
-                    Download CV / Lebenslauf herunterladen 
-                </h2>
+            <div className="flex flex-col items-center justify-center text-primary-foreground pb-4">
+            <h1
+          className=
+            " font-sans text-center font-bold text-2xl md:relative uppercase tracking-tighter pb-4 "
+        >
+          CV
+        </h1>
                 <div className="flex flex-col md:flex-row gap-y-2 gap-x-2 items-center justify-between">
                     
             <Button 
             style={{transition: "transform 0.5s ease-in-out"}}
             className="hover:scale-110 "
-            variant="ghost">
+            >
 
-            <a className="uppercase font-bold text-lg  border-[0.5px] border-white rounded-lg px-4 py-2" href={CV_ENG} download="Eamon Travers - CV (eng)">English</a>
+            <a className="uppercase   px-4 py-2" href={CV_ENG} download="Eamon Travers - CV (eng)">English</a>
             </Button>
             <Button 
             style={{transition: "transform 0.5s ease-in-out"}}
             className="hover:scale-110 "
-            variant="ghost">
+            >
 
-            <a className="uppercase font-bold text-lg  border-[0.5px] border-white rounded-lg px-4 py-2" href={CV_DE} download="Eamon Travers - Lebenslauf">Deutsch</a>
+            <a className="uppercase   px-4 py-2" href={CV_DE} download="Eamon Travers - Lebenslauf">Deutsch</a>
             </Button>
                 </div>
                 </div>

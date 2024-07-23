@@ -8,7 +8,7 @@ const skillList = {
 
 const skillGroupings = {
     "Frontend": ["React","Typescript/Javascript", "HTML5", "CSS", "Responsive Design", "SCSS" , "UI/UX", "Selenium",  "Angular", "Vue"],
-    "Backend": ["Python", "AWS", "SQL", "ORM", "Java" ],
+    "Backend": ["Python", "SQL", "AWS", "ORM", "Java" ],
     "Inbetween / General": ["Dynamic Programming", "Algorithms", "NodeJS", "Git", "SEO","Redux", "Photoshop", "Prompt Engineering"   ],
     "Design": ["Figma", "Photoshop"]
 }
