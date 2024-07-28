@@ -135,7 +135,7 @@ export default function Home() {
           {/* ABOUT  */}
           <div 
           id="about" className="flex ">
-            {/* <div className="w-[350px] hidden lg:flex pt-[400px]"></div> */}
+            <div className="w-[350px] hidden lg:flex pt-[400px]"></div>
             <About navRef={aboutRef} className="" showModal={showModal} />
           </div>
           {/* END OF ABOUT */}
