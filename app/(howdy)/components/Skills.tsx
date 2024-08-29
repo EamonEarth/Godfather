@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 const skillList = {
     advanced: ["Typescript/Javascript", "Python", "React", "HTML5", "CSS", "Data Structures", "NextJS", "APIs", "Responsive Design", "Dynamic Programming", "Algorithms" ],
@@ -27,15 +28,16 @@ const Skills = () => {
           Skillset
         </h1>
             <div className=" w-full flex justify-center items-center">
-                <div className="flex flex-col w-[90%] md:w-[60%]">
-                    <div className="flex justify-between items-center text-xs md:text-sm px-4">
-                        <p>Advanced</p>
-                        <p>Intermediate</p>
+                <div className="flex flex-col w-[90%] md:w-[60%] items-center">
+                    <div className="flex w-full justify-between items-center text-xs md:text-sm px-4">
                         <p>Junior</p>
+                        <p>Intermediate</p>
+                        <p>Advanced</p>
 
                     </div>
+                    
 
-                <div style={{ animation: "pulse 4s ease-in-out infinite"}} className="rounded-3xl w-full h-[30px] bg-gradient-to-r from-lime-500  via-yellow-500 to-amber-200 opacity-70"></div>
+                <div style={{ animation: "pulse 4s ease-in-out infinite"}} className="rounded-3xl w-full h-[30px] bg-gradient-to-r from-amber-200  via-yellow-500  to-lime-500 to-70% opacity-70"></div>
                 </div>
             </div>
 

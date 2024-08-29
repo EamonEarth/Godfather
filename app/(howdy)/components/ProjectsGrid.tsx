@@ -139,7 +139,7 @@ const ProjectsGrid = ({
       id="projects-container"
       style={{ transition: "filter 0.5s ease-in-out" }}
       className={cn(
-        "md:max-w-[75%] lg:max-w-[50%]- max-w-[95%] h-auto grid gap-y-8 md:gap-y-2 mt-12 lg:mr-12- main-project",
+        "md:max-w-[75%] max-w-[95%] h-auto grid gap-y-8 md:gap-y-2 mt-12 main-project",
         showModal && "blur-[2px] hover:!blur-0"
       )}
     >
@@ -161,9 +161,8 @@ const ProjectsGrid = ({
       </h1>
       {PROJECTS.map((project, index: number) => {
         const imageSrc = project.images[imageSrcIndex[index]];
-        // const imageSizesArray = imageSrcRatio[index];
         const longDescriptionStyle = {
-          maxHeight: showMore === index ? "250px" : "0px",
+          maxHeight: showMore === index ? "300px" : "0px",
           opacity: showMore === index ? 1 : 0,
           transition:
             "max-height 0.5s 0.5s ease-in-out, opacity 0.5s ease-in-out 0.5s",
@@ -180,7 +179,7 @@ const ProjectsGrid = ({
             id="BOUNDING DIV FOR EACH PROJECT"
             key={project.id + index * 2}
             className={cn(
-              "overflow-scroll md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col gap-y-1 md:flex-row max-h-screen -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 relative right-0",
+              "overflow-auto md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col gap-y-1 md:flex-row max-h-screen- -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 relative right-0",
               expandedStates[index] && "!items-left lg:right-24-",
               fsImage && "blur-[1px]"
             )}
@@ -205,8 +204,6 @@ const ProjectsGrid = ({
                 src={imageSrc}
                 alt={project.name}
                 fill
-                // height={imageSizesArray[0]}
-                // width={imageSizesArray[1]}
                 style={{
                   opacity: opacity[index],
                   transition: "opacity 0.5s ease-in-out ",
@@ -297,16 +294,16 @@ const ProjectsGrid = ({
               >
                 <div
                   style={longDescriptionStyle}
-                  className="flex flex-col description-transition expanded-description pl-4 max-w-[95%] md:h-[250px]"
+                  className="flex flex-col description-transition expanded-description pl-4 max-w-[95%] h-auto"
                 >
-                  <p className="text-sm  pt-0 md:text-xs text-end font-light tracking-wide flex flex-col ">
+                  <p className="text-sm  pt-0 md:text-xs text-end font-light tracking-wide flex flex-col overflow-auto">
                     {project.longDescription.text}
                     <span className="w-full h-[0.5px] bg-teal-500 ml-auto my-4"></span>
                   </p>
                   <p className="text-start font-semibold tracking-wide">
                     {project.longDescription.listTitle}
                   </p>
-                  <ul className=" text-start">
+                  <ul className=" text-start overflow-auto">
                     {project.longDescription.listPoints.map((point) => (
                       <li className="py-2" key={point}>
                         • {point}
@@ -317,7 +314,7 @@ const ProjectsGrid = ({
                 {/*  */}
                 <div
                   style={shortDescriptionStyle}
-                  className="description-transition max-w-[95%]  text-left font-semibold tracking-wide text-sm"
+                  className="description-transition max-w-[95%]  text-left font-semibold tracking-wide text-sm overflow-auto"
                 >
                   {project.shortDescription}
                 </div>
