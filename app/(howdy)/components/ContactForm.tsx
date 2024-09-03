@@ -24,14 +24,14 @@ const ContactForm = ({ setShowModal }: ContactFormProps) => {
       ...prevData,
       [name]: value,
     }));
-    localStorage.setItem(`contactForm${name}`, value);
+    sessionStorage.setItem(`contactForm${name}`, value);
   };
 
   useEffect(() => {
     const fields = ["name", "email", "subject", "message"];
     const storedFormData = fields.reduce(
       (acc: { [key: string]: string }, field) => {
-        const storedValue = localStorage.getItem(`contactForm${field}`);
+        const storedValue = sessionStorage.getItem(`contactForm${field}`);
         if (storedValue) acc[field] = storedValue;
         return acc;
       },
@@ -56,7 +56,7 @@ const ContactForm = ({ setShowModal }: ContactFormProps) => {
   const handleClear = () => {
     setFormData({ name: "", email: "", subject: "", message: "" });
     const fields = ["name", "email", "subject", "message"];
-    fields.map((field) => localStorage.removeItem(`contactForm${field}`));
+    fields.map((field) => sessionStorage.removeItem(`contactForm${field}`));
     setShowModal(false)
   };
 

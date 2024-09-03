@@ -53,17 +53,16 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
             </p>
             <p className="">
               I&apos;m a generalist/polymath who loves making things work! With 
-              a degree in Mathemathics and years of experience working as a developer, I&apos;m happy
-              writing unit tests, modern software, differential equations or
-              to-do lists. I love coding intuitive and engaging frontend
+              a degree in Mathemathics and development & UI/UX specializations from IBM and Google, I&apos;m happy
+              making web apps, frontends, custom algorithms or new things. I love coding intuitive and engaging frontend
               interfaces, leveraging up-to-date technologies and getting excited
               about new projects.
             </p>
             <p className="mt-2">
-              From my maths degree, I can bring logical thinking, from my music
-              career, consumer-centric creation, and from my logistical work,
-              attention to detail and pragmatic focus on deliverables. I&apos;m
-              also fun to work with!
+              From my developer specializations, I bring real world developer know-how. From my maths degree, I bring logical thinking.
+              From my logistical work, attention to detail and pragmatic focus on deliverables,
+              and from my music career, consumer-centric creation and plenty of soft skills. 
+        
             </p>
             <div className="flex justify-end">
             <Link href="/skills">

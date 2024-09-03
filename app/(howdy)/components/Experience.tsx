@@ -175,7 +175,7 @@ px-[30px]
                     {job.description}
                   </p>
 
-                  {job.id === 0 ? 
+                  {job.id === 1 ? 
                   <ArrowUpRight onClick={handleDevClick}className="cursor-pointer z-50 mt-1" />
                   :
                   <Link href={job.link} target="_blank">

@@ -269,7 +269,7 @@ const FullscreenImage = ({
             ))}
           </div>
           <span className="hidden md:flex md:pt-6 bottom-0 relative w-full items-center justify-center">
-            <Link href={descriptions.link}>
+            <Link href={descriptions.githubLink}>
               <Github className="size-7 z-40" />
             </Link>
           </span>

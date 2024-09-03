@@ -1,18 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
-  ArrowRightCircle,
-  ArrowRightSquare,
   Github,
-  Maximize2,
-  ZoomIn,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import FullscreenImage from "./FullscreenImage";
 import { PROJECTS } from "@/lib/data";
 
 
@@ -44,40 +38,40 @@ const ProjectsGrid = ({
   const [fsImage, setFsImage] = useState(false);
   const [fsImageSrc, setFsImageSrc] = useState([0, 0]);
 
-  const handleNextImage = (index: number) => {
-    const updatedIndices = [...imageSrcIndex];
-    const updatedOpacity = [...opacity];
-    updatedOpacity[index] = 0.5;
-    setOpacity(updatedOpacity);
-    setTimeout(() => {
-      if (imageSrcIndex[index] < 1) {
-        updatedIndices[index] += 1;
-        setImageSrcIndex(updatedIndices);
-      } else {
-        updatedIndices[index] = 0;
-        setImageSrcIndex(updatedIndices);
-      }
-      updatedOpacity[index] = 1;
-      setOpacity(updatedOpacity);
-    }, 300);
-  };
-  const handlePrevImage = (index: number) => {
-    const updatedIndices = [...imageSrcIndex];
-    const updatedOpacity = [...opacity];
-    updatedOpacity[index] = 0.5;
-    setOpacity(updatedOpacity);
-    setTimeout(() => {
-      if (imageSrcIndex[index] === 0) {
-        updatedIndices[index] = 1;
-        setImageSrcIndex(updatedIndices);
-      } else {
-        updatedIndices[index] = 0;
-        setImageSrcIndex(updatedIndices);
-      }
-      updatedOpacity[index] = 1;
-      setOpacity(updatedOpacity);
-    }, 300);
-  };
+  // const handleNextImage = (index: number) => {
+  //   const updatedIndices = [...imageSrcIndex];
+  //   const updatedOpacity = [...opacity];
+  //   updatedOpacity[index] = 0.5;
+  //   setOpacity(updatedOpacity);
+  //   setTimeout(() => {
+  //     if (imageSrcIndex[index] < 1) {
+  //       updatedIndices[index] += 1;
+  //       setImageSrcIndex(updatedIndices);
+  //     } else {
+  //       updatedIndices[index] = 0;
+  //       setImageSrcIndex(updatedIndices);
+  //     }
+  //     updatedOpacity[index] = 1;
+  //     setOpacity(updatedOpacity);
+  //   }, 300);
+  // };
+  // const handlePrevImage = (index: number) => {
+  //   const updatedIndices = [...imageSrcIndex];
+  //   const updatedOpacity = [...opacity];
+  //   updatedOpacity[index] = 0.5;
+  //   setOpacity(updatedOpacity);
+  //   setTimeout(() => {
+  //     if (imageSrcIndex[index] === 0) {
+  //       updatedIndices[index] = 1;
+  //       setImageSrcIndex(updatedIndices);
+  //     } else {
+  //       updatedIndices[index] = 0;
+  //       setImageSrcIndex(updatedIndices);
+  //     }
+  //     updatedOpacity[index] = 1;
+  //     setOpacity(updatedOpacity);
+  //   }, 300);
+  // };
 
   // useEffect(() => {
   //   const updatedRatios = [...imageSrcRatio];
@@ -90,30 +84,30 @@ const ProjectsGrid = ({
   //   setImageSrcRatio(updatedRatios);
   // }, [imageSrcIndex, expandedStates]);
 
-  const handleShowMore = (index: number) => {
-    const currStates = new Array(expandedStates.length).fill(false);
-    if (index === showMore) {
-      setShowMore(-1);
-      currStates[index] = false;
-      setExpandedStates(currStates);
-      return;
-    } else {
-      setShowMore(index);
-    }
+  // const handleShowMore = (index: number) => {
+  //   const currStates = new Array(expandedStates.length).fill(false);
+  //   if (index === showMore) {
+  //     setShowMore(-1);
+  //     currStates[index] = false;
+  //     setExpandedStates(currStates);
+  //     return;
+  //   } else {
+  //     setShowMore(index);
+  //   }
 
-    if (!expandedStates[index] && showMore === index) {
-      return;
-    }
-    if (!expandedStates[index]) {
-      currStates[index] = true;
-      setExpandedStates(currStates);
-    }
-  };
+  //   if (!expandedStates[index] && showMore === index) {
+  //     return;
+  //   }
+  //   if (!expandedStates[index]) {
+  //     currStates[index] = true;
+  //     setExpandedStates(currStates);
+  //   }
+  // };
 
-  const handleSetFullScreenImage = (index: number, imageSrc: number) => {
-    setFsImage(true);
-    setFsImageSrc([index, imageSrc]);
-  };
+  // const handleSetFullScreenImage = (index: number, imageSrc: number) => {
+  //   setFsImage(true);
+  //   setFsImageSrc([index, imageSrc]);
+  // };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -123,7 +117,7 @@ const ProjectsGrid = ({
             setProjectsOnScreen(true);
           } else {
             setProjectsOnScreen(false);
-          }
+          } 
         });
       },
       { threshold: 0.1 }
@@ -139,17 +133,17 @@ const ProjectsGrid = ({
       id="projects-container"
       style={{ transition: "filter 0.5s ease-in-out" }}
       className={cn(
-        "md:max-w-[75%] max-w-[95%] h-auto grid gap-y-8 md:gap-y-2 mt-12 main-project",
+        "md:max-w-[75%]- max-w-[95%] h-auto grid gap-y-8 md:gap-y-2 mt-12 main-project",
         showModal && "blur-[2px] hover:!blur-0"
       )}
     >
-      {fsImage && (
+      {/* {fsImage && (
         <FullscreenImage
           setFsImage={setFsImage}
           setFsImageSrc={setFsImageSrc}
           fsImageSrc={fsImageSrc}
         />
-      )}
+      )} */}
       <h1
         id="projects"
         ref={navRef}
@@ -161,26 +155,26 @@ const ProjectsGrid = ({
       </h1>
       {PROJECTS.map((project, index: number) => {
         const imageSrc = project.images[imageSrcIndex[index]];
-        const longDescriptionStyle = {
-          maxHeight: showMore === index ? "300px" : "0px",
-          opacity: showMore === index ? 1 : 0,
-          transition:
-            "max-height 0.5s 0.5s ease-in-out, opacity 0.5s ease-in-out 0.5s",
-        };
-        const shortDescriptionStyle = {
-          maxHeight: showMore === index ? "0px" : "80px",
-          opacity: showMore === index ? 0 : 1,
-          transition:
-            "max-height 0.5s ease-in-out 0.5s, opacity 0.5s ease-in-out 0.5s",
-        };
+        // const longDescriptionStyle = {
+        //   maxHeight: showMore === index ? "300px" : "0px",
+        //   opacity: showMore === index ? 1 : 0,
+        //   transition:
+        //     "max-height 0.5s 0.5s ease-in-out, opacity 0.5s ease-in-out 0.5s",
+        // };
+        // const shortDescriptionStyle = {
+        //   maxHeight: showMore === index ? "0px" : "80px",
+        //   opacity: showMore === index ? 0 : 1,
+        //   transition:
+        //     "max-height 0.5s ease-in-out 0.5s, opacity 0.5s ease-in-out 0.5s",
+        // };
 
         return (
           <div
             id="BOUNDING DIV FOR EACH PROJECT"
             key={project.id + index * 2}
             className={cn(
-              "overflow-auto md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col gap-y-1 md:flex-row max-h-screen- -mx-3 md:mx-0 gap-x-2 text-white justify-center items-center md:px-4 relative right-0",
-              expandedStates[index] && "!items-left lg:right-24-",
+              "relative overflow-auto md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col justify-center items-center gap-y-1 lg:flex-row -mx-3 md:mx-0 gap-x-2 text-white  md:px-4- h-full",
+              expandedStates[index] && "!items-left",
               fsImage && "blur-[1px]"
             )}
             style={{
@@ -189,9 +183,12 @@ const ProjectsGrid = ({
             }}
           >
             {/* IMG DIV START */}
+  
             <div
               className={cn(
-                "shrink-0 bg-gradient-to-l via-transparent backdrop-blur-md rounded border border-teal-800/50 image-container",
+                `lg:w-3/4 w-full h-fit image-container- aspect-[16/9] object-contain relative 
+                bg-gradient-to-l via-transparent backdrop-blur-md rounded md:rounded-3xl border border-teal-800/50 
+                md:py-[5%]`,
                 index === 1
                   ? "from-teal-500/10 to-teal-500/10"
                   : " from-teal-500/20 to-teal-500/20",
@@ -200,20 +197,27 @@ const ProjectsGrid = ({
                 }
               )}
             >
+              {project.name === "Phasmic" ? 
+              <video autoPlay loop muted playsInline className="video" preload="auto" id="videoElement">
+              <source src="/portfolio/phasmic.webm" type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+              :
               <Image
-                src={imageSrc}
-                alt={project.name}
-                fill
-                style={{
-                  opacity: opacity[index],
-                  transition: "opacity 0.5s ease-in-out ",
-                }}
-                className={cn(
-                  "image- rounded-3xl w-auto h-auto p-4 object-contain",
-                  expandedStates[index] && "shadow-2xl "
-                )}
+              src={imageSrc}
+              alt={project.name}
+              fill
+              style={{
+                opacity: opacity[index],
+                transition: "opacity 0.5s ease-in-out ",
+              }}
+              className={cn(
+                "w-auto h-auto md:p-8 p-2 object-contain",
+                expandedStates[index] && "shadow-2xl "
+              )}
               ></Image>
-              {!showModal && (
+            }
+              {/* {!showModal && (
                 <Maximize2
                   className={cn(
                     "size-8 p-2 md:hover:scale-110 md:hidden z-50 opacity-40 hover:opacity-80 absolute right-7 bottom-7 bg-black rounded-full cursor-pointer"
@@ -246,109 +250,104 @@ const ProjectsGrid = ({
                 >
                   <ArrowRightCircle strokeWidth={2} className="size-7 " />
                 </Button>
-              </div>
+              </div> */}
             </div>
             {/* IMAGE DIV END */}
 
-            <div
-              className={cn(
-                "flex flex-col text-end text-xs  bg-teal-500/10 md:bg-transparent rounded-3xl p-2 -mt-1 max-w-[85%] md:max-w-[100%]",
-                expandedStates[index] && "!text-start"
-              )}
-            >
-              <div
-                style={{
-                  transition:
-                    "opacity 0.5s ease-in-out, max-height 1s ease-in-out 0.5s",
-                  overflow: "hidden",
-                }}
-                className={cn( 
-                  "flex flex-col justify-center",
-                  showMore === index
-                    ? "opacity-0 max-h-0"
-                    : "opacity-100 max-h-100 "
-                )}
-              >
-                <span className="hidden md:block w-full h-[0.5px] bg-teal-500 ml-auto opacity-70"></span>
-                <h2
-                  className={cn(
-                    "text-2xl text-end uppercase font-bold z-40 text-teal-500 name-text-outline tracking-wider relative"
-                  )}
-                >
-                  <i>{project.name}</i>
-                </h2>
-                <span className="w-full ml-auto h-[0.5px] bg-teal-500 opacity-70 mb-1"></span>
-              </div>
-
-              {/* CARD TEXT CONTENT */}
-              <div
-                style={{ transition: "background-color 0.5s ease-in-out" }}
-                className={cn(
-                  "md:bg-teal-500/10 rounded-2xl p-4 flex flex-col gap-y-2 text-xs shadow-2xl -ml-auto",
-
-                  {
-                    "!bg-teal-900/40":
-                      index === 0 && imageSrcIndex[index] === 1,
-                  }
-                )}
-              >
-                <div
-                  style={longDescriptionStyle}
-                  className="flex flex-col description-transition expanded-description pl-4 max-w-[95%] h-auto"
-                >
-                  <p className="text-sm  pt-0 md:text-xs text-end font-light tracking-wide flex flex-col overflow-auto">
-                    {project.longDescription.text}
-                    <span className="w-full h-[0.5px] bg-teal-500 ml-auto my-4"></span>
-                  </p>
-                  <p className="text-start font-semibold tracking-wide">
-                    {project.longDescription.listTitle}
-                  </p>
-                  <ul className=" text-start overflow-auto">
-                    {project.longDescription.listPoints.map((point) => (
-                      <li className="py-2" key={point}>
-                        • {point}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                {/*  */}
-                <div
-                  style={shortDescriptionStyle}
-                  className="description-transition max-w-[95%]  text-left font-semibold tracking-wide text-sm overflow-auto"
-                >
-                  {project.shortDescription}
-                </div>
-
-                <div className="flex ml-12 mt-2 gap-x-3 justify-end items-center ">
-                  <span className="w-[0.5px] h-7  mx-1" />
-                  <Button
-                    variant="ghost"
-                    size="sm"
+                  <div
                     className={cn(
-                      "button-shake text-xs border-[3px] md:hover:bg-black md:hover:border-black/80 md:hover:text-white rounded-full relative transition-all duration-500 right-0 max-w-[50%] px-6 "
+                      "flex flex-col text-end text-xs  bg-teal-500/10 md:bg-transparent rounded-3xl p-2 -mt-1 lg:w-1/4 w-full min-w-[300px] md:max-w-[100%]",
+                      expandedStates[index] && "!text-start"
                     )}
-                    onClick={() => handleShowMore(index)}
                   >
-                    {showMore === index ? "show less" : "read more"}
-                  </Button>
-                  <Link href={project.link}>
-                    <Github className="size-7 z-40" />
-                  </Link>
-                </div>
-
-                <div className="flex flex-wrap gap-x-2 gap-y-2 mt-3 items-end justify-end">
-                  {project.technologies.map((technology) => (
                     <div
-                      key={technology}
-                      className="flex w-auto items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 "
+                      style={{
+                        transition:
+                          "opacity 0.5s ease-in-out, max-height 1s ease-in-out 0.5s",
+                        overflow: "hidden",
+                      }}
+                      className={cn( 
+                        "flex flex-col justify-center",
+                        // showMore === index
+                        //   ? "opacity-0 max-h-0"
+                        //   : "opacity-100 max-h-100 "
+                      )}
                     >
-                      {technology}
+                      <span className="hidden md:block w-full h-[0.5px] bg-teal-500 ml-auto opacity-70"></span>
+                      <h2
+                        className={cn(
+                          "text-2xl text-center uppercase font-bold z-40 text-teal-500 name-text-outline tracking-wider relative"
+                        )}
+                      >
+                        <i>{project.name}</i>
+                      </h2>
+                      <span className="w-full ml-auto h-[0.5px] bg-teal-500 opacity-70 mb-1"></span>
                     </div>
-                  ))}
-                </div>
-              </div>
-              <span className=" hidden md:block relative right-[5%] w-[60%] h-[0.5px] bg-teal-500 opacity-70 ml-auto"></span>
-            </div>
+      
+                    {/* CARD TEXT CONTENT */}
+                    <div
+                      style={{ transition: "background-color 0.5s ease-in-out" }}
+                      className={cn(
+                        "md:bg-teal-500/10 rounded-2xl p-4 flex flex-col justify-around gap-y-4 text-xs shadow-2xl -ml-auto h-full",
+      
+                        {
+                          "!bg-teal-900/40":
+                            index === 0 && imageSrcIndex[index] === 1,
+                        }
+                      )}
+                    >
+                      <div
+                        // style={shortDescriptionStyle}
+                        className="description-transition  text-end font-semibold tracking-wide text-sm overflow-auto bg-orange-400-/50"
+                      >
+                        {project.shortDescription}
+                      </div>
+
+                      <div
+                      // style={longDescriptionStyle}
+                      className="flex flex-col gap-y-2 description-transition expanded-description text-end bg-yellow-400-/50"
+                      >
+                        <p className="text-sm  md:text-xs text-end  tracking-wide flex flex-col overflow-auto bg-green-400-/50">
+                          {project.longDescription.text}
+                        </p>
+                      {project.longDescription.listTitle &&
+                      <>
+                        <p className="w-full font-semibold tracking-wide border-teal-500/50 border-t pt-4">
+                          {project.longDescription.listTitle}
+                        </p>
+                        <ul className="flex flex-col gap-y-2  overflow-auto">
+                          {project.longDescription.listPoints.map((point) => (
+                            <li className="py-2-" key={point}>
+                              • {point}
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                        }
+                      </div>
+                      {/*  */}
+      
+                      <div className="flex gap-x-3 justify-center items-center border-teal-500/50 border-t pt-4">
+                        
+                        <a href={project.link} target="_blank" className="text-blue-400 hover:text-blue-200 transition-all text-base">{project.linkTitle}</a>
+                        <Link href={project.githubLink}>
+                          <Github className="size-10 z-40" />
+                        </Link>
+                      </div>
+      
+                      <div className="flex flex-wrap gap-x-2 gap-y-2 mt-3 items-end justify-end">
+                        {project.technologies.map((technology) => (
+                          <div
+                            key={technology}
+                            className="flex w-auto items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 "
+                          >
+                            {technology}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <span className=" hidden md:block relative right-[5%] w-[60%] h-[0.5px] bg-teal-500 opacity-70 ml-auto"></span>
+                  </div>
           </div>
         );
       })}

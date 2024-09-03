@@ -9,16 +9,26 @@ import wacmn from "/public/portfolio/wacmn.png"
 export const experience = [
     {
       id: 0,
-      title: "Developer •",
-      employer: "Freelance",
-      subtitle: "Software + Web Development",
-      times: "2023 - ",
+      title: "Web Developer",
+      employer: "WACMN",
+      subtitle: "Western Australian Coastal and Marine Management Network",
+      times: "2024 - ",
       description:
-        "Software, SPAs and custom Websites. Mostly frontend focused for personal and professional clients, predominantly built with React. Design, coding, backend set-up and deployment. Special emphasis on accessibility and reliability. See Projects below for some examples. ",
-      link: "https://eamontravers.dev/#projects",
+        "Currently the primary web developer for the WACMN's modernisation scheme. Tasked with collating info, structuring databases and creating web apps with react to fulfil the organisation's government brief.",
+      link: "https://wacmnstewards.info",
     },
     {
       id: 1,
+      title: "Developer •",
+      employer: "Freelance",
+      subtitle: "Frontend & web development",
+      times: "2023 - ",
+      description:
+        "Web apps and frontends. Daily usage of React, Next.js, HTML5, Typescript, Node.js, CSS & Figma. Design, coding, backend set-up and deployment. Special emphasis on accessibility and reliability. See Projects below for some examples. ",
+      link: "https://eamontravers.dev/#projects",
+    },
+    {
+      id: 2,
       title: "MBA/EMBA Programme Coordinator •",
       employer: "Freelance / AUSTRAL TRAVEL",
       subtitle: "Programme coordination and delivery.",
@@ -28,17 +38,17 @@ export const experience = [
       link: "https://australgroup.com/",
     },
     {
-      id: 2,
+      id: 3,
       title: "Digital Audio Engineer •",
       employer: "Petersburg Art Space",
       subtitle: "Concert & Exhibition Spaces",
       times: "2020 - ",
       description:
-        "In-house live-audio and mixing engineer in a bustling Berlin art space and event venue. The only constant here is the expectation that the work is at a high enough level to represent the venue. Shows vary from single night touring intl artists to government funded installation art.",
+        "Live audio and mix engineer in a bustling Berlin art space and event venue. The only constant here is the expectation that the work is at a high enough level to represent the venue. Shows vary from single night touring intl artists to government funded installation art.",
       link: "https://pas-berlin.org/pas-eng/",
     },
     {
-      id: 3,
+      id: 4,
       title: "Vice-Chair/Prod Manager/Co-Founder •",
       employer: "Common Grounds Collective",
       subtitle: "Artists' collective",
@@ -48,7 +58,7 @@ export const experience = [
       link: "https://www.facebook.com/feileparkfield",
     },
     {
-      id: 4,
+      id: 5,
       title: "Musical director, composer & performer",
       employer: "Freelance",
       subtitle: "Piano, drums, electronics & guitar",
@@ -63,13 +73,15 @@ export const experience = [
     {
       id: 0,
       name: "WACMN Map",
-      link: "https://github.com/EamonEarth/maps-ts",
+      githubLink: "https://github.com/EamonEarth/maps-ts",
+      link: "http://www.wacmnstewards.info",
+      linkTitle: "www.wacmnstewards.info",
       images: [wacmn],
   
       shortDescription:
         "Interactive Stakeholder Map for the Western Australian Coastal and Marine Network",
       longDescription: {
-        text: "Designed to help those working in the sector to be able to conveniently find relevant, active organisations based on individual focus areas. Funded by the Australian Government, I was just given a short written brief and database access. Auto-updates to include new Stakeholders",
+        text: "Web app designed to help those working in the sector conveniently search, filter and contact relevant organisations. Funded by the Australian Government, I designed and built all parts of the site. Auto-updates to include new Stakeholders",
         listTitle: "",
         listPoints: [
           
@@ -79,26 +91,8 @@ export const experience = [
     },
     {
       id: 1,
-      name: "Project Lowding",
-      link: "https://github.com/EamonEarth/Lowding",
-      images: [lowdingDesktop, lowdingMobile],
-  
-      shortDescription:
-        "Neat little design thesis project advocating for lower impact design choices. ",
-      longDescription: {
-        text: "A fun challenge to reinforce the theme/brand of the website with web development choices. As well as building the site I refined the UX.",
-        listTitle: "Worth a mention:",
-        listPoints: [
-          "Pixel-perfect fidelity with the designer's mock-up, achieved with Figma and silky communication.",
-          "Performant/efficient development choices were a must, at the risk of hypocrisy! Achieved both with general best practices and framework specific resources.",
-        ],
-      },
-      technologies: ["figma", "html", "css", "typescript", "prisma", "tailwind"],
-    },
-    {
-      id: 2,
       name: "Phasmic",
-      link: "https://github.com/EamonEarth/phasmic",
+      githubLink: "https://github.com/EamonEarth/phasmic",
       images: [phasmicDesktop, phasmicMobile],
       shortDescription: "Weird meets wonderful for quirky company site",
       longDescription: {
@@ -123,9 +117,27 @@ export const experience = [
       ],
     },
     {
+      id: 2,
+      name: "Project Lowding",
+      githubLink: "https://github.com/EamonEarth/Lowding",
+      images: [lowdingDesktop, lowdingMobile],
+  
+      shortDescription:
+        "Neat little design thesis project advocating for lower impact design choices. ",
+      longDescription: {
+        text: "A fun challenge to reinforce the theme/brand of the website with web development choices. As well as building the site I refined the UX.",
+        listTitle: "Worth a mention:",
+        listPoints: [
+          "Pixel-perfect fidelity with the designer's mock-up, achieved with Figma and silky communication.",
+          "Performant/efficient development choices were a must, at the risk of hypocrisy! Achieved both with general best practices and framework specific resources.",
+        ],
+      },
+      technologies: ["figma", "html", "css", "typescript", "prisma", "tailwind"],
+    },
+    {
       id: 3,
       name: "Portfolio Site",
-      link: "https://github.com/EamonEarth/Godfather",
+      githubLink: "https://github.com/EamonEarth/Godfather",
       images: [portDesktop, portMobile],
       shortDescription: "Every detail counts on this sleek portfolio homepage.",
       longDescription: {
@@ -133,7 +145,7 @@ export const experience = [
         listTitle: "Some details you might have missed:",
         listPoints: [
           "Integration with RESTful APIs to populate the Haiku generation with user info (no user information is saved).",
-          "LocalStorage used to persist contact form drafts, with state and storage being reset upon completion/deletion.",
+          "sessionStorage used to persist contact form drafts, with state and storage being reset upon completion/deletion.",
           "Intersection Observers and complex state-management enable a confident and smooth UX.",
         ],
       },
