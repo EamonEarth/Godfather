@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
 ` }],
         // model: "gpt-3.5-turbo-0125",
         // model: "gpt-4-0125-preview",
-        model: "gpt-4o",
+        model: "gpt-4o-mini",
       });
       
       const final = completion.choices[0].message.content
