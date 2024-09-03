@@ -7,6 +7,7 @@ const apiKey = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({apiKey:apiKey});
 
 
+
 interface CreateHaikuProps {
     city: string;
 }
