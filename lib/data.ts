@@ -14,7 +14,7 @@ export const experience = [
       subtitle: "Western Australian Coastal and Marine Management Network",
       times: "2024 - ",
       description:
-        "Currently the primary web developer for the WACMN's modernisation scheme. Tasked with collating info, structuring databases and creating web apps with react to fulfil the organisation's government brief.",
+        "Currently the primary web developer for the WACMN's modernisation scheme. Tasked with collating info, structuring databases and creating web apps with React to fulfil the organisation's government brief.",
       link: "https://wacmnstewards.info",
     },
     {

@@ -53,7 +53,6 @@ export default function Home() {
             HeaderDiv?.classList.remove("active");
           } else {
             HeaderDiv?.classList.add("active");
-            console.log("hit it")
           }
         });
       },
