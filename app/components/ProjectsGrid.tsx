@@ -186,7 +186,7 @@ const ProjectsGrid = ({
   
             <div
               className={cn(
-                `lg:w-3/4 w-full h-fit image-container- aspect-[16/9] object-contain relative 
+                `lg:w-3/4 w-full h-fit aspect-[16/9] object-contain relative 
                 bg-gradient-to-l via-transparent backdrop-blur-md rounded md:rounded-3xl border border-teal-800/50 
                 md:py-[5%]`,
                 index === 1

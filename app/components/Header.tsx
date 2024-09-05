@@ -33,12 +33,6 @@ const Header = ({
             transition: "filter 0.5s ease-in-out, opacity 0.5s ease-in-out",
           }}
           className="hover:!opacity-100"
-          // className={cn("", {
-          //   "blur-none opacity-100":
-          //     !showModal && !(carouselExpansionBlur && projectsOnScreen),
-          //   "blur-sm opacity-20 hover:!blur-0":
-          //     showModal || (carouselExpansionBlur && projectsOnScreen),
-          // })}
         >
           <h1
             id="home"

@@ -24,7 +24,6 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
         className
       )}
     >
-      {/* <div id="home" className="absolute top-0 bg-white"></div> */}
       <div
         id="opac-observer"
         className="lg:max-w-[450px] md:max-w-[75%] flex flex-col "
@@ -37,6 +36,7 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
         >
           About
         </h1>
+
         <div
           className="flex flex-col md:opacity-40  !opacity-80 hover:opacity-100 opac-observer"
           style={{ transition: "opacity 0.5s ease-in-out" }}
@@ -73,29 +73,7 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
               <a className="uppercase   px-4 py-2" href={CV} download="CV - Eamon Travers">Download CV</a>
             </Button>
             </div>
-            {/* <p>
-              My &quot;first job&quot; 15 years ago was as a QA tester paid in
-              in-game currency for{" "}
-              <a
-                target="_blank"
-                className="font-semibold  link-text "
-                href="http://www.uberstrike.com/"
-                style={{ fontSize: 14 }}
-              >
-                a (now sunsetted) online FPS
-              </a>
-              . I knew nothing about coding, but realised rather quickly that
-              the on-screen world (and the real deal) aren&apos;t as rigid or as
-              finished as they seem, and curiousity and persistance are the only
-              things needed to have an effect.
-            </p>
-            <p className="mt-2 ">
-              Since then I&apos;ve been working at different intersections of
-              structure and creativity. Working with smart people towards a
-              shared goal makes me happy and, for my money at least, I think the
-              satisfaction of creating quality is one of the true joys of the
-              world! And it&apos;s cool!
-            </p> */}
+        
           </div>
         </div>
       </div>

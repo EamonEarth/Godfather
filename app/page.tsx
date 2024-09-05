@@ -131,6 +131,7 @@ export default function Home() {
             </div>
           </div>
           {/* END OF HEADER NAV */}
+          
           {/* ABOUT  */}
           <div 
           id="about" className="flex ">
@@ -154,7 +155,6 @@ export default function Home() {
             <Experience navRef={experienceRef} showModal={showModal}  />
           </div>
           <div className="flex justify-around md:mx-8 lg:mx-0 md:pt-8 lg:pt-24 carousel-hover-boundary">
-            {/* <div className="w-[350px] hidden lg:flex"></div> */}
 
             <ProjectsGrid
               navRef={projectsRef}
@@ -169,10 +169,7 @@ export default function Home() {
 
         <div className="h-[150px]"></div>
         <span className="absolute w-full bottom-1 md:right-[10%] flex items-center justify-center ">
-          <Haiku
-            // carouselExpansionBlur={expandedStates[0] || expandedStates[1]}
-            // projectsOnScreen={projectsOnScreen}
-          />
+          <Haiku/>
         </span>
       </div>
     </div>

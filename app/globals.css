@@ -4,13 +4,8 @@
 
 
 
-/* LICHESS */
 
-.lichess-invert {
-  filter: invert()
-}
 /* Haiku */
-
 
 .shake-animate:hover {
   animation: tilt-shaking 0.25s infinite;
@@ -35,6 +30,7 @@
   100% { transform: rotate(360deg); }
 }
 
+
 /* GENERAL  */
 
 
@@ -57,28 +53,12 @@
   width: 40% !important
 }
 
-/* for lg: use 16/9 */
-.image-container {
-  display: flex;
-  aspect-ratio: 16 / 9 ;
-  justify-content: center;
-  align-items: center;
-  /* width: 100%;  */
-  /* height: 0; */
-  /* padding-top: 28.12%;
-  padding-bottom: 28.12%;  */
-  position: relative;
-  object-fit: contain;
-  /* overflow: hidden; */
-}
-
 .image {
   position: absolute;
   max-width: 95%;
   max-height: 95%;
   object-fit: contain;
   border-radius: 10px;
-   /* or 'cover' depending on desired effect */
 }
 
 @keyframes pulse {
@@ -102,16 +82,7 @@
   opacity: 0.7;
 }
 }
-/* .observer-slide {
-  right: 0px;
-  opacity: 1;
-}
 
-.observer-slide.active {
-  right: 7rem;
-  opacity: 0.7;
-}
-} */
 
 /* ABOUT */
 
@@ -132,6 +103,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 /* Contact Form */
 .fly-right {
   animation: 2s slide-right ease;
@@ -285,16 +257,19 @@
 
 /* HEADER HEADER HEADER  */
 
+.lichess-invert {
+  filter: invert()
+}
+
+/* CONTACT FORM */
+
 .modal-3d{
   position: relative;
-  /* bottom: 90%; */
-  /* left: 10%; */
   background: #345309;
   border-radius: 20px;
   transition: transform 0.3s, box-shadow 0.3s;
   transform: scale(0.95);
   box-shadow: -5px 10px 2px 5px  rgba(111, 111, 143, .8);
-  /* box-shadow: -20px 10px 5px 10px rgba(111, 111, 143, .8); */
   transform: scale(1) translateZ(0);
   color: white;
 }
@@ -340,9 +315,6 @@
 .wide-outline-sm.active {
   outline: 10px solid  rgba(111, 111, 143, .8) ;
 }
-/* .wide-outline:hover {
-  outline: 19px solid  rgba(111, 111, 143, .8) ;
-} */
 
 @media(min-width: 1024px ){
 
@@ -372,10 +344,6 @@
     background-color: #f68120;
   }
   
-
-
-
-
 
 
 /* PROJECTS */ /* PROJECTS */ /* PROJECTS */
@@ -423,11 +391,11 @@
 .custom-gradient- {
   background-image: linear-gradient(
     to bottom, 
-    #e7ea8f 20%, /* Start transitioning earlier */
-    #a8b05f 25%, /* Intermediate color for smoother transition */
-    black 50%, /* Mid-point */
-    #a8b05f 75%, /* Intermediate color for smoother transition */
-    #e7ea8f 80% /* Start transitioning back earlier */
+    #e7ea8f 20%, 
+    #a8b05f 25%, 
+    black 50%, 
+    #a8b05f 75%, 
+    #e7ea8f 80% 
   );
 }
 .image-container {
@@ -436,10 +404,10 @@
 }
 
 .carousel-image {
-  transition: opacity 0.2s ease-in-out; /* Smooth transition for the opacity change */
+  transition: opacity 0.2s ease-in-out; 
 }
 
-/* Placeholder styles */
+
 .image-container::before {
   content: '';
   position: absolute;
@@ -447,9 +415,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  /* background: url('path/to/your/placeholder.jpg') no-repeat center center;
-  background-size: cover; */
-  opacity: 0.5; /* Adjust as needed */
+  opacity: 0.5;
 }
 
 @keyframes fadeInOut {
@@ -481,7 +447,7 @@
 
 
 .fade-in-out {
-  animation: fadeInOut 6s, scaler 7s forwards; /* Adjust duration as needed */
+  animation: fadeInOut 6s, scaler 7s forwards; 
   animation-timing-function: ease-in-out;
 }
 
@@ -501,7 +467,7 @@
 }
 
 .expanded {
-  height: auto; /* Adjust to control how much content is shown when expanded */
+  height: auto; 
 }
 /* TRANSITIONS */
 
@@ -543,63 +509,46 @@
   transition: font-size 300ms ease;
 }
 
-/* #2dd4bf
-500
-#14b8a6
-600
-#0d9488 */
-/* color: rgb(45, 252, 191) */
-/* color: rgb(20, 184, 166) */
 
 .wide-outline-lg.active  .grow-head {
   font-size: 18.5px;
   color: rgb(45, 252, 191)
-  /* color: rgb(141, 224, 18); */
 }
 .wide-outline-lg.active .grow-employer {
   font-size: 17px;
   color: rgb(22, 203, 182)
-  /* color: rgba(112, 181, 16, 1); */
 }
 .wide-outline-lg.active .grow-tag-line {
   font-size: 17px;
   color: rgb(17, 170, 157);
-  /* color: rgb(72, 117, 9); */
 }
 .wide-outline-lg:hover  .grow-head {
   font-size: 18.5px;
   color: rgb(45, 252, 191)
-  /* color: rgb(141, 224, 18); */
 }
 .wide-outline-lg:hover .grow-employer {
   font-size: 17px;
   color: rgb(22, 203, 182)
-  /* color: rgba(112, 181, 16, 1); */
 }
 .wide-outline-lg:hover .grow-tag-line {
   font-size: 17px;
   color: rgb(17, 170, 157);
-  /* color: rgb(72, 117, 9); */
 }
 
 .wide-outline-sm.active  .grow-head,
 .wide-outline-sm:hover  .grow-head {
   font-size: 18.5px;
   color: rgb(45, 252, 191)
-  /* color: rgb(141, 224, 18); */
 }
-/* color: rgb(13, 148, 136); */
 .wide-outline-sm.active .grow-employer, 
 .wide-outline-sm.hover .grow-employer {
   font-size: 17px;
   color: rgb(22, 203, 182)
-  /* color: rgba(112, 181, 16, 1); */
 }
 .wide-outline-sm.active .grow-tag-line, 
 .wide-outline-sm.hover .grow-tag-line {
   font-size: 17px;
   color: rgb(17, 170, 157);
-  /* color: rgb(72, 117, 9); */
 }
 
 .delayed-right-150px {
