@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { cn } from "../../../lib/utils";
 import React, { SetStateAction, useEffect } from "react";
 import Link from "next/link";
+// import CV_ENG from "/public/portfolio/Resume - Eamon Travers.pdf"
+
 
 interface AboutProps {
   showModal: boolean;
@@ -11,6 +13,7 @@ interface AboutProps {
 }
 
 const About = ({ showModal, className, navRef }: AboutProps) => {
+  const CV = "/portfolio/CV.pdf"
 
   return (
     <section
@@ -65,11 +68,10 @@ const About = ({ showModal, className, navRef }: AboutProps) => {
         
             </p>
             <div className="flex justify-end">
-            <Link href="/skills">
-            <Button className="ml-auto">
-              See skills & CV
+
+            <Button className="ml-auto border-teal-500 border hover:scale-110 transition-all hover:bg-teal-800">
+              <a className="uppercase   px-4 py-2" href={CV} download="CV - Eamon Travers">Download CV</a>
             </Button>
-            </Link>
             </div>
             {/* <p>
               My &quot;first job&quot; 15 years ago was as a QA tester paid in

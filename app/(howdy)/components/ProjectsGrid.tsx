@@ -288,7 +288,7 @@ const ProjectsGrid = ({
                     <div
                       style={{ transition: "background-color 0.5s ease-in-out" }}
                       className={cn(
-                        "md:bg-teal-500/10 rounded-2xl p-4 flex flex-col justify-around gap-y-4 text-xs shadow-2xl -ml-auto h-full",
+                        "md:bg-teal-500/10 rounded-2xl p-4 flex flex-col justify-around gap-y-4 text-xs md:text-sm shadow-2xl -ml-auto h-full",
       
                         {
                           "!bg-teal-900/40":
@@ -298,21 +298,21 @@ const ProjectsGrid = ({
                     >
                       <div
                         // style={shortDescriptionStyle}
-                        className="description-transition  text-end font-semibold tracking-wide text-sm overflow-auto bg-orange-400-/50"
+                        className="description-transition text-end font-semibold tracking-wide text-sm md:text-base  overflow-auto bg-orange-400-/50"
                       >
                         {project.shortDescription}
                       </div>
 
                       <div
                       // style={longDescriptionStyle}
-                      className="flex flex-col gap-y-2 description-transition expanded-description text-end bg-yellow-400-/50"
+                      className="flex flex-col gap-y-2  description-transition expanded-description text-end bg-yellow-400-/50"
                       >
-                        <p className="text-sm  md:text-xs text-end  tracking-wide flex flex-col overflow-auto bg-green-400-/50">
+                        <p className=" text-end ml-auto w-[90%] tracking-wide flex flex-col overflow-auto bg-green-400-/50">
                           {project.longDescription.text}
                         </p>
                       {project.longDescription.listTitle &&
                       <>
-                        <p className="w-full font-semibold tracking-wide border-teal-500/50 border-t pt-4">
+                        <p className="w-full text-sm md:text-base font-semibold tracking-wide border-teal-500/50 border-t pt-4">
                           {project.longDescription.listTitle}
                         </p>
                         <ul className="flex flex-col gap-y-2  overflow-auto">

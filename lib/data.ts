@@ -94,9 +94,9 @@ export const experience = [
       name: "Phasmic",
       githubLink: "https://github.com/EamonEarth/phasmic",
       images: [phasmicDesktop, phasmicMobile],
-      shortDescription: "Weird meets wonderful for quirky company site",
+      shortDescription: "Creative & professional landing page for a Neustart Kultur application",
       longDescription: {
-        text: "The client expressed a desire to appear independant while still exuding corporate efficiency. As the site has to appeal both to artists and financiers, we tried to walk the line between interesting and inoffensive.",
+        text: "Bold but functional. Slick and grungy homepage for an contemporary art production house",
         listTitle: "Worth a mention:",
         listPoints: [
           "Custom randomiser to select from fontArray for the Header element.",
