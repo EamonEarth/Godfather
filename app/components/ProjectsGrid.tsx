@@ -4,10 +4,12 @@ import { cn } from "@/lib/utils";
 import {
   Github,
 } from "lucide-react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { PROJECTS } from "@/lib/data";
+import { useFullscreenImageStore } from "@/hooks/use-fullscreen-image";
+import FullscreenImageModal from "./FullscreenImageModal";
 
 
 interface ProjectsProps {
@@ -32,11 +34,17 @@ const ProjectsGrid = ({
   const [imageSrcIndex, setImageSrcIndex] = useState(
     Array(PROJECTS.length).fill(0)
   );
+
+  const {toggleOpen, setSrc} = useFullscreenImageStore()
+  const handleSetFullScreenImage = (src: StaticImageData) => {
+    if (window.innerWidth < 1000) {
+      setSrc(src)
+      toggleOpen()
+    }
+  }
   // const [imageSrcRatio, setImageSrcRatio] = useState(
   //   Array(PROJECTS.length).fill([175, 750])
   // );
-  const [fsImage, setFsImage] = useState(false);
-  const [fsImageSrc, setFsImageSrc] = useState([0, 0]);
 
   // const handleNextImage = (index: number) => {
   //   const updatedIndices = [...imageSrcIndex];
@@ -137,6 +145,7 @@ const ProjectsGrid = ({
         showModal && "blur-[2px] hover:!blur-0"
       )}
     >
+      <FullscreenImageModal />
       {/* {fsImage && (
         <FullscreenImage
           setFsImage={setFsImage}
@@ -175,7 +184,7 @@ const ProjectsGrid = ({
             className={cn(
               "relative overflow-auto md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col justify-center items-center gap-y-1 lg:flex-row -mx-3 md:mx-0 gap-x-2 text-white  md:px-4- h-full",
               expandedStates[index] && "!items-left",
-              fsImage && "blur-[1px]"
+              // fsImage && "blur-[1px]"
             )}
             style={{
               transition:
@@ -204,6 +213,7 @@ const ProjectsGrid = ({
             </video>
               :
               <Image
+              onClick={()=>handleSetFullScreenImage(imageSrc)}
               src={imageSrc}
               alt={project.name}
               fill
