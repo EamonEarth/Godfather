@@ -36,7 +36,7 @@ const Header = ({
         >
           <h1
             id="home"
-            className="text-5xl lg:text-6xl font-semibold text-primary-foreground lg:pb-4 row-name"
+            className="text-4xl lg:text-6xl font-semibold text-primary-foreground lg:pb-4 row-name"
           >
             Eamon Travers
           </h1>
