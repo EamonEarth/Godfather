@@ -35,11 +35,15 @@ const ProjectsGrid = ({
     Array(PROJECTS.length).fill(0)
   );
 
-  const {toggleOpen, setSrc} = useFullscreenImageStore()
+  const {toggleOpen, openImage} = useFullscreenImageStore()
+
+  const preloadImage = (src: string | StaticImageData) => {
+    const img = new Image();
+    img.src = typeof src === 'string' ? src : (src as StaticImageData).src;
+  };
   const handleSetFullScreenImage = (src: StaticImageData) => {
     if (window.innerWidth < 1000) {
-      setSrc(src)
-      toggleOpen()
+      openImage(src)
     }
   }
   // const [imageSrcRatio, setImageSrcRatio] = useState(
@@ -163,7 +167,8 @@ const ProjectsGrid = ({
         Some recent work
       </h1>
       {PROJECTS.map((project, index: number) => {
-        const imageSrc = project.images[imageSrcIndex[index]];
+        const imageSrc = project.image!
+        // const imageSrc = project.images[imageSrcIndex[index]];
         // const longDescriptionStyle = {
         //   maxHeight: showMore === index ? "300px" : "0px",
         //   opacity: showMore === index ? 1 : 0,
@@ -182,7 +187,7 @@ const ProjectsGrid = ({
             id="BOUNDING DIV FOR EACH PROJECT"
             key={project.id + index * 2}
             className={cn(
-              "relative overflow-auto md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col justify-center items-center gap-y-1 lg:flex-row -mx-3 md:mx-0 gap-x-2 text-white  md:px-4- h-full",
+              "relative overflow-auto md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col justify-center items-center gap-y-1 lg:flex-row -mx-3 md:mx-0 gap-x-2 text-white  h-full",
               expandedStates[index] && "!items-left",
               // fsImage && "blur-[1px]"
             )}
@@ -207,13 +212,16 @@ const ProjectsGrid = ({
               )}
             >
               {project.name === "Phasmic" ? 
-              <video autoPlay loop muted playsInline className="video" preload="auto" id="videoElement">
+              <video 
+              onClick={()=>handleSetFullScreenImage(project.mobileImage!)}
+
+              autoPlay loop muted playsInline className="video" preload="auto" id="videoElement">
               <source src="/portfolio/phasmic.webm" type="video/webm" />
               Your browser does not support the video tag.
             </video>
               :
               <Image
-              onClick={()=>handleSetFullScreenImage(imageSrc)}
+              onClick={()=>handleSetFullScreenImage(project.mobileImage!)}
               src={imageSrc}
               alt={project.name}
               fill

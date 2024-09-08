@@ -9,6 +9,7 @@ import { cn } from "../lib/utils";
 import ProjectsGrid from "./components/ProjectsGrid";
 import Sidebar from "./components/Sidebar";
 import { PROJECTS } from "@/lib/data";
+import { useFullscreenImageStore } from "@/hooks/use-fullscreen-image";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
@@ -18,6 +19,7 @@ export default function Home() {
     Array(PROJECTS.length).fill(false)
   );
   const [projectsOnScreen, setProjectsOnScreen] = useState(false);
+  const {isOpen} = useFullscreenImageStore()
 
   let n = 0;
   useEffect(() => {
@@ -70,7 +72,7 @@ export default function Home() {
     <div className="h-full relative">
       <div className="flex flex-col lg:gap-y-6 justify-center px-2 lg:mx-16 ">
         {/* HEADER, NAV AND ABOUT */}
-        <div className="flex flex-col lg:flex-row lg:justify-around lg:items-center- relative mt-24 mx-8 lg:mx-12  ">
+        <div className="flex flex-col lg:flex-row lg:justify-around relative mt-24 mx-8 lg:mx-12  ">
           {/* HEADER AND NAV START */}
           <div className="flex flex-col ">
             <div

@@ -1,10 +1,12 @@
-import lowdingMobile from "/public/portfolio/lowding-wide0-comp.jpg";
 import lowdingDesktop from "/public/portfolio/lowding-wide1-comp.jpg";
-import phasmicMobile from "/public/portfolio/phasmic-wide0.png";
 import phasmicDesktop from "/public/portfolio/phasmic-wide1.png";
-import portMobile from "/public/portfolio/port-wide0.png";
 import portDesktop from "/public/portfolio/port-wide1.png";
 import wacmn from "/public/portfolio/wacmn.png"
+
+import wacmnMobile from "/public/portfolio/mapsMobile.jpg"
+import phasmicMobile from "/public/portfolio/phasmicMobile.jpg"
+import lowdingMobile from "/public/portfolio/lowdingMobile.jpg"
+import portMobile from "/public/portfolio/portMobile.jpg"
 
 export const experience = [
     {
@@ -76,8 +78,9 @@ export const experience = [
       githubLink: "https://github.com/EamonEarth/maps-ts",
       link: "http://www.wacmnstewards.info",
       linkTitle: "www.wacmnstewards.info",
-      images: [wacmn],
-  
+      image: wacmn,
+      mobileImage: wacmnMobile,
+
       shortDescription:
         "Interactive Stakeholder Map for the Western Australian Coastal and Marine Network",
       longDescription: {
@@ -93,7 +96,8 @@ export const experience = [
       id: 1,
       name: "Phasmic",
       githubLink: "https://github.com/EamonEarth/phasmic",
-      images: [phasmicDesktop, phasmicMobile],
+      image: phasmicDesktop,
+      mobileImage:  phasmicMobile,
       shortDescription: "Creative & professional landing page for a Neustart Kultur application",
       longDescription: {
         text: "Bold but functional. Slick and grungy homepage for an contemporary art production house",
@@ -120,8 +124,9 @@ export const experience = [
       id: 2,
       name: "Project Lowding",
       githubLink: "https://github.com/EamonEarth/Lowding",
-      images: [lowdingDesktop, lowdingMobile],
-  
+      image: lowdingDesktop,
+      mobileImage: lowdingMobile,
+
       shortDescription:
         "Neat little design thesis project advocating for lower impact design choices. ",
       longDescription: {
@@ -138,7 +143,8 @@ export const experience = [
       id: 3,
       name: "Portfolio Site",
       githubLink: "https://github.com/EamonEarth/Godfather",
-      images: [portDesktop, portMobile],
+      image: portDesktop,
+      mobileImage: portMobile,
       shortDescription: "Every detail counts on this sleek portfolio homepage.",
       longDescription: {
         text: "Built with NextJS. Site skeleton inspired by Brittany Chiang's beautiful site.",
