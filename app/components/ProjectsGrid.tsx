@@ -23,7 +23,6 @@ interface ProjectsProps {
 
 const ProjectsGrid = ({
   expandedStates,
-  setExpandedStates,
   setProjectsOnScreen,
   navRef,
   showModal,
@@ -37,89 +36,16 @@ const ProjectsGrid = ({
 
   const {toggleOpen, openImage} = useFullscreenImageStore()
 
-  const preloadImage = (src: string | StaticImageData) => {
-    const img = new Image();
-    img.src = typeof src === 'string' ? src : (src as StaticImageData).src;
-  };
+  // const preloadImage = (src: string | StaticImageData) => {
+  //   const img = new Image();
+  //   img.src = typeof src === 'string' ? src : (src as StaticImageData).src;
+  // };
   const handleSetFullScreenImage = (src: StaticImageData) => {
     if (window.innerWidth < 1000) {
       openImage(src)
     }
   }
-  // const [imageSrcRatio, setImageSrcRatio] = useState(
-  //   Array(PROJECTS.length).fill([175, 750])
-  // );
-
-  // const handleNextImage = (index: number) => {
-  //   const updatedIndices = [...imageSrcIndex];
-  //   const updatedOpacity = [...opacity];
-  //   updatedOpacity[index] = 0.5;
-  //   setOpacity(updatedOpacity);
-  //   setTimeout(() => {
-  //     if (imageSrcIndex[index] < 1) {
-  //       updatedIndices[index] += 1;
-  //       setImageSrcIndex(updatedIndices);
-  //     } else {
-  //       updatedIndices[index] = 0;
-  //       setImageSrcIndex(updatedIndices);
-  //     }
-  //     updatedOpacity[index] = 1;
-  //     setOpacity(updatedOpacity);
-  //   }, 300);
-  // };
-  // const handlePrevImage = (index: number) => {
-  //   const updatedIndices = [...imageSrcIndex];
-  //   const updatedOpacity = [...opacity];
-  //   updatedOpacity[index] = 0.5;
-  //   setOpacity(updatedOpacity);
-  //   setTimeout(() => {
-  //     if (imageSrcIndex[index] === 0) {
-  //       updatedIndices[index] = 1;
-  //       setImageSrcIndex(updatedIndices);
-  //     } else {
-  //       updatedIndices[index] = 0;
-  //       setImageSrcIndex(updatedIndices);
-  //     }
-  //     updatedOpacity[index] = 1;
-  //     setOpacity(updatedOpacity);
-  //   }, 300);
-  // };
-
-  // useEffect(() => {
-  //   const updatedRatios = [...imageSrcRatio];
-  //   PROJECTS.forEach((_, index) => {
-  //     let imgRatioVar;
-  //     imgRatioVar = imageSrcIndex[index] === 1 ? [350, 350] : [175, 700];
-  //     updatedRatios[index] = imgRatioVar;
-  //   });
-
-  //   setImageSrcRatio(updatedRatios);
-  // }, [imageSrcIndex, expandedStates]);
-
-  // const handleShowMore = (index: number) => {
-  //   const currStates = new Array(expandedStates.length).fill(false);
-  //   if (index === showMore) {
-  //     setShowMore(-1);
-  //     currStates[index] = false;
-  //     setExpandedStates(currStates);
-  //     return;
-  //   } else {
-  //     setShowMore(index);
-  //   }
-
-  //   if (!expandedStates[index] && showMore === index) {
-  //     return;
-  //   }
-  //   if (!expandedStates[index]) {
-  //     currStates[index] = true;
-  //     setExpandedStates(currStates);
-  //   }
-  // };
-
-  // const handleSetFullScreenImage = (index: number, imageSrc: number) => {
-  //   setFsImage(true);
-  //   setFsImageSrc([index, imageSrc]);
-  // };
+  
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -149,14 +75,9 @@ const ProjectsGrid = ({
         showModal && "blur-[2px] hover:!blur-0"
       )}
     >
+
       <FullscreenImageModal />
-      {/* {fsImage && (
-        <FullscreenImage
-          setFsImage={setFsImage}
-          setFsImageSrc={setFsImageSrc}
-          fsImageSrc={fsImageSrc}
-        />
-      )} */}
+      
       <h1
         id="projects"
         ref={navRef}
@@ -168,19 +89,7 @@ const ProjectsGrid = ({
       </h1>
       {PROJECTS.map((project, index: number) => {
         const imageSrc = project.image!
-        // const imageSrc = project.images[imageSrcIndex[index]];
-        // const longDescriptionStyle = {
-        //   maxHeight: showMore === index ? "300px" : "0px",
-        //   opacity: showMore === index ? 1 : 0,
-        //   transition:
-        //     "max-height 0.5s 0.5s ease-in-out, opacity 0.5s ease-in-out 0.5s",
-        // };
-        // const shortDescriptionStyle = {
-        //   maxHeight: showMore === index ? "0px" : "80px",
-        //   opacity: showMore === index ? 0 : 1,
-        //   transition:
-        //     "max-height 0.5s ease-in-out 0.5s, opacity 0.5s ease-in-out 0.5s",
-        // };
+    
 
         return (
           <div
@@ -235,40 +144,7 @@ const ProjectsGrid = ({
               )}
               ></Image>
             }
-              {/* {!showModal && (
-                <Maximize2
-                  className={cn(
-                    "size-8 p-2 md:hover:scale-110 md:hidden z-50 opacity-40 hover:opacity-80 absolute right-7 bottom-7 bg-black rounded-full cursor-pointer"
-                  )}
-                  style={{ transition: "transform 0.2s" }}
-                  onClick={() =>
-                    handleSetFullScreenImage(index, imageSrcIndex[index])
-                  }
-                />
-              )}
-
-              <div className={cn("absolute bottom-[45%] flex justify-between px-4 z-40 w-full  pointer-events-none", project.images.length < 2 && "hidden")}>
-                <Button
-                  variant="ghost"
-                  className="rounded-full md:hover:bg-transparent  md:hover:scale-125 text-white opacity-40 md:hover:opacity-90  pointer-events-auto"
-                  style={{ transition: "transform 0.4s" }}
-                  onClick={() => handlePrevImage(index)}
-                >
-                  <ArrowRightCircle
-                    strokeWidth={2}
-                    className="size-7 rotate-180"
-                  />
-                </Button>
-
-                <Button
-                  variant="ghost"
-                  className="rounded-full md:hover:bg-transparent md:hover:scale-125 opacity-40 md:hover:opacity-90 pointer-events-auto"
-                  style={{ transition: "transform 0.4s" }}
-                  onClick={() => handleNextImage(index)}
-                >
-                  <ArrowRightCircle strokeWidth={2} className="size-7 " />
-                </Button>
-              </div> */}
+              
             </div>
             {/* IMAGE DIV END */}
 
@@ -284,12 +160,7 @@ const ProjectsGrid = ({
                           "opacity 0.5s ease-in-out, max-height 1s ease-in-out 0.5s",
                         overflow: "hidden",
                       }}
-                      className={cn( 
-                        "flex flex-col justify-center",
-                        // showMore === index
-                        //   ? "opacity-0 max-h-0"
-                        //   : "opacity-100 max-h-100 "
-                      )}
+                      className={cn("flex flex-col justify-center")}
                     >
                       <span className="hidden md:block w-full h-[0.5px] bg-teal-500 ml-auto opacity-70"></span>
                       <h2
@@ -315,14 +186,12 @@ const ProjectsGrid = ({
                       )}
                     >
                       <div
-                        // style={shortDescriptionStyle}
                         className="description-transition text-end font-semibold tracking-wide text-sm md:text-base  overflow-auto bg-orange-400-/50"
                       >
                         {project.shortDescription}
                       </div>
 
                       <div
-                      // style={longDescriptionStyle}
                       className="flex flex-col gap-y-2  description-transition expanded-description text-end bg-yellow-400-/50"
                       >
                         <p className=" text-end ml-auto w-[90%] tracking-wide flex flex-col overflow-auto bg-green-400-/50">

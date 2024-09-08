@@ -1,14 +1,26 @@
-import React, { Ref } from 'react'
+import { cn } from '@/lib/utils';
+import React, { Dispatch, Ref, SetStateAction } from 'react'
+import Sidebar from './Sidebar';
+import Header from './Header';
 
 interface HeaderAndNavProps {
     showModal: boolean;
-    setShowModal: () => void;
+    setShowModal: Dispatch<SetStateAction<boolean>>
     projectsOnScreen: boolean;
-    aboutRef: Ref;
+    aboutRef: React.Ref<HTMLDivElement | null>
+    experienceRef: React.Ref<HTMLDivElement | null>
+    projectsRef: React.Ref<HTMLDivElement | null>
     
 }
 
-const HeaderAndNav = () => {
+const HeaderAndNav:React.FC<HeaderAndNavProps> = ({
+  showModal,
+  setShowModal,
+  projectsOnScreen,
+  aboutRef,
+  experienceRef,
+  projectsRef
+}) => {
   return (
     <div className="flex flex-col ">
             <div

@@ -10,6 +10,7 @@ import ProjectsGrid from "./components/ProjectsGrid";
 import Sidebar from "./components/Sidebar";
 import { PROJECTS } from "@/lib/data";
 import { useFullscreenImageStore } from "@/hooks/use-fullscreen-image";
+import HeaderAndNav from "./components/HeaderAndNav";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
@@ -19,7 +20,6 @@ export default function Home() {
     Array(PROJECTS.length).fill(false)
   );
   const [projectsOnScreen, setProjectsOnScreen] = useState(false);
-  const {isOpen} = useFullscreenImageStore()
 
   let n = 0;
   useEffect(() => {
@@ -71,78 +71,22 @@ export default function Home() {
   return (
     <div className="h-full relative">
       <div className="flex flex-col lg:gap-y-6 justify-center px-2 lg:mx-16 ">
-        {/* HEADER, NAV AND ABOUT */}
-        <div className="flex flex-col lg:flex-row lg:justify-around relative mt-24 mx-8 lg:mx-12  ">
-          {/* HEADER AND NAV START */}
-          <div className="flex flex-col ">
-            <div
-              className={cn(
-                "lg:fixed  md:flex lg:flex-col  lg:top-[15%] justify-between ",
-                showModal && "!opacity-0"
-              )}
-              style={{ transition: "opacity 0.4s ease-in-out" }}
-            >
-              <div
-              id="header"
-                className={cn(
-                  "observer-slide relative flex flex-col items-center w-full",
-                  showModal && "lg:hidden"
-                )}
-                style={{
-                  transition:
-                    "blur 1s ease-in, right 0.8s ease-in-out, opacity 0.8s ease-in-out",
-                }}
-              >
-                <div
-                  className={cn(
-                    "flex flex-col  gap-x-12 pl-4"
-                    // projectsOnScreen && "opacity-10"
-                  )}
-                >
-                  <span
-                  id="header"
-                    className={cn(
-                      "hover:!opacity-100",
-                      projectsOnScreen && "opacity-10"
-                    )}
-                    style={{ transition: "opacity 0.8s ease-in-out" }}
-                  >
-                    <Header
-                      showModal={showModal}
-                      setShowModal={() => setShowModal(!showModal)}
-                      className=""
-                      
-                      projectsOnScreen={projectsOnScreen}
-                    />
-                  </span>
-                  <span
-                    className={cn(
-                      "hover:!opacity-100",
-                      projectsOnScreen && "opacity-50"
-                    )}
-                    style={{ transition: "opacity 0.4s ease-in-out" }}
-                  >
-                    <Sidebar
-                      aboutRef={aboutRef}
-                      experienceRef={experienceRef}
-                      projectsRef={projectsRef}
-                    />
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* END OF HEADER NAV */}
+        <div className="flex flex-col lg:flex-row lg:justify-around relative mt-24 mx-8 lg:mx-12">
+          <HeaderAndNav 
+          showModal={showModal}
+          setShowModal={setShowModal}
+          projectsOnScreen={projectsOnScreen}
+          aboutRef={aboutRef}
+          experienceRef={experienceRef}
+          projectsRef={projectsRef}
+          />
           
-          {/* ABOUT  */}
-          <div 
-          id="about" className="flex ">
-            <div className="w-[350px] hidden lg:flex pt-[400px]"></div>
+          <div id="about" className="flex ">
+            <div className="w-[350px] hidden lg:flex pt-[400px]"/>
             <About navRef={aboutRef} className="" showModal={showModal} />
           </div>
-          {/* END OF ABOUT */}
+
         </div>
-        {/* END OF HEADER NAV ABOUT */}
 
         <div className="flex flex-col ">
           {showModal && (
@@ -152,12 +96,13 @@ export default function Home() {
               setShowModal={setShowModal}
             />
           )}
+
           <div className="flex flex-col lg:flex-row justify-around pt-16 lg:items-center  mx-4">
             <div className="w-[350px] hidden lg:flex"></div>
             <Experience navRef={experienceRef} showModal={showModal}  />
           </div>
-          <div className="flex justify-around md:mx-8 lg:mx-0 md:pt-8 lg:pt-24 carousel-hover-boundary">
 
+          <div className="flex justify-around md:mx-8 lg:mx-0 md:pt-8 lg:pt-24 carousel-hover-boundary">
             <ProjectsGrid
               navRef={projectsRef}
               expandedStates={expandedStates}
