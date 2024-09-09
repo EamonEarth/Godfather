@@ -36,10 +36,6 @@ const ProjectsGrid = ({
 
   const {toggleOpen, openImage} = useFullscreenImageStore()
 
-  // const preloadImage = (src: string | StaticImageData) => {
-  //   const img = new Image();
-  //   img.src = typeof src === 'string' ? src : (src as StaticImageData).src;
-  // };
   const handleSetFullScreenImage = (src: StaticImageData) => {
     if (window.innerWidth < 1000) {
       openImage(src)

@@ -8,6 +8,8 @@ import phasmicMobile from "/public/portfolio/phasmicMobile.jpg"
 import lowdingMobile from "/public/portfolio/lowdingMobile.jpg"
 import portMobile from "/public/portfolio/portMobile.jpg"
 
+import wacmnSquare from "/public/portfolio/wacmnSquare.png"
+
 export const experience = [
     {
       id: 0,
@@ -80,6 +82,7 @@ export const experience = [
       linkTitle: "www.wacmnstewards.info",
       image: wacmn,
       mobileImage: wacmnMobile,
+      thumbnail: wacmnSquare,
 
       shortDescription:
         "Interactive Stakeholder Map for the Western Australian Coastal and Marine Network",
@@ -98,6 +101,8 @@ export const experience = [
       githubLink: "https://github.com/EamonEarth/phasmic",
       image: phasmicDesktop,
       mobileImage:  phasmicMobile,
+      thumbnail: wacmnSquare,
+
       shortDescription: "Creative & professional landing page for a Neustart Kultur application",
       longDescription: {
         text: "Bold but functional. Slick and grungy homepage for an contemporary art production house",
@@ -126,6 +131,8 @@ export const experience = [
       githubLink: "https://github.com/EamonEarth/Lowding",
       image: lowdingDesktop,
       mobileImage: lowdingMobile,
+      thumbnail: wacmnSquare,
+
 
       shortDescription:
         "Neat little design thesis project advocating for lower impact design choices. ",
@@ -145,6 +152,8 @@ export const experience = [
       githubLink: "https://github.com/EamonEarth/Godfather",
       image: portDesktop,
       mobileImage: portMobile,
+      thumbnail: wacmnSquare,
+
       shortDescription: "Every detail counts on this sleek portfolio homepage.",
       longDescription: {
         text: "Built with NextJS. Site skeleton inspired by Brittany Chiang's beautiful site.",

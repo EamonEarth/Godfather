@@ -21,6 +21,7 @@ const HeaderAndNav:React.FC<HeaderAndNavProps> = ({
   experienceRef,
   projectsRef
 }) => {
+  
   return (
     <div className="flex flex-col ">
             <div

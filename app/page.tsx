@@ -11,15 +11,22 @@ import Sidebar from "./components/Sidebar";
 import { PROJECTS } from "@/lib/data";
 import { useFullscreenImageStore } from "@/hooks/use-fullscreen-image";
 import HeaderAndNav from "./components/HeaderAndNav";
+import MobileProjects from "./components/MobileProjects";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
+  const [isMobile, setIsMobile] = useState(false)
   const modalRef = useRef<HTMLDivElement | null>(null);
+  const aboutRef = useRef<HTMLHeadingElement>(null);
+  const experienceRef = useRef<HTMLHeadingElement>(null);
+  const projectsRef = useRef<HTMLHeadingElement>(null);
+
 
   const [expandedStates, setExpandedStates] = useState(
     Array(PROJECTS.length).fill(false)
   );
   const [projectsOnScreen, setProjectsOnScreen] = useState(false);
+
 
   let n = 0;
   useEffect(() => {
@@ -30,6 +37,19 @@ export default function Home() {
     }
     n += 1;
   }, []);
+
+  useEffect(()=>{
+    const checkIfMobile = () => {
+      if (window.innerWidth < 768) {
+        setIsMobile(true)
+    } else {
+      setIsMobile(false)
+    }
+  }
+  checkIfMobile()
+  window.addEventListener("resize", checkIfMobile)
+  return () => window.removeEventListener('resize', checkIfMobile)
+},[])
 
   useEffect(() => {
     if (window.innerWidth < 1024) {
@@ -42,9 +62,6 @@ export default function Home() {
     }
   }, [showModal]);
 
-  const aboutRef = useRef<HTMLHeadingElement>(null);
-  const experienceRef = useRef<HTMLHeadingElement>(null);
-  const projectsRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -102,7 +119,10 @@ export default function Home() {
             <Experience navRef={experienceRef} showModal={showModal}  />
           </div>
 
+          {isMobile ? <MobileProjects /> :
+
           <div className="flex justify-around md:mx-8 lg:mx-0 md:pt-8 lg:pt-24 carousel-hover-boundary">
+
             <ProjectsGrid
               navRef={projectsRef}
               expandedStates={expandedStates}
@@ -110,8 +130,9 @@ export default function Home() {
               projectsOnScreen={projectsOnScreen}
               setProjectsOnScreen={setProjectsOnScreen}
               showModal={showModal}
-            />
+              />
           </div>
+          }
         </div>
 
         <div className="h-[150px]"></div>
