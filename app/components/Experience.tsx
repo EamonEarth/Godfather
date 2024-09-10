@@ -16,7 +16,6 @@ const Experience = ({ showModal, navRef }: ExperienceProps) => {
   const [isTruncated, setIsTruncated] = useState(true);
   
 
-  // More reliable setting of active experience item
   useEffect(() => {
     let ticking = false;
     const items = Array.from(document.querySelectorAll(".experience-item"));
@@ -137,13 +136,13 @@ const Experience = ({ showModal, navRef }: ExperienceProps) => {
             key={job.title}
             className="w-auto h-auto experience-item experience-item-opac hover-boundary rounded-xl opacity-60 md:opacity-40 hover:!opacity-100 md:py-8 pt-4 lg:py-4
             hover:bg-[#111c2c] 
-transition-all   
-wide-outline-sm   
-lg:wide-outline-lg   
-relative 
-right-0
-px-[30px]
- duration-500 lg:duration-1000 lg:delay-200 hover:z-50 cursor-pointer"
+            transition-all   
+            wide-outline-sm   
+            lg:wide-outline-lg   
+            relative 
+            right-0
+            px-[30px]
+            duration-500 lg:duration-1000 lg:delay-200 hover:z-50 cursor-pointer"
             onClick={() => {
               if (isExpanded === job.id) {
                 setIsExpanded(-1);

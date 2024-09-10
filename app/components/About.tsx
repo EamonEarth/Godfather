@@ -2,8 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "../../lib/utils";
 import React, { SetStateAction, useEffect } from "react";
-import Link from "next/link";
-// import CV_ENG from "/public/portfolio/Resume - Eamon Travers.pdf"
 
 
 interface AboutProps {

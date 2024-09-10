@@ -125,8 +125,6 @@ export default function Home() {
 
             <ProjectsGrid
               navRef={projectsRef}
-              expandedStates={expandedStates}
-              setExpandedStates={setExpandedStates}
               projectsOnScreen={projectsOnScreen}
               setProjectsOnScreen={setProjectsOnScreen}
               showModal={showModal}

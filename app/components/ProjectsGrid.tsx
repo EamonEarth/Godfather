@@ -13,8 +13,6 @@ import FullscreenImageModal from "./FullscreenImageModal";
 
 
 interface ProjectsProps {
-  expandedStates: boolean[];
-  setExpandedStates: React.Dispatch<React.SetStateAction<boolean[]>>;
   projectsOnScreen: boolean;
   setProjectsOnScreen: (value: boolean) => void;
   navRef: React.Ref<HTMLHeadingElement>;
@@ -22,12 +20,10 @@ interface ProjectsProps {
 }
 
 const ProjectsGrid = ({
-  expandedStates,
   setProjectsOnScreen,
   navRef,
   showModal,
 }: ProjectsProps) => {
-  const [showMore, setShowMore] = useState(-1);
   const [opacity, setOpacity] = useState(Array(PROJECTS.length).fill(1));
 
   const [imageSrcIndex, setImageSrcIndex] = useState(
@@ -92,9 +88,7 @@ const ProjectsGrid = ({
             id="BOUNDING DIV FOR EACH PROJECT"
             key={project.id + index * 2}
             className={cn(
-              "relative overflow-auto md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col justify-center items-center gap-y-1 lg:flex-row -mx-3 md:mx-0 gap-x-2 text-white  h-full",
-              expandedStates[index] && "!items-left",
-              // fsImage && "blur-[1px]"
+              "relative overflow-auto md:overflow-visible md:bg-transparent py-4 lg:py-6 project flex flex-col justify-center items-center gap-y-1 lg:flex-row -mx-3 md:mx-0 gap-x-2 text-white  md:px-4- h-full",
             )}
             style={{
               transition:
@@ -106,15 +100,8 @@ const ProjectsGrid = ({
             <div
               className={cn(
                 `lg:w-3/4 w-full h-fit aspect-[16/9] object-contain relative 
-                bg-gradient-to-l via-transparent backdrop-blur-md rounded md:rounded-3xl border border-teal-800/50 
-                md:py-[5%]`,
-                index === 1
-                  ? "from-teal-500/10 to-teal-500/10"
-                  : " from-teal-500/20 to-teal-500/20",
-                {
-                  "": expandedStates[index] && imageSrcIndex[index] === 1,
-                }
-              )}
+                bg-gradient-to-l from-teal-500/10 to-teal-500/10 via-transparent backdrop-blur-md rounded md:rounded-3xl border border-teal-800/50 
+                md:py-[5%]`)}
             >
               {project.name === "Phasmic" ? 
               <video 
@@ -137,8 +124,7 @@ const ProjectsGrid = ({
                 transition: "opacity 0.5s ease-in-out ",
               }}
               className={cn(
-                "w-auto h-auto p-2 md:p-6 lg:p-8 object-contain",
-                expandedStates[index] && "shadow-2xl "
+                "w-auto h-auto md:p-8 p-2 object-contain",
               )}
               ></Image>
             }
@@ -149,7 +135,6 @@ const ProjectsGrid = ({
                   <div
                     className={cn(
                       "flex flex-col text-end text-xs  bg-teal-500/10 md:bg-transparent rounded-3xl p-2 -mt-1 lg:w-1/4 w-full min-w-[300px] md:max-w-[100%]",
-                      expandedStates[index] && "!text-start"
                     )}
                   >
                     <div
