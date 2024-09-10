@@ -9,6 +9,9 @@ import lowdingMobile from "/public/portfolio/lowdingMobile.jpg"
 import portMobile from "/public/portfolio/portMobile.jpg"
 
 import wacmnSquare from "/public/portfolio/wacmnSquare.png"
+import lowdingThumbnail from "/public/portfolio/lowdingThumbnail.png"
+import portThumbnail from "/public/portfolio/portThumbnail.png"
+import phasmicThumbnail from "/public/portfolio/phasmicThumbnail.png"
 
 export const experience = [
     {
@@ -101,7 +104,7 @@ export const experience = [
       githubLink: "https://github.com/EamonEarth/phasmic",
       image: phasmicDesktop,
       mobileImage:  phasmicMobile,
-      thumbnail: wacmnSquare,
+      thumbnail: phasmicThumbnail,
 
       shortDescription: "Creative & professional landing page for a Neustart Kultur application",
       longDescription: {
@@ -131,7 +134,7 @@ export const experience = [
       githubLink: "https://github.com/EamonEarth/Lowding",
       image: lowdingDesktop,
       mobileImage: lowdingMobile,
-      thumbnail: wacmnSquare,
+      thumbnail: lowdingThumbnail,
 
 
       shortDescription:
@@ -152,7 +155,7 @@ export const experience = [
       githubLink: "https://github.com/EamonEarth/Godfather",
       image: portDesktop,
       mobileImage: portMobile,
-      thumbnail: wacmnSquare,
+      thumbnail: portThumbnail,
 
       shortDescription: "Every detail counts on this sleek portfolio homepage.",
       longDescription: {

@@ -24,7 +24,6 @@ const FullscreenImageModal:React.FC<FullscreenImageModalProps> = () => {
       };
     }, [isOpen]);
     
-    console.log("isOpen, src ", isOpen, src)
     
     useEffect(() => {
       const updateHeight = () => {
@@ -40,8 +39,6 @@ const FullscreenImageModal:React.FC<FullscreenImageModalProps> = () => {
     }, []);
     if (!isOpen) return null 
     
-    console.log("count")
-    console.count()
   return (
     <div 
     onClick={toggleOpen}

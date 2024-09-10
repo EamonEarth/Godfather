@@ -119,8 +119,10 @@ const ProjectsGrid = ({
               {project.name === "Phasmic" ? 
               <video 
               onClick={()=>handleSetFullScreenImage(project.mobileImage!)}
+              
+        
 
-              autoPlay loop muted playsInline className="video" preload="auto" id="videoElement">
+              autoPlay loop muted playsInline className="video p-2 md:p-6 lg:p-8" preload="auto" id="videoElement">
               <source src="/portfolio/phasmic.webm" type="video/webm" />
               Your browser does not support the video tag.
             </video>
@@ -135,7 +137,7 @@ const ProjectsGrid = ({
                 transition: "opacity 0.5s ease-in-out ",
               }}
               className={cn(
-                "w-auto h-auto md:p-8 p-2 object-contain",
+                "w-auto h-auto p-2 md:p-6 lg:p-8 object-contain",
                 expandedStates[index] && "shadow-2xl "
               )}
               ></Image>
