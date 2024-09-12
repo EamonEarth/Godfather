@@ -109,6 +109,8 @@ const Experience = ({ showModal, navRef }: ExperienceProps) => {
   }
 
   return (
+    <div className="flex flex-col lg:flex-row justify-around pt-16 lg:items-center  mx-4">
+      <div className="w-[350px] hidden lg:flex"/>
     <div
       id="experience"
       style={{ transition: "filter 0.5s ease-in-out" }}
@@ -190,6 +192,8 @@ const Experience = ({ showModal, navRef }: ExperienceProps) => {
         ))}
       </ol>
     </div>
+    </div>
+
   );
 };
 

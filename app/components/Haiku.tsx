@@ -112,6 +112,8 @@ const Haiku = ({  }: HaikuProps) => {
   };
 
   return (
+    <span className="absolute w-full bottom-1 md:right-[10%] flex items-center justify-center">
+
     <div
       style={{ transition: "filter 0.5s ease-in-out" }}
       className={cn(
@@ -152,6 +154,8 @@ const Haiku = ({  }: HaikuProps) => {
         <div>Loading...</div>
       )}
     </div>
+    </span>
+
   );
 };
 

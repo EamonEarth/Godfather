@@ -59,6 +59,8 @@ const ProjectsGrid = ({
   }, []);
 
   return (
+    <div className="flex justify-around md:mx-8 lg:mx-0 md:pt-8 lg:pt-24 carousel-hover-boundary">
+
     <div
       id="projects-container"
       style={{ transition: "filter 0.5s ease-in-out" }}
@@ -222,6 +224,8 @@ const ProjectsGrid = ({
         );
       })}
     </div>
+    </div>
+
   );
 };
 

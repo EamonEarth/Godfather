@@ -86,8 +86,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="h-full relative">
-      <div className="flex flex-col lg:gap-y-6 justify-center px-2 lg:mx-16 ">
+      <div className="h-full relative flex flex-col lg:gap-y-6 justify-center px-2 lg:mx-16 ">
+
         <div className="flex flex-col lg:flex-row lg:justify-around relative mt-24 mx-8 lg:mx-12">
           <HeaderAndNav 
           showModal={showModal}
@@ -98,14 +98,10 @@ export default function Home() {
           projectsRef={projectsRef}
           />
           
-          <div id="about" className="flex ">
-            <div className="w-[350px] hidden lg:flex pt-[400px]"/>
-            <About navRef={aboutRef} className="" showModal={showModal} />
-          </div>
-
+          <About navRef={aboutRef} showModal={showModal} />
         </div>
 
-        <div className="flex flex-col ">
+        <div className="flex flex-col">
           {showModal && (
             <ContactModal
               ref={modalRef}
@@ -114,30 +110,22 @@ export default function Home() {
             />
           )}
 
-          <div className="flex flex-col lg:flex-row justify-around pt-16 lg:items-center  mx-4">
-            <div className="w-[350px] hidden lg:flex"></div>
-            <Experience navRef={experienceRef} showModal={showModal}  />
-          </div>
+          <Experience navRef={experienceRef} showModal={showModal}  />
 
-          {isMobile ? <MobileProjects /> :
-
-          <div className="flex justify-around md:mx-8 lg:mx-0 md:pt-8 lg:pt-24 carousel-hover-boundary">
-
-            <ProjectsGrid
-              navRef={projectsRef}
-              projectsOnScreen={projectsOnScreen}
-              setProjectsOnScreen={setProjectsOnScreen}
-              showModal={showModal}
-              />
-          </div>
+          {isMobile ? 
+          <MobileProjects /> 
+          :
+          <ProjectsGrid
+            navRef={projectsRef}
+            projectsOnScreen={projectsOnScreen}
+            setProjectsOnScreen={setProjectsOnScreen}
+            showModal={showModal}
+            />
           }
         </div>
 
-        <div className="h-[150px]"></div>
-        <span className="absolute w-full bottom-1 md:right-[10%] flex items-center justify-center ">
+        <div className="h-[150px]"/>
           <Haiku/>
-        </span>
       </div>
-    </div>
   );
 }

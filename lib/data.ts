@@ -29,7 +29,7 @@ export const experience = [
       title: "Developer •",
       employer: "Freelance",
       subtitle: "Frontend & web development",
-      times: "2023 - ",
+      times: "2022 - ",
       description:
         "Web apps and frontends. Daily usage of React, Next.js, HTML5, Typescript, Node.js, CSS & Figma. Design, coding, backend set-up and deployment. Special emphasis on accessibility and reliability. See Projects below for some examples. ",
       link: "https://eamontravers.dev/#projects",
@@ -39,7 +39,7 @@ export const experience = [
       title: "MBA/EMBA Programme Coordinator •",
       employer: "Freelance / AUSTRAL TRAVEL",
       subtitle: "Programme coordination and delivery.",
-      times: "2021 - ",
+      times: "2021 - 2022",
       description:
         "Being the person on the ground who has to bring all the threads of a programme together, and deliver it. With some universities, I'm essentially a glorified tour guide. For others, an active member of sessions with organisations like DIHK, Silicon Allee, Google & Bayer. I've been lucky enough to work with some great schools like the Cambridge Judge Business School, the Jones Graduate School at Rice and London Business School.",
       link: "https://australgroup.com/",
@@ -49,7 +49,7 @@ export const experience = [
       title: "Digital Audio Engineer •",
       employer: "Petersburg Art Space",
       subtitle: "Concert & Exhibition Spaces",
-      times: "2020 - ",
+      times: "2020 - 2022",
       description:
         "Live audio and mix engineer in a bustling Berlin art space and event venue. The only constant here is the expectation that the work is at a high enough level to represent the venue. Shows vary from single night touring intl artists to government funded installation art.",
       link: "https://pas-berlin.org/pas-eng/",
