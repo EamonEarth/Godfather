@@ -53,8 +53,8 @@ const About = ({ showModal, navRef }: AboutProps) => {
                 </span>
               </p>
               <p className="">
-                I&apos;m a generalist/polymath who loves making things work! With 
-                a degree in Mathemathics and development & UI/UX specializations from IBM and Google, I&apos;m happy
+                I&apos;m a generalist/polymath who loves making things work. With 
+                a degree in Mathemathics, specializations in Software Engineering, Frontend Development & UX design specializations from HKUST, IBM and Google, I&apos;m happy
                 making web apps, frontends, custom algorithms or new things. I love coding intuitive and engaging frontend
                 interfaces, leveraging up-to-date technologies and getting excited
                 about new projects.
